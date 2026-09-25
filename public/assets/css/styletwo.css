@@ -1,0 +1,127 @@
+/*.order-button-payment {
+    background: #333333; 
+    border: medium none;
+    height: 50px; 
+    margin: 20px 0 0; 
+    padding: 0; 
+    text-transform: uppercase; 
+    width: 100%; 
+    border: 1px solid transparent; 
+    cursor: pointer;
+    text-align:center;
+    justify-content: center;
+}
+*/
+.order-button-payment a{
+    display: flex;
+    background: #333333; 
+    border: medium none; 
+    color: #ffffff; 
+    font-size: 17px; 
+    font-weight: 600; 
+    height: 100%;
+    text-transform: uppercase; 
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent; 
+    cursor: pointer;
+}
+.contact-main-page .contact-form-content .contact-form .form-group select {
+    background-color: #ffffff;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    outline: none;
+    border: 1px solid #ebebeb;
+    padding-left: 20px;
+}
+.whatsapp-chat{
+    bottom: 10px;
+    right: 10px;
+    position: fixed;
+    z-index: 1000;
+}
+.whatsapp-chat img{
+    width:80%;
+    
+    
+}
+
+.payment-method .div_upi{
+    background: #4197EF;
+    border: medium none;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-align:center;
+    width: 100%;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.payment-method .div_stripe{
+    background: #6B3FEB;
+    border: medium none;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-align:center;
+    width: 100%;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.header-main_area-2 .header-bottom_area .container-fluid .header-bottom_nav .combine-menu-with_logo .header-logo {
+    padding:0px!important;
+    padding: 5px 0 5px 0px!important;
+}
+.umino-product-tab_area-2 .product-tab-additional_stuff .umino-countdown_area .forexcountdown {
+    background-color: #ffffff;
+}
+.forexcountdown {
+    border: 2px solid #fed100;
+    border-radius: 50px;
+    text-align: center;
+}
+.sp-area .sp-nav .sp-content .price-box .price-tag {
+    font-size: 24px;
+    color: #333333;
+    font-weight: 600;
+}
+.sp-area .sp-nav .sp-content .price-box .product-price {
+    font-size: 24px;
+    color: #888888;
+    font-weight: 600;
+}
+.sp-area .sp-nav .sp-content .price-box .discount-price {
+    font-size: 24px;
+    color: #388E3C;
+    font-weight: 600;
+}
+/* Specific override */
+    .no-hover:hover {
+      color: inherit !important;
+      text-decoration: none !important;
+    }
+
+.main_nav {
+    display: flex;
+    height: 100px; /* Set as needed */
+}
+.main_nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-self: center; /* This also helps */
+}
