@@ -1,0 +1,159 @@
+/* ============================================================
+   BTC ML AI — TEAL-BLUE theme experiment v1
+   Maroon/wine/red  ->  ocean blue + teal. Gold accents stay.
+   Loaded LAST, boosted specificity (html body.template-color-1).
+   ============================================================ */
+html body.template-color-1 {
+  --rb-wine: #0C4A6E;
+  --rb-wine-dark: #082F49;
+  --rb-wine-light: #0284C7;
+  --rb-rose: #38BDF8;
+  --rb-red: #0EA5E9;
+  --rb-red-dark: #0369A1;
+  --rb-text-dark: #0C4A6E;
+  --rb-footer-wine: #0C4A6E;
+  --tb-btn1: #38BDF8;
+  --tb-btn2: #0EA5E9;
+  --tb-btn3: #0E7490;
+}
+
+/* ----- entire header chain: wine -> ocean ----- */
+html body.template-color-1 header.header-main_area.header-main_area-2,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-top_area,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-bottom_area,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-bottom_area-2,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-sticky {
+  background: linear-gradient(135deg, #0C4A6E 0%, #082F49 48%, #155E75 100%) !important;
+  background-color: #0C4A6E !important;
+  background-image: linear-gradient(135deg, #0C4A6E 0%, #082F49 48%, #155E75 100%) !important;
+}
+html body.template-color-1 .header-main_area-2,
+html body.template-color-1 .header-main_area-2 .header-bottom_area,
+html body.template-color-1 .header-main_area-2 .header-bottom_area-2,
+html body.template-color-1 .header-main_area-2 .header-sticky,
+html body.template-color-1 .header-main_area-2 .container,
+html body.template-color-1 .header-main_area-2 .container-fluid {
+  background-color: #0C4A6E !important;
+  background-image: linear-gradient(180deg, #0C4A6E 0%, #082F49 100%) !important;
+}
+html body.template-color-1 .header-main_area-2 .header-top_area,
+html body.template-color-1 .header-main_area-2 .header-top_area.bg--tangerine_yellow {
+  background: #082F49 !important;
+  background-color: #082F49 !important;
+  background-image: none !important;
+}
+/* ticker wrap wine variant -> ocean */
+html body.template-color-1 header.header-main_area.header-main_area-2 .fb-market-ticker-wrap {
+  background: linear-gradient(90deg, #082F49 0%, #155E75 48%, #082F49 100%) !important;
+  background-color: #082F49 !important;
+}
+/* sticky inner */
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-sticky > .container {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+/* dropdowns wine -> deep ocean */
+html body.template-color-1 header.header-main_area.header-main_area-2 .hm-dropdown,
+html body.template-color-1 header.header-main_area.header-main_area-2 .main_nav .hm-dropdown,
+html body.template-color-1 .header-main_area-2 .hm-dropdown {
+  background: linear-gradient(180deg, #0C4A6E 0%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+}
+/* gold icon buttons -> teal-blue */
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-bottom_area-2 .mobile-menu_btn,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-bottom_area-2 .toolbar-btn,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-sticky .mobile-menu_btn,
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-sticky .toolbar-btn,
+html body.template-color-1 header.header-main_area.header-main_area-2 .rb-mobile-info-icon {
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 48%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: rgba(186, 230, 253, .55) !important;
+}
+html body.template-color-1 header.header-main_area.header-main_area-2 .mobile-menu_btn i,
+html body.template-color-1 header.header-main_area.header-main_area-2 .toolbar-btn i,
+html body.template-color-1 header.header-main_area.header-main_area-2 .rb-mobile-info-icon i {
+  color: #fff !important;
+}
+
+/* ----- red buttons/badges site-wide -> teal-blue ----- */
+html body.template-color-1 .fb-btn-danger,
+html body.template-color-1 .btn-danger,
+html body.template-color-1 .badge-danger,
+html body.template-color-1 .fb-service-robot-badge {
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 55%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: #0EA5E9 !important;
+  color: #fff !important;
+}
+/* wine gradient buttons (service order etc.) -> blue */
+html body.template-color-1 .fb-header-service-area .banner-content .umino-btn,
+html body.template-color-1 .fb-header-service-area .banner-content .umino-btn_dark,
+html body.template-color-1 .fb-header-service-area .fb-service-order-btn {
+  background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 45%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: #0EA5E9 !important;
+  color: #fff !important;
+}
+/* mobile menu links wine -> ocean */
+html body.template-color-1 #mobileMenu.mobile-menu_wrapper {
+  background: linear-gradient(180deg, #0C4A6E 0%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 #mobileMenu ul.mobile-menu > li > a,
+html body.template-color-1 #mobileMenu .offcanvas-navigation > ul > li > a,
+html body.template-color-1 html body.template-color-1 #mobileMenu ul.mobile-menu > li > a {
+  background: linear-gradient(180deg, #155E75 0%, #0C4A6E 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 #mobileMenu ul.mobile-menu > li > a:hover {
+  background: #0EA5E9 !important;
+  background-color: #0EA5E9 !important;
+  color: #fff !important;
+}
+/* mobile sticky bar wine -> ocean */
+html body.template-color-1 header.header-main_area.header-main_area-2 .header-sticky {
+  background: linear-gradient(135deg, #0C4A6E 0%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+}
+
+/* ----- shipping strip wine cards -> ocean ----- */
+html body.template-color-1 div.umino-shipping_area.fb-header-shipping-area .shipping-item,
+html body.template-color-1 div.umino-shipping_area.fb-header-shipping-area .shipping-nav .shipping-item {
+  background: linear-gradient(145deg, #155E75 0%, #0C4A6E 55%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+}
+
+/* ----- footer bottom wine -> ocean ----- */
+html body.template-color-1 footer.fb-clean-footer .fb-footer-bottom {
+  background: linear-gradient(135deg, #082F49 0%, #0C4A6E 52%, #082F49 100%) !important;
+  background-color: #082F49 !important;
+}
+/* ----- cookie banner wine -> ocean ----- */
+html body.template-color-1 .js-cookie-consent.cookie-consent,
+html body.template-color-1 .cookie-consent,
+html body.template-color-1 div.js-cookie-consent {
+  background: linear-gradient(135deg, #0C4A6E 0%, #082F49 48%, #083344 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 .js-cookie-consent-agree,
+html body.template-color-1 .cookie-consent__agree,
+html body.template-color-1 .js-cookie-consent button:not(.rb-cookie-close-x) {
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 48%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: #0EA5E9 !important;
+  color: #fff !important;
+}
+
+/* ----- hero arrows hover wine-gold -> blue ----- */
+html body.template-color-1 .rb-hero-arrow:hover {
+  background: linear-gradient(135deg, #7DD3FC 0%, #0EA5E9 48%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+}
+html body.template-color-1 .rb-hero-arrow:hover i {
+  color: #fff !important;
+}
+/* ----- gold tab hover/active keep gold; red text accents -> blue ----- */
+html body.template-color-1 .fb-product-area .product-menu li a:hover {
+  border-color: #0EA5E9 !important;
+}
