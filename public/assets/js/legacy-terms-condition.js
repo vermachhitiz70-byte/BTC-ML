@@ -8,6 +8,10 @@
 ;
 
 ;
+/* ==== /assets/js/legacy-terms-condition.js ==== */
+;
+
+;
 /* ==== assets/js/vendor/jquery-3.6.0.min.js ==== */
 ;
 /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
