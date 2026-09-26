@@ -1,13 +1,13 @@
 import Script from 'next/script';
-import BodyClass from '../body-class';
+import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export default function Page() {
   return (
     <>
-      <title>BTC ML AI Blog | Software Guides &amp; Educational Articles</title>
-      <meta name="description" content="Read BTC ML AI software tutorials, MT4 setup guides, product updates, and general educational articles. Content is for information and education only and is not personalised investment advice." />
-      <link rel="canonical" href="https://btcmlai.com/blog" />
+      <title>BTC X EA MT5 Installation & Setup Guide (Demo First) | BTC ML AI</title>
+      <meta name="description" content="Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds." />
+      <link rel="canonical" href="https://btcmlai.com/blogs/btc-x-ea-mt5-installation-setup-guide" />
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
@@ -30,7 +30,7 @@ export default function Page() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"email\":\"redbaazsoftware@gmail.com\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"telephone\":\"+919978507899\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
-      <Script src="/assets/js/legacy-blog.js" strategy="afterInteractive" />
+      <Script src="/assets/js/legacy-blog-single.js" strategy="afterInteractive" />
     </>
   );
 }

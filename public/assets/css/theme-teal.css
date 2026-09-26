@@ -158,6 +158,11 @@ html body.template-color-1 .fb-product-area .product-menu li a:hover {
   border-color: #0EA5E9 !important;
 }
 
+/* ----- single static hero: hide slider arrows ----- */
+html body.template-color-1 .rb-hero-arrow {
+  display: none !important;
+}
+
 /* ============================================================
    TEAL-BLUE v2 — breadcrumbs blue, footer cream #F7EACF + blue,
    zero red. Gallery images replaced by placeholder (see below).
