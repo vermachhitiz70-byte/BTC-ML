@@ -164,6 +164,78 @@ html body.template-color-1 .rb-hero-arrow {
 }
 
 /* ============================================================
+   BTC X EA sections — featured + hero in blue & cream #F7EACF
+   ============================================================ */
+html body.template-color-1 .fb-featured-software-card {
+  border-color: rgba(14, 165, 233, .35) !important;
+}
+html body.template-color-1 .fb-featured-copy {
+  background: linear-gradient(135deg, #082F49 0%, #0C4A6E 60%, #155E75 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 .fb-featured-copy h3,
+html body.template-color-1 .fb-featured-description,
+html body.template-color-1 .fb-featured-label {
+  color: #FFFFFF !important;
+}
+html body.template-color-1 .fb-featured-visual {
+  background: #F7EACF !important;
+  background-color: #F7EACF !important;
+  background-image: none !important;
+}
+/* hero/dubai section: blue bg, cream card */
+html body.template-color-1 .fb-hero-section {
+  background: linear-gradient(135deg, #082F49 0%, #0C4A6E 55%, #155E75 100%) !important;
+  background-color: #0C4A6E !important;
+  background-image: linear-gradient(135deg, #082F49 0%, #0C4A6E 55%, #155E75 100%) !important;
+}
+html body.template-color-1 .fb-hero-card {
+  background: #F7EACF !important;
+  background-color: #F7EACF !important;
+  background-image: none !important;
+  border: 1px solid rgba(12, 74, 110, .22) !important;
+}
+html body.template-color-1 .fb-hero-card h1,
+html body.template-color-1 .fb-hero-card h2,
+html body.template-color-1 .fb-hero-card h3,
+html body.template-color-1 .fb-hero-card p,
+html body.template-color-1 .fb-hero-card li,
+html body.template-color-1 .fb-hero-card span {
+  color: #0C4A6E !important;
+}
+
+/* hero buttons: primary blue */
+html body.template-color-1 .fb-hero-buttons .fb-btn-primary {
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 55%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: #0EA5E9 !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   Catalogue: deep-blue panel + blue tab bar, single product
+   ============================================================ */
+html body.template-color-1 .fb-product-area,
+html body.template-color-1 .umino-product-tab_area.fb-product-area {
+  background: linear-gradient(180deg, #082F49 0%, #0C4A6E 55%, #083344 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 .fb-product-area .product-tab {
+  background: linear-gradient(135deg, #0C4A6E 0%, #155E75 60%, #0E7490 100%) !important;
+  background-color: #0C4A6E !important;
+  border: 1px solid rgba(186, 230, 253, .25) !important;
+}
+html body.template-color-1 .fb-product-area .tab-content.umino-tab_content {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body.template-color-1 .fb-product-area .tab-content.umino-tab_content::before {
+  display: none !important;
+}
+
+/* ============================================================
    TEAL-BLUE v2 — breadcrumbs blue, footer cream #F7EACF + blue,
    zero red. Gallery images replaced by placeholder (see below).
    ============================================================ */
