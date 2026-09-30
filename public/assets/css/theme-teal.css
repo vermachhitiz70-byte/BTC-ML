@@ -299,3 +299,215 @@ html body.template-color-1 footer.fb-clean-footer .fb-footer-bottom {
   border-top: 1px solid rgba(247, 234, 207, .22) !important;
   color: #F7EACF !important;
 }
+
+/* ============================================================
+   BLOG LISTING — BLUE PREMIUM v1 (ocean + cream + gold)
+   Overrides inline maroon .fb-blog-* styles. Loaded LAST.
+   ============================================================ */
+
+/* page base: airy blue-cream */
+html body.template-color-1 .fb-blog-page {
+  background:
+    radial-gradient(circle at 10% 6%, rgba(14,165,233,.14), transparent 28%),
+    radial-gradient(circle at 90% 12%, rgba(212,175,90,.16), transparent 26%),
+    linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 30%, #FFF7E8 72%, #F7EACF 100%) !important;
+  background-color: #EFF6FF !important;
+  color: #0C4A6E !important;
+}
+html body.template-color-1 .fb-blog-page::before {
+  background-image:
+    linear-gradient(rgba(12,74,110,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12,74,110,.05) 1px, transparent 1px) !important;
+  opacity: .5 !important;
+}
+
+/* breadcrumb: ocean */
+html body.template-color-1 .fb-blog-breadcrumb {
+  background: linear-gradient(135deg, #082F49 0%, #0C4A6E 48%, #155E75 100%) !important;
+  background-color: #0C4A6E !important;
+  border-top: 1px solid rgba(186,230,253,.25) !important;
+  border-bottom: 1px solid rgba(186,230,253,.4) !important;
+  box-shadow: 0 12px 28px rgba(8,47,73,.25) !important;
+}
+html body.template-color-1 .fb-blog-breadcrumb ul { color: #BAE6FD !important; }
+html body.template-color-1 .fb-blog-breadcrumb a { color: #fff !important; }
+html body.template-color-1 .fb-blog-breadcrumb a:hover,
+html body.template-color-1 .fb-blog-breadcrumb .active { color: #FDE68A !important; }
+
+/* hero: white glass + blue ring */
+html body.template-color-1 .fb-blog-hero {
+  background:
+    radial-gradient(circle at 88% 8%, rgba(14,165,233,.16), transparent 30%),
+    radial-gradient(circle at 8% 90%, rgba(212,175,90,.14), transparent 28%),
+    linear-gradient(145deg, #FFFFFF 0%, #F0F9FF 60%, #FFF7E8 100%) !important;
+  background-color: #fff !important;
+  border: 1px solid rgba(14,165,233,.28) !important;
+  box-shadow: 0 24px 62px rgba(8,47,73,.14), inset 0 1px 0 #fff !important;
+}
+html body.template-color-1 .fb-blog-hero::after {
+  background: radial-gradient(circle, rgba(14,165,233,.18), transparent 69%) !important;
+}
+html body.template-color-1 .fb-blog-kicker {
+  color: #fff !important;
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 48%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border: 1px solid rgba(186,230,253,.6) !important;
+  box-shadow: 0 10px 24px rgba(14,165,233,.3) !important;
+}
+html body.template-color-1 .fb-blog-kicker i { color: #fff !important; }
+html body.template-color-1 .fb-blog-title { color: #082F49 !important; }
+html body.template-color-1 .fb-blog-subtitle { color: #475569 !important; }
+
+/* notice: light blue info bar */
+html body.template-color-1 .fb-blog-compliance-note {
+  color: #334155 !important;
+  background: linear-gradient(145deg, #FFFFFF 0%, #E0F2FE 100%) !important;
+  background-color: #fff !important;
+  border: 1px solid rgba(14,165,233,.4) !important;
+  box-shadow: 0 14px 34px rgba(8,47,73,.1) !important;
+}
+html body.template-color-1 .fb-blog-compliance-note strong { color: #0369A1 !important; }
+
+/* cards: white premium + blue border + gold top sweep */
+html body.template-color-1 .fb-blog-card {
+  position: relative !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+  background-color: #fff !important;
+  border: 1px solid rgba(14,165,233,.22) !important;
+  box-shadow: 0 22px 58px rgba(8,47,73,.12) !important;
+}
+html body.template-color-1 .fb-blog-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important; left: 18px !important; right: 18px !important;
+  height: 3px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, transparent, #38BDF8 25%, #F5C542 50%, #38BDF8 75%, transparent) !important;
+  opacity: 0 !important;
+  transition: opacity .3s ease !important;
+  z-index: 3 !important;
+}
+html body.template-color-1 .fb-blog-card:hover {
+  transform: translateY(-7px) !important;
+  border-color: rgba(14,165,233,.55) !important;
+  box-shadow: 0 32px 74px rgba(8,47,73,.2), 0 0 0 1px rgba(56,189,248,.25), 0 0 26px rgba(56,189,248,.12) !important;
+}
+html body.template-color-1 .fb-blog-card:hover::before { opacity: 1 !important; }
+
+/* image: blue overlay + zoom */
+html body.template-color-1 .fb-blog-img {
+  background: linear-gradient(145deg, #0C4A6E 0%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+}
+html body.template-color-1 .fb-blog-img::after {
+  background: linear-gradient(to top, rgba(8,47,73,.85) 0%, rgba(8,47,73,.22) 44%, transparent 66%) !important;
+}
+
+/* date badge: ocean pill + gold icon */
+html body.template-color-1 .fb-blog-date-badge {
+  color: #fff !important;
+  background: linear-gradient(135deg, #0C4A6E 0%, #0284C7 60%, #0E7490 100%) !important;
+  background-color: #0C4A6E !important;
+  border: 1px solid rgba(255,255,255,.5) !important;
+  box-shadow: 0 12px 28px rgba(8,47,73,.35) !important;
+}
+html body.template-color-1 .fb-blog-date-badge i { color: #FDE68A !important; }
+
+/* title + meta blue */
+html body.template-color-1 .fb-blog-content h3 a { color: #082F49 !important; }
+html body.template-color-1 .fb-blog-content h3 a:hover { color: #0284C7 !important; }
+html body.template-color-1 .fb-blog-meta { color: #0284C7 !important; }
+html body.template-color-1 .fb-blog-meta i { color: #C9A24A !important; }
+html body.template-color-1 .fb-blog-short { color: #475569 !important; }
+
+/* READ MORE — badhiya blue pill + shine + arrow slide */
+html body.template-color-1 .fb-blog-btn {
+  position: relative !important;
+  overflow: hidden !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 45%, #0C4A6E 100%) !important;
+  background-color: #0EA5E9 !important;
+  border: 1px solid rgba(255,255,255,.35) !important;
+  box-shadow: 0 14px 30px rgba(14,165,233,.35) !important;
+  letter-spacing: .4px !important;
+}
+html body.template-color-1 .fb-blog-btn::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important; left: -70% !important;
+  width: 45% !important; height: 100% !important;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.5), transparent) !important;
+  transform: skewX(-20deg) !important;
+  transition: left .55s ease !important;
+}
+html body.template-color-1 .fb-blog-btn i {
+  transition: transform .25s ease !important;
+}
+html body.template-color-1 .fb-blog-btn:hover {
+  transform: translateY(-2px) !important;
+  color: #082F49 !important;
+  background: linear-gradient(135deg, #FFF3C4 0%, #F5C542 50%, #D18B12 100%) !important;
+  background-color: #F5C542 !important;
+  border-color: rgba(8,47,73,.25) !important;
+  box-shadow: 0 18px 36px rgba(8,47,73,.25) !important;
+}
+html body.template-color-1 .fb-blog-btn:hover::after { left: 130% !important; }
+html body.template-color-1 .fb-blog-btn:hover i { transform: translateX(4px) !important; }
+
+html body.template-color-1 .fb-empty-card {
+  color: #475569 !important;
+  background: linear-gradient(145deg, #fff 0%, #E0F2FE 100%) !important;
+  border: 1px solid rgba(14,165,233,.3) !important;
+}
+
+/* ============================================================
+   BLOG DETAIL (single article) — BLUE PREMIUM v1
+   Covers /blogs/* : Risk, Setup, Overview, Backtest guides
+   ============================================================ */
+html body.template-color-1 .fb-blog-detail-page .fb-article-card {
+  background: #fffdf8 !important;
+  border: 1px solid rgba(14,165,233,.25) !important;
+  box-shadow: 0 30px 70px rgba(8,47,73,.14) !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-title { color: #082F49 !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-article-short { color: #475569 !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-article-kicker {
+  background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 48%, #0E7490 100%) !important;
+  background-color: #0EA5E9 !important;
+  border-color: rgba(186,230,253,.6) !important;
+  color: #fff !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-kicker i { color: #fff !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-article-meta span {
+  background: rgba(14,165,233,.08) !important;
+  border-color: rgba(14,165,233,.25) !important;
+  color: #0C4A6E !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card h2 { color: #0C4A6E !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card h2::before {
+  background: linear-gradient(180deg, #38BDF8, #0E7490) !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card h3 { color: #0C4A6E !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card ul > li,
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card ol > li {
+  background: #F0F9FF !important;
+  border-color: rgba(14,165,233,.3) !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card ul > li::before {
+  background: linear-gradient(135deg, #0EA5E9, #0C4A6E) !important;
+  color: #fff !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-article-content-card a { color: #0284C7 !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-sidebar-box {
+  background: linear-gradient(165deg, #0C4A6E 0%, #082F49 100%) !important;
+  background-color: #0C4A6E !important;
+  border-color: rgba(186,230,253,.35) !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-related-area {
+  border-color: rgba(14,165,233,.25) !important;
+}
+html body.template-color-1 .fb-blog-detail-page .fb-related-heading { color: #082F49 !important; }
+html body.template-color-1 .fb-blog-detail-page .fb-related-card {
+  background: #F0F9FF !important;
+  border-color: rgba(14,165,233,.25) !important;
+}

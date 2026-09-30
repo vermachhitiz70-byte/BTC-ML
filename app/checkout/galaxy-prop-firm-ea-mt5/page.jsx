@@ -1,13 +1,13 @@
 import Script from 'next/script';
-import BodyClass from '../body-class';
+import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export default function Page() {
   return (
     <>
-      <title>BTC ML AI Premium Software | MT4 Trading Tools</title>
-      <meta name="description" content="Explore BTC ML AI premium MT4 trading software, product information, digital delivery details, platform compatibility, and risk disclosures." />
-      <link rel="canonical" href="https://btcmlai.com/premium" />
+      <title>Checkout \u2014 Currency Bot Coins | BTC ML AI</title>
+      <meta name="description" content="Complete your secure Currency Bot Coins order. Price $1,500 with digital delivery and installation guidance." />
+      <link rel="canonical" href="https://btcmlai.com/checkout/galaxy-prop-firm-ea-mt5" />
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
@@ -24,13 +24,33 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/styletwo.css" />
       <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #4b1020;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #641a31 0%, #4b1020 52%, #300913 100%) !important;\n            background-color: #4b1020 !important;\n        }\n    " }} />
-      <link rel="stylesheet" href="/assets/css/theme-teal.css" />
+      <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
       <BodyClass cls="template-color-1" />
-      <div dangerouslySetInnerHTML={{ __html: BODY }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"email\":\"redbaazsoftware@gmail.com\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"telephone\":\"+919978507899\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
+      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
+      <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-checkout.css?v=1" />
+      <script src="/assets/js/fb-checkout.js?v=1" defer></script>
+      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=14" />
+      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
+      <script src="/assets/js/fb-chatbot.js?v=2" defer></script>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
-      <Script src="/assets/js/legacy-premium.js" strategy="afterInteractive" />
+      <Script src="/assets/js/legacy-shop.js" strategy="afterInteractive" />
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

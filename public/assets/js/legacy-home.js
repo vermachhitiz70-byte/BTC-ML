@@ -2808,7 +2808,7 @@ $(function () {
     /*  Umino's Blog Slider
 /*----------------------------------------*/
     $('.umino-blog_slider').slick({
-        infinite: true,
+        infinite: false,
         arrows: false,
         dots: false,
         speed: 2000,
@@ -2958,13 +2958,13 @@ $(function () {
     /*  Umino's Product Tab Slider
 /*----------------------------------------*/
     $('.umino-product-tab_slider').slick({
-        infinite: true,
+        infinite: false,
         arrows: false,
         dots: false,
         speed: 2000,
-        slidesToShow: 5,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        rows: 2,
+        rows: 1,
         prevArrow:
             '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
         nextArrow:
