@@ -63,6 +63,9 @@
 
     document.body.appendChild(btn);
     document.body.appendChild(panel);
+    var root = document.getElementById('fb-chat-root');
+    if (root) { root.appendChild(btn); root.appendChild(panel); }
+    else { document.body.appendChild(btn); document.body.appendChild(panel); }
 
     var body = panel.querySelector('#fb-chat-body');
     var form = panel.querySelector('#fb-chat-form');

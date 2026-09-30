@@ -2,12 +2,32 @@ import Script from 'next/script';
 import BodyClass from '../../body-class';
 import { BODY } from './body';
 
+export const metadata = {
+  title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+  description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+  alternates: { canonical: "https://btcmlai.com/blogs/btc-x-ea-mt5-complete-overview" },
+  openGraph: {
+    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+    description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+    url: "https://btcmlai.com/blogs/btc-x-ea-mt5-complete-overview",
+    siteName: "BTC ML AI",
+    type: "website",
+    images: [{ url: "https://btcmlai.com/assets/images/blogs/blog-6a77140e7a9af.jpg", width: 1400, height: 933, alt: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+    description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+    images: ["https://btcmlai.com/assets/images/blogs/blog-6a77140e7a9af.jpg"],
+  },
+};
+
 export default function Page() {
   return (
     <>
-      <title>What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI</title>
-      <meta name="description" content="BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use." />
-      <link rel="canonical" href="https://btcmlai.com/blogs/btc-x-ea-mt5-complete-overview" />
+      
+      
+      
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
@@ -27,10 +47,11 @@ export default function Page() {
       <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #4b1020;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #641a31 0%, #4b1020 52%, #300913 100%) !important;\n            background-color: #4b1020 !important;\n        }\n    " }} />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <link rel="stylesheet" href="/assets/css/fb-blog.css?v=4" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=14" />
+      <link rel="stylesheet" href="/assets/css/fb-blog.css?v=5" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=15" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
-      <script src="/assets/js/fb-chatbot.js?v=2" defer></script>
+      <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
+      <div id="fb-chat-root" suppressHydrationWarning />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
@@ -38,6 +59,8 @@ export default function Page() {
     </>
   );
 }
+
+
 
 
 

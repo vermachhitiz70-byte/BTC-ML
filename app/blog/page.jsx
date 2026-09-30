@@ -2,12 +2,32 @@ import Script from 'next/script';
 import BodyClass from '../body-class';
 import { BODY } from './body';
 
+export const metadata = {
+  title: "BTC ML AI Blog | Software Guides &amp; Educational Articles",
+  description: "Read BTC ML AI software tutorials, MT4 setup guides, product updates, and general educational articles. Content is for information and education only and is not personalised investment advice.",
+  alternates: { canonical: "https://btcmlai.com/blog" },
+  openGraph: {
+    title: "BTC ML AI Blog | Software Guides &amp; Educational Articles",
+    description: "Read BTC ML AI software tutorials, MT4 setup guides, product updates, and general educational articles. Content is for information and education only and is not personalised investment advice.",
+    url: "https://btcmlai.com/blog",
+    siteName: "BTC ML AI",
+    type: "website",
+    images: [{ url: "https://btcmlai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "BTC ML AI Blog | Software Guides &amp; Educational Articles" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BTC ML AI Blog | Software Guides &amp; Educational Articles",
+    description: "Read BTC ML AI software tutorials, MT4 setup guides, product updates, and general educational articles. Content is for information and education only and is not personalised investment advice.",
+    images: ["https://btcmlai.com/assets/images/btcmlai-logo.png"],
+  },
+};
+
 export default function Page() {
   return (
     <>
-      <title>BTC ML AI Blog | Software Guides &amp; Educational Articles</title>
-      <meta name="description" content="Read BTC ML AI software tutorials, MT4 setup guides, product updates, and general educational articles. Content is for information and education only and is not personalised investment advice." />
-      <link rel="canonical" href="https://btcmlai.com/blog" />
+      
+      
+      
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
@@ -24,7 +44,7 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/style.css" />
       <link rel="stylesheet" href="/assets/css/styletwo.css" />
       <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=14" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=15" />
       <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #4b1020;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #641a31 0%, #4b1020 52%, #300913 100%) !important;\n            background-color: #4b1020 !important;\n        }\n    " }} />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
@@ -35,6 +55,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

@@ -1,0 +1,156 @@
+/* ============================================================
+   FB Shop — BLUE theme + full-frame product images v1
+   Overrides cream/maroon inline styles on /shop.
+   ============================================================ */
+
+/* ---------- title hero: navy panel ---------- */
+html body .fb-shop-title-section {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(245, 197, 66, .14), transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(34, 158, 217, .14), transparent 30%),
+    linear-gradient(135deg, #06283d 0%, #0a3a5c 60%, #0b2c49 100%) !important;
+  background-color: #07293f !important;
+  border-bottom: 2px solid rgba(245, 197, 66, .4) !important;
+}
+html body .fb-shop-title-wrap span {
+  color: #231303 !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  border-color: rgba(255, 248, 237, .5) !important;
+}
+html body .fb-shop-title-wrap h1 {
+  color: #ffffff !important;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, .4) !important;
+}
+html body .fb-shop-title-wrap p {
+  color: rgba(233, 226, 205, .9) !important;
+}
+
+/* ---------- access card: white + navy ---------- */
+html body .fb-basic-access-card {
+  background: #fffdf8 !important;
+  border: 1px solid rgba(10, 60, 100, .18) !important;
+  box-shadow: 0 24px 60px rgba(7, 41, 63, .12) !important;
+}
+html body .fb-basic-access-card h2,
+html body .fb-basic-access-card h3 {
+  color: #0a3a5c !important;
+}
+html body .fb-basic-access-card p {
+  color: #43545f !important;
+}
+
+/* ---------- animated banner: navy ---------- */
+html body .fb-trading-animated-bg {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(245, 197, 66, .14), transparent 28%),
+    radial-gradient(circle at 85% 80%, rgba(34, 158, 217, .16), transparent 30%),
+    linear-gradient(135deg, #06283d 0%, #0a3a5c 60%, #07293f 100%) !important;
+  background-color: #07293f !important;
+  border-color: rgba(245, 197, 66, .3) !important;
+}
+html body .shop-banner_area {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ---------- product cards: navy, full-frame images ---------- */
+html body .shop-product-wrap .single-product {
+  background: linear-gradient(170deg, #0d3355 0%, #081f38 100%) !important;
+  background-color: #0a2540 !important;
+  border: 1px solid rgba(245, 197, 66, .3) !important;
+  box-shadow: 0 24px 55px rgba(4, 20, 34, .4) !important;
+  overflow: hidden !important;
+  padding: 0 0 26px !important;
+}
+html body .shop-product-wrap .product-content {
+  padding: 22px 24px 0 !important;
+}
+html body .shop-product-wrap .product-name a {
+  font-size: 19px !important;
+}
+html body .shop-product-wrap .new-price {
+  font-size: 27px !important;
+}
+html body .shop-product-wrap .product-img {
+  height: 400px !important;
+  min-height: 400px !important;
+  background: #081f38 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html body .shop-product-wrap .product-img img,
+html body .shop-product-wrap .primary-img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  margin: 0 !important;
+}
+html body .shop-product-wrap .product-content,
+html body .shop-product-wrap .product-desc_info {
+  background: transparent !important;
+}
+html body .shop-product-wrap .product-name a {
+  color: #ffffff !important;
+}
+html body .shop-product-wrap .product-name a:hover {
+  color: #ffe27a !important;
+}
+html body .shop-product-wrap .new-price {
+  color: #22c55e !important;
+}
+/* list view */
+html body .list-slide_item .single-product {
+  background: linear-gradient(170deg, #0d3355 0%, #081f38 100%) !important;
+  background-color: #0a2540 !important;
+  border: 1px solid rgba(245, 197, 66, .3) !important;
+}
+html body .list-slide_item .product-img {
+  height: 280px !important;
+  min-height: 280px !important;
+}
+html body .list-slide_item .product-short_desc p {
+  color: rgba(203, 213, 225, .85) !important;
+}
+/* silver keeps cream frame */
+html body .fb-silver-card .single-product {
+  background: linear-gradient(165deg, #fdf6e3 0%, #f2dfba 100%) !important;
+  background-color: #f7ead0 !important;
+  border: 1px solid rgba(156, 107, 30, .5) !important;
+}
+html body .fb-silver-card .product-img {
+  background: #f7ead0 !important;
+}
+html body .fb-silver-card .product-name a {
+  color: #0a2233 !important;
+}
+html body .fb-silver-card .product-short_desc p {
+  color: #6b5636 !important;
+}
+
+/* ---------- buttons ---------- */
+html body .fb-shop-card-buy-btn {
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #c77a00 100%) !important;
+  color: #231303 !important;
+  border: 0 !important;
+}
+html body .fb-shop-card-details-btn {
+  border: 1px solid rgba(245, 197, 66, .55) !important;
+  color: #ffe27a !important;
+  background: transparent !important;
+}
+html body .fb-shop-card-details-btn:hover {
+  background: rgba(245, 197, 66, .14) !important;
+}
+
+@media (max-width: 767px) {
+  html body .shop-product-wrap .product-img {
+    height: 260px !important;
+    min-height: 260px !important;
+  }
+}

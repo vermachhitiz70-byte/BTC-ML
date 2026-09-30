@@ -616,6 +616,62 @@ html body .fb-header-icons a:hover {
   transform: translateY(-2px) !important;
 }
 
+/* ================= MOBILE: cream menu, navy header, single product ================= */
+@media (max-width: 991px) {
+  /* offcanvas panel cream */
+  html body #mobileMenu.mobile-menu_wrapper,
+  html body #mobileMenu .offcanvas-menu-inner {
+    background:
+      radial-gradient(circle at 85% 8%, rgba(201, 162, 74, .18), transparent 26%),
+      linear-gradient(180deg, #f6eddc 0%, #eed9b8 100%) !important;
+    background-color: #f6eddc !important;
+    border-left: 1px solid rgba(156, 107, 30, .4) !important;
+  }
+  html body .offcanvas-navigation .mobile-menu li a {
+    display: block !important;
+    background: linear-gradient(135deg, #0e3a5c 0%, #07293f 100%) !important;
+    border: 1px solid rgba(245, 197, 66, .35) !important;
+    color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 15px 20px !important;
+    margin-bottom: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: .8px !important;
+    text-transform: uppercase !important;
+  }
+  /* header bar navy */
+  html body .header-main_area-2 .header-bottom_area-2,
+  html body .header-main_area-2 {
+    background: linear-gradient(135deg, #06283d 0%, #0a3a5c 100%) !important;
+    background-color: #07293f !important;
+  }
+  /* hide leftover empty info card */
+  html body .rb-mobile-header-info {
+    display: none !important;
+  }
+  /* logo left, hamburger right */
+  html body .header-bottom_nav > .row.no-gutters {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  html body .header-bottom_nav .header-logo img {
+    max-width: 120px !important;
+    height: auto !important;
+  }
+}
+@media (max-width: 767px) {
+  /* single product per view */
+  html body .umino-product-tab_slider .slick-slide {
+    width: 100% !important;
+  }
+  html body .fb-coming-badge {
+    white-space: nowrap !important;
+    font-size: 11px !important;
+    padding: 8px 14px !important;
+  }
+}
+
 /* ================= WASHED SUBTITLES: white on navy pill ================= */
 html body .fb-how-section .fb-section-heading p,
 html body .fb-blog-area .fb-blog-title p,

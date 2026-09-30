@@ -2,12 +2,32 @@ import Script from 'next/script';
 import BodyClass from '../body-class';
 import { BODY } from './body';
 
+export const metadata = {
+  title: "About BTC ML AI | Trading Software, Analysis Tools &amp; Video Guides",
+  description: "Learn about BTC ML AI digital trading software, analysis tools, general educational video guides, delivery, setup guidance, and customer support.",
+  alternates: { canonical: "https://btcmlai.com/about" },
+  openGraph: {
+    title: "About BTC ML AI | Trading Software, Analysis Tools &amp; Video Guides",
+    description: "Learn about BTC ML AI digital trading software, analysis tools, general educational video guides, delivery, setup guidance, and customer support.",
+    url: "https://btcmlai.com/about",
+    siteName: "BTC ML AI",
+    type: "website",
+    images: [{ url: "https://btcmlai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "About BTC ML AI | Trading Software, Analysis Tools &amp; Video Guides" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About BTC ML AI | Trading Software, Analysis Tools &amp; Video Guides",
+    description: "Learn about BTC ML AI digital trading software, analysis tools, general educational video guides, delivery, setup guidance, and customer support.",
+    images: ["https://btcmlai.com/assets/images/btcmlai-logo.png"],
+  },
+};
+
 export default function Page() {
   return (
     <>
-      <title>About BTC ML AI | Trading Software, Analysis Tools &amp; Video Guides</title>
-      <meta name="description" content="Learn about BTC ML AI digital trading software, analysis tools, general educational video guides, delivery, setup guidance, and customer support." />
-      <link rel="canonical" href="https://btcmlai.com/about" />
+      
+      
+      
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
@@ -25,7 +45,8 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/styletwo.css" />
       <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #4b1020;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #641a31 0%, #4b1020 52%, #300913 100%) !important;\n            background-color: #4b1020 !important;\n        }\n    " }} />
       <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=14" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=15" />
+      <link rel="stylesheet" href="/assets/css/fb-about.css?v=2" />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
@@ -35,6 +56,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

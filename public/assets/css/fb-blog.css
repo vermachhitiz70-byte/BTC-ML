@@ -401,6 +401,10 @@ html body .fb-blog-detail-page .fb-sidebar-wrapper {
 html body .fb-blog-detail-page .fb-sidebar-wrapper > div:nth-of-type(3) {
   display: none !important;
 }
+/* Recent Articles box removed (user request) */
+html body .fb-blog-detail-page .fb-sidebar-wrapper > div:nth-of-type(2) {
+  display: none !important;
+}
 html body .fb-blog-detail-page .fb-sidebar-box {
   margin: 0 0 26px !important;
   padding: 0 !important;
@@ -541,17 +545,9 @@ html body .fb-blog-detail-page .fb-recent-date {
 }
 
 /* ---------- related guides: breakout wide cards ---------- */
+/* Related Articles removed (user request) */
 html body .fb-blog-detail-page .fb-related-area {
-  display: block !important;
-  width: min(1100px, 100vw - 36px) !important;
-  margin: 40px 0 30px !important;
-  margin-left: 50% !important;
-  transform: translateX(-50%) !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+  display: none !important;
 }
 html body .fb-blog-detail-page .fb-related-heading {
   margin: 0 0 22px !important;

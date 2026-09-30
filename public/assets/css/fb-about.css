@@ -1,0 +1,121 @@
+/* ============================================================
+   FB About — BLUE premium theme v1 (deep navy + gold)
+   Loaded AFTER body inline styles. Overrides rb-about-* rules.
+   ============================================================ */
+
+/* ---------- hero: midnight panel ---------- */
+html body .rb-about-page .rb-about-hero {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(245, 197, 66, .22), transparent 30%),
+    radial-gradient(circle at 12% 88%, rgba(34, 158, 217, .18), transparent 32%),
+    linear-gradient(135deg, #06283d 0%, #0a3a5c 55%, #0b2c49 100%) !important;
+  background-color: #07293f !important;
+  border: 1px solid rgba(245, 197, 66, .35) !important;
+  box-shadow: 0 30px 70px rgba(4, 20, 34, .45), inset 0 1px 0 rgba(255, 255, 255, .12) !important;
+}
+html body .rb-about-page .rb-about-hero::after {
+  background: radial-gradient(circle, rgba(245, 197, 66, .16), transparent 69%) !important;
+}
+html body .rb-about-page .rb-about-kicker {
+  color: #231303 !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  border: 1px solid rgba(255, 248, 237, .5) !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .35) !important;
+}
+html body .rb-about-page .rb-about-kicker i {
+  color: #231303 !important;
+}
+html body .rb-about-page .rb-about-title {
+  color: #ffffff !important;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, .4) !important;
+}
+html body .rb-about-page .rb-about-subtitle {
+  color: rgba(233, 226, 205, .92) !important;
+}
+html body .rb-about-page .rb-about-positioning span {
+  color: #ffe27a !important;
+  background: rgba(245, 197, 66, .1) !important;
+  border: 1px solid rgba(245, 197, 66, .5) !important;
+}
+
+/* ---------- content card: white editorial ---------- */
+html body .rb-about-page .rb-about-content-card {
+  background: #fffdf8 !important;
+  border: 1px solid rgba(10, 60, 100, .16) !important;
+  box-shadow: 0 24px 60px rgba(7, 41, 63, .12) !important;
+}
+html body .rb-about-page .rb-about-content-card h2 {
+  color: #0a3a5c !important;
+}
+html body .rb-about-page .rb-about-content-card p,
+html body .rb-about-page .rb-about-text {
+  color: #43545f !important;
+}
+html body .rb-about-page .rb-about-content-card strong {
+  color: #0a3a5c !important;
+}
+html body .rb-about-page .rb-about-content-card ul li::before,
+html body .rb-about-page .rb-about-points li::before {
+  background: linear-gradient(135deg, #2f8ff0, #0b5cc0) !important;
+}
+
+/* ---------- side card: navy panel + gold points ---------- */
+html body .rb-about-page .rb-about-side-card {
+  background: linear-gradient(165deg, #0a3a5c 0%, #06283d 100%) !important;
+  border: 1px solid rgba(245, 197, 66, .4) !important;
+  box-shadow: 0 26px 60px rgba(4, 20, 34, .4) !important;
+}
+html body .rb-about-page .rb-about-side-card h2,
+html body .rb-about-page .rb-about-side-card h3 {
+  color: #ffffff !important;
+}
+html body .rb-about-page .rb-about-point {
+  background: rgba(255, 255, 255, .05) !important;
+  border: 1px solid rgba(245, 197, 66, .22) !important;
+}
+html body .rb-about-page .rb-about-point h3 {
+  color: #ffe27a !important;
+}
+html body .rb-about-page .rb-about-point p {
+  color: rgba(233, 226, 205, .85) !important;
+}
+html body .rb-about-page .rb-point-icon {
+  background: linear-gradient(135deg, #ffe27a 0%, #c77a00 100%) !important;
+  border: 1px solid rgba(255, 248, 237, .5) !important;
+}
+html body .rb-about-page .rb-point-icon i {
+  color: #231303 !important;
+}
+html body .rb-about-page .rb-about-business-note {
+  color: rgba(233, 226, 205, .8) !important;
+  border-left-color: rgba(245, 197, 66, .6) !important;
+}
+
+/* ---------- CTA: gold button ---------- */
+html body .rb-about-page .rb-about-cta {
+  background: linear-gradient(145deg, #0a3a5c 0%, #06283d 100%) !important;
+  border: 1px solid rgba(245, 197, 66, .45) !important;
+  color: #f3e9d2 !important;
+}
+html body .rb-about-page .rb-about-cta a {
+  color: #231303 !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #c77a00 100%) !important;
+  border: 1px solid rgba(255, 248, 237, .5) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .35) !important;
+}
+
+/* ---------- breadcrumb ---------- */
+html body .rb-about-page .rb-about-breadcrumb,
+html body .rb-about-page .rb-about-breadcrumb a {
+  color: #7a8a96 !important;
+}
+html body .rb-about-page .rb-about-breadcrumb li.active {
+  color: #0a3a5c !important;
+}
+
+@media (max-width: 767px) {
+  html body .rb-about-page .rb-about-hero {
+    padding: 30px 20px !important;
+  }
+}
+

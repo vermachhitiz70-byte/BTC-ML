@@ -1,0 +1,54 @@
+/* ============================================================
+   FB Gallery — BLUE theme + portrait-friendly cards v1
+   Overrides red inline styles in gallery body.
+   ============================================================ */
+html body .fb-gallery-page .fb-gallery-card {
+  background: #fffdf8 !important;
+  border: 1px solid rgba(10, 60, 100, .2) !important;
+  box-shadow: 0 20px 50px rgba(7, 41, 63, .12) !important;
+  overflow: hidden !important;
+}
+html body .fb-gallery-page .fb-gallery-img-wrap {
+  height: auto !important;
+  aspect-ratio: 3 / 4 !important;
+  background: linear-gradient(160deg, #0d3355 0%, #081f38 100%) !important;
+  background-color: #0a2540 !important;
+}
+html body .fb-gallery-page .fb-gallery-img-wrap img {
+  object-fit: cover !important;
+  object-position: top center !important;
+}
+html body .fb-gallery-page .fb-gallery-img-wrap::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(to top, rgba(6, 28, 46, .88) 0%, rgba(6, 28, 46, .25) 38%, transparent 60%) !important;
+}
+html body .fb-gallery-page .fb-gallery-badge {
+  background: linear-gradient(135deg, #ffe27a 0%, #c77a00 100%) !important;
+  color: #231303 !important;
+  border-color: rgba(255, 248, 237, .5) !important;
+}
+html body .fb-gallery-page .fb-gallery-zoom {
+  background: rgba(6, 28, 46, .85) !important;
+  border: 1px solid rgba(245, 197, 66, .55) !important;
+  color: #ffe27a !important;
+}
+html body .fb-gallery-page .fb-gallery-title {
+  color: #0a3a5c !important;
+}
+html body .fb-gallery-page .fb-gallery-kicker {
+  color: #231303 !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  border-color: rgba(255, 248, 237, .5) !important;
+}
+html body .fb-gallery-page .fb-gallery-subtitle {
+  color: #5a6b76 !important;
+}
+@media (max-width: 767px) {
+  html body .fb-gallery-page .fb-gallery-img-wrap {
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+  }
+}
