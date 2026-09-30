@@ -50,7 +50,7 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=1" />
       <link rel="stylesheet" href="/assets/css/fb-checkout.css?v=1" />
       <script src="/assets/js/fb-checkout.js?v=1" defer></script>
-      <link rel="stylesheet" href="/assets/css/fb-strip-float.css?v=15" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
@@ -61,6 +61,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 
