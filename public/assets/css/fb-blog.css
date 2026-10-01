@@ -60,7 +60,7 @@ html body .fb-blog-detail-page .fb-blog-detail-breadcrumb li {
   color: #a08d84 !important;
 }
 html body .fb-blog-detail-page .fb-blog-detail-breadcrumb li a {
-  color: #7b223d !important;
+  color: #0e3a5c !important;
   text-decoration: none !important;
 }
 html body .fb-blog-detail-page .fb-blog-detail-breadcrumb li.active {
@@ -88,7 +88,7 @@ html body .fb-blog-detail-page .fb-article-img {
   overflow: hidden !important;
   border-radius: 22px !important;
   background: linear-gradient(160deg, #3a0f1e, #19060d) !important;
-  box-shadow: 0 26px 60px rgba(75, 16, 32, .18) !important;
+  box-shadow: 0 26px 60px rgba(10,44,70, .18) !important;
 }
 html body .fb-blog-detail-page .fb-article-img img {
   display: block !important;
@@ -116,7 +116,7 @@ html body .fb-blog-detail-page .fb-article-date-badge {
   border-radius: 999px !important;
   background: rgba(255, 250, 241, .92) !important;
   border: 1px solid rgba(255, 250, 241, .9) !important;
-  color: #4b1020 !important;
+  color: #0a2c46 !important;
   font-size: 12px !important;
   font-weight: 800 !important;
   letter-spacing: 1.2px !important;
@@ -215,7 +215,7 @@ html body .fb-blog-detail-page .fb-article-content-card p:first-of-type::first-l
   font-size: 58px !important;
   line-height: .85 !important;
   font-weight: 800 !important;
-  color: #4b1020 !important;
+  color: #0a2c46 !important;
   padding: 6px 12px 0 0 !important;
 }
 html body .fb-blog-detail-page .fb-article-content-card h2 {
@@ -238,7 +238,7 @@ html body .fb-blog-detail-page .fb-article-content-card h2::before {
   font-weight: 800 !important;
   letter-spacing: 1px !important;
   color: #fffaf1 !important;
-  background: linear-gradient(135deg, #7b223d, #45101f) !important;
+  background: linear-gradient(135deg, #0e3a5c, #0a2c46) !important;
   border-radius: 999px !important;
   padding: 5px 11px !important;
 }
@@ -255,7 +255,7 @@ html body .fb-blog-detail-page .fb-article-content-card h3 {
   margin: 32px 0 14px !important;
   font-size: 21px !important;
   font-weight: 800 !important;
-  color: #4b1020 !important;
+  color: #0a2c46 !important;
 }
 html body .fb-blog-detail-page .fb-article-content-card ul,
 html body .fb-blog-detail-page .fb-article-content-card ol {
@@ -286,7 +286,7 @@ html body .fb-blog-detail-page .fb-article-content-card ul > li::before {
 }
 html body .fb-blog-detail-page .fb-article-content-card a {
   font-weight: 700 !important;
-  color: #7b223d !important;
+  color: #0e3a5c !important;
   text-decoration: underline !important;
   text-decoration-color: rgba(212, 175, 90, .8) !important;
   text-underline-offset: 3px !important;
@@ -308,7 +308,7 @@ html body .fb-blog-detail-page .fb-article-content-card img {
   max-width: 100% !important;
   height: auto !important;
   border-radius: 18px !important;
-  box-shadow: 0 18px 44px rgba(75, 16, 32, .16) !important;
+  box-shadow: 0 18px 44px rgba(10,44,70, .16) !important;
 }
 
 /* ---------- tags + share: minimal hairline rows ---------- */
@@ -317,7 +317,7 @@ html body .fb-blog-detail-page .fb-tag-share {
   max-width: 800px !important;
   margin: 10px auto 0 !important;
   padding: 22px 10px !important;
-  border-top: 1px solid rgba(100, 26, 49, .18) !important;
+  border-top: 1px solid rgba(10,60,100, .18) !important;
   background: transparent !important;
   border-left: 0 !important;
   border-right: 0 !important;
@@ -375,16 +375,16 @@ html body .fb-blog-detail-page .fb-social-share a {
   height: 42px !important;
   border-radius: 50% !important;
   background: transparent !important;
-  border: 1.5px solid rgba(100, 26, 49, .3) !important;
-  color: #641a31 !important;
+  border: 1.5px solid rgba(10,60,100, .3) !important;
+  color: #0e3a5c !important;
   transition: all .2s ease !important;
 }
 html body .fb-blog-detail-page .fb-social-share a i {
   font-size: 16px !important;
 }
 html body .fb-blog-detail-page .fb-social-share a:hover {
-  background: #4b1020 !important;
-  border-color: #4b1020 !important;
+  background: #0a2c46 !important;
+  border-color: #0a2c46 !important;
   color: #f6e7c6 !important;
   transform: translateY(-2px) !important;
 }
@@ -396,7 +396,7 @@ html body .fb-blog-detail-page .fb-sidebar-wrapper {
   max-width: 1100px !important;
   margin: 34px auto 0 !important;
   padding-top: 30px !important;
-  border-top: 1px solid rgba(100, 26, 49, .18) !important;
+  border-top: 1px solid rgba(10,60,100, .18) !important;
 }
 html body .fb-blog-detail-page .fb-sidebar-wrapper > div:nth-of-type(3) {
   display: none !important;
@@ -420,7 +420,7 @@ html body .fb-blog-detail-page .fb-sidebar-title {
   font-weight: 800 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: #4b1020 !important;
+  color: #0a2c46 !important;
   border: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -431,7 +431,7 @@ html body .fb-blog-detail-page .fb-sidebar-title::after {
   flex: 1 !important;
   height: 1px !important;
   margin: 0 !important;
-  background: rgba(100, 26, 49, .2) !important;
+  background: rgba(10,60,100, .2) !important;
 }
 /* search: full-width bar */
 html body .fb-blog-detail-page .fb-search-form {
@@ -448,7 +448,7 @@ html body .fb-blog-detail-page .fb-search-form input {
   border-radius: 999px !important;
   font-size: 15px !important;
   background: #fffdf8 !important;
-  border: 1px solid rgba(100, 26, 49, .25) !important;
+  border: 1px solid rgba(10,60,100, .25) !important;
   color: #2b0a14 !important;
 }
 html body .fb-blog-detail-page .fb-search-form button {
@@ -460,7 +460,7 @@ html body .fb-blog-detail-page .fb-search-form button {
   justify-content: center !important;
   border-radius: 999px !important;
   cursor: pointer !important;
-  background: #4b1020 !important;
+  background: #0a2c46 !important;
   color: #f6e7c6 !important;
   border: 0 !important;
   font-size: 19px !important;
@@ -490,13 +490,13 @@ html body .fb-blog-detail-page .fb-recent-post {
   border-radius: 18px !important;
   overflow: hidden !important;
   background: #fffdf8 !important;
-  border: 1px solid rgba(100, 26, 49, .14) !important;
-  box-shadow: 0 16px 38px rgba(75, 16, 32, .1) !important;
+  border: 1px solid rgba(10,60,100, .14) !important;
+  box-shadow: 0 16px 38px rgba(10,44,70, .1) !important;
   transition: transform .25s ease, box-shadow .25s ease !important;
 }
 html body .fb-blog-detail-page .fb-recent-post:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 24px 50px rgba(75, 16, 32, .16) !important;
+  box-shadow: 0 24px 50px rgba(10,44,70, .16) !important;
   background: #fffdf8 !important;
 }
 html body .fb-blog-detail-page .fb-recent-thumb {
@@ -532,7 +532,7 @@ html body .fb-blog-detail-page .fb-recent-desc a {
   text-decoration: none !important;
 }
 html body .fb-blog-detail-page .fb-recent-desc a:hover {
-  color: #7b223d !important;
+  color: #0e3a5c !important;
 }
 html body .fb-blog-detail-page .fb-recent-date {
   display: inline-flex !important;
@@ -555,7 +555,7 @@ html body .fb-blog-detail-page .fb-related-heading {
   font-weight: 800 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: #4b1020 !important;
+  color: #0a2c46 !important;
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
@@ -564,7 +564,7 @@ html body .fb-blog-detail-page .fb-related-heading::after {
   content: "" !important;
   flex: 1 !important;
   height: 1px !important;
-  background: rgba(100, 26, 49, .2) !important;
+  background: rgba(10,60,100, .2) !important;
 }
 html body .fb-blog-detail-page .fb-related-area .row {
   display: grid !important;
@@ -582,14 +582,14 @@ html body .fb-blog-detail-page .fb-related-card {
   overflow: hidden !important;
   border-radius: 18px !important;
   background: #fffdf8 !important;
-  border: 1px solid rgba(100, 26, 49, .14) !important;
-  box-shadow: 0 16px 38px rgba(75, 16, 32, .1) !important;
+  border: 1px solid rgba(10,60,100, .14) !important;
+  box-shadow: 0 16px 38px rgba(10,44,70, .1) !important;
   transition: transform .25s ease, box-shadow .25s ease !important;
   margin-bottom: 0 !important;
 }
 html body .fb-blog-detail-page .fb-related-card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 24px 50px rgba(75, 16, 32, .16) !important;
+  box-shadow: 0 24px 50px rgba(10,44,70, .16) !important;
 }
 html body .fb-blog-detail-page .fb-related-img {
   display: block !important;
@@ -618,7 +618,7 @@ html body .fb-blog-detail-page .fb-related-content h3 a {
   text-decoration: none !important;
 }
 html body .fb-blog-detail-page .fb-related-content h3 a:hover {
-  color: #7b223d !important;
+  color: #0e3a5c !important;
   text-decoration: underline !important;
 }
 html body .fb-blog-detail-page .fb-related-content span {

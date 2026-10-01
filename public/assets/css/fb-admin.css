@@ -5,7 +5,7 @@
 .fb-admin-login label{display:block;font-size:13px;font-weight:700;margin-bottom:12px;color:#cbd5e1}
 .fb-admin-login input{width:100%;height:46px;margin-top:6px;padding:0 14px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#0b1220;color:#fff;box-sizing:border-box}
 .fb-admin-login button,.fb-admin-top button,.fb-admin-btns button,.fb-admin-form button,.fb-admin-wrap button{cursor:pointer;border-radius:10px;border:1px solid rgba(245,197,66,.4);background:rgba(245,197,66,.12);color:#ffe27a;font-weight:700;padding:9px 16px;font-size:13px}
-.fb-admin-err{background:rgba(192,57,43,.2);border:1px solid #c0392b;color:#f5b7b1;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.fb-admin-err{background:rgba(245,158,11,.14);border:1px solid #d97706;color:#fcd34d;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13.5px}
 .fb-admin-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
 .fb-admin-top span{color:#94a3b8;font-size:13px;margin-right:10px}
 .fb-admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
