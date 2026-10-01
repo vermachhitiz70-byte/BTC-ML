@@ -26,6 +26,13 @@
       arr.push(lead);
       localStorage.setItem(k, JSON.stringify(arr));
     } catch (e) { /* storage unavailable — ignore */ }
+    try {
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: lead.name, email: lead.email, phone: lead.phone, page: window.location.pathname }),
+      }).catch(function () {});
+    } catch (e) { /* offline — ignore */ }
   }
 
   function ready(fn) {
