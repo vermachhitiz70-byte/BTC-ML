@@ -47,8 +47,8 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-checkout.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
+      <link rel="stylesheet" href="/assets/css/fb-checkout.css?v=2" />
       <script src="/assets/js/fb-checkout.js?v=1" defer></script>
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
@@ -61,6 +61,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

@@ -4,7 +4,7 @@
    ============================================================ */
 
 /* ---------- hero: navy panel ---------- */
-html body .rb-contact-hero {
+html body div.rb-contact-hero {
   background:
     radial-gradient(circle at 85% 12%, rgba(245, 197, 66, .22), transparent 30%),
     radial-gradient(circle at 12% 88%, rgba(34, 158, 217, .18), transparent 32%),
@@ -13,82 +13,82 @@ html body .rb-contact-hero {
   border: 1px solid rgba(245, 197, 66, .35) !important;
   box-shadow: 0 30px 70px rgba(4, 20, 34, .45), inset 0 1px 0 rgba(255, 255, 255, .12) !important;
 }
-html body .rb-contact-kicker {
+html body div.rb-contact-kicker {
   color: #231303 !important;
   background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
 }
-html body .rb-contact-hero h1 {
+html body div.rb-contact-hero h1 {
   color: #ffffff !important;
   text-shadow: 0 4px 26px rgba(0, 0, 0, .4) !important;
 }
-html body .rb-contact-hero p {
+html body div.rb-contact-hero p {
   color: rgba(233, 226, 205, .92) !important;
 }
 
 /* ---------- cards: white + navy ---------- */
-html body .rb-contact-info-card,
-html body .rb-contact-form-card {
+html body section.rb-contact-info-card,
+html body section.rb-contact-form-card {
   background: #fffdf8 !important;
   border: 1px solid rgba(10, 60, 100, .18) !important;
   box-shadow: 0 24px 60px rgba(7, 41, 63, .12) !important;
 }
-html body .rb-contact-section-title {
+html body h2.rb-contact-section-title {
   color: #0a3a5c !important;
 }
-html body .rb-contact-section-text {
+html body p.rb-contact-section-text {
   color: #43545f !important;
 }
-html body .rb-contact-info-item {
+html body div.rb-contact-info-item {
   background: linear-gradient(145deg, #f2f7fb 0%, #e4edf4 100%) !important;
   border: 1px solid rgba(10, 60, 100, .18) !important;
 }
-html body .rb-contact-info-item h3 {
+html body div.rb-contact-info-item h3 {
   color: #0a3a5c !important;
 }
-html body .rb-contact-info-item p,
-html body .rb-contact-info-item a {
+html body div.rb-contact-info-item p,
+html body div.rb-contact-info-item a {
   color: #43545f !important;
 }
-html body .rb-contact-icon {
+html body div.rb-contact-icon {
   color: #ffe27a !important;
   background: linear-gradient(135deg, #0e3a5c 0%, #07293f 100%) !important;
   border: 1px solid rgba(245, 197, 66, .5) !important;
 }
-html body .rb-contact-action-btn.primary {
+html body a.rb-contact-action-btn.primary {
   color: #231303 !important;
   background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #c77a00 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
 }
-html body .rb-contact-support-note,
-html body .rb-contact-business-note,
-html body .rb-contact-alert {
+html body div.rb-contact-support-note,
+html body div.rb-contact-business-note,
+html body div.rb-contact-alert {
   background: rgba(10, 58, 92, .06) !important;
   border-left-color: #0a3a5c !important;
   color: #43545f !important;
 }
-html body .rb-contact-support-note strong,
-html body .rb-contact-business-note strong {
+html body div.rb-contact-support-note strong,
+html body div.rb-contact-business-note strong {
   color: #0a3a5c !important;
 }
 
 /* ---------- form: navy labels + gold submit ---------- */
-html body .rb-contact-form label {
+html body div.rb-contact-form label {
   color: #0a3a5c !important;
 }
-html body .rb-contact-form input,
-html body .rb-contact-form textarea,
-html body .rb-contact-form select {
+html body div.rb-contact-form input,
+html body div.rb-contact-form textarea,
+html body div.rb-contact-form select {
   border: 1px solid rgba(10, 60, 100, .3) !important;
   background: #fff !important;
   color: #1f2a33 !important;
 }
-html body .rb-contact-form input:focus,
-html body .rb-contact-form textarea:focus {
+html body div.rb-contact-form input:focus,
+html body div.rb-contact-form textarea:focus {
   border-color: #c9a24a !important;
   box-shadow: 0 0 0 3px rgba(201, 162, 74, .18) !important;
 }
-html body .rb-contact-submit {
+html body button.rb-contact-submit {
   color: #231303 !important;
   background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #c77a00 100%) !important;
   border: 0 !important;
@@ -96,10 +96,10 @@ html body .rb-contact-submit {
 }
 
 /* ---------- breadcrumb ---------- */
-html body .rb-contact-breadcrumb,
-html body .rb-contact-breadcrumb a {
+html body div.rb-contact-breadcrumb,
+html body div.rb-contact-breadcrumb a {
   color: #7a8a96 !important;
 }
-html body .rb-contact-breadcrumb li.active {
+html body div.rb-contact-breadcrumb li.active {
   color: #0a3a5c !important;
 }
