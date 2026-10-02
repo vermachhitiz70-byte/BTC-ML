@@ -48,7 +48,7 @@ export default function Page() {
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v21.css" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float-v22.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
@@ -59,6 +59,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

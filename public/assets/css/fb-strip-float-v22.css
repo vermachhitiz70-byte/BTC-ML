@@ -740,9 +740,46 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   }
 }
 @media (max-width: 767px) {
-  /* single product per view */
+  /* native swipe carousel (slick unslicked on mobile) */
+  html body .umino-product-tab_slider {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 0 !important;
+    transform: none !important;
+  }
+  html body .umino-product-tab_slider::-webkit-scrollbar {
+    display: none !important;
+  }
+  html body .umino-product-tab_slider > div {
+    flex: 0 0 84vw !important;
+    width: 84vw !important;
+    max-width: 400px !important;
+    margin-left: 8vw !important;
+    margin-right: 0 !important;
+    scroll-snap-align: center !important;
+  }
+  html body .umino-product-tab_slider > div:last-child {
+    margin-right: 8vw !important;
+  }
+  html body .umino-product-tab_slider .slick-list,
+  html body .umino-product-tab_slider .slick-track {
+    display: contents !important;
+  }
   html body .umino-product-tab_slider .slick-slide {
-    width: 100% !important;
+    flex: 0 0 84vw !important;
+    width: 84vw !important;
+    max-width: 400px !important;
+    margin-left: 8vw !important;
+    scroll-snap-align: center !important;
+  }
+  html body .umino-tab_content .slick-dots,
+  html body .umino-tab_content .slick-arrow {
+    display: none !important;
   }
   html body .fb-coming-badge {
     white-space: nowrap !important;

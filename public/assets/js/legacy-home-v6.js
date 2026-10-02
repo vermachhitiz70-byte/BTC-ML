@@ -2990,9 +2990,7 @@ $(function () {
             },
             {
                 breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                },
+                settings: 'unslick',
             },
             {
                 breakpoint: 575,
