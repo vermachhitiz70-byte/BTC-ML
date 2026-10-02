@@ -18,7 +18,7 @@ html body .rb-about-page .rb-about-hero::after {
 }
 html body .rb-about-page .rb-about-kicker {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
   box-shadow: 0 10px 26px rgba(0, 0, 0, .35) !important;
 }
@@ -80,7 +80,7 @@ html body .rb-about-page .rb-about-point p {
   color: rgba(233, 226, 205, .85) !important;
 }
 html body .rb-about-page .rb-point-icon {
-  background: linear-gradient(135deg, #ffe27a 0%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #14406b 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
 }
 html body .rb-about-page .rb-point-icon i {
@@ -99,7 +99,7 @@ html body .rb-about-page .rb-about-cta {
 }
 html body .rb-about-page .rb-about-cta a {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
   box-shadow: 0 12px 28px rgba(0, 0, 0, .35) !important;
 }

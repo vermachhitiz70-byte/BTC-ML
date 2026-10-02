@@ -358,7 +358,7 @@ html body .umino-product-tab_slider:not(.slick-initialized) {
 html body .fb-silver-card .single-product {
   background: linear-gradient(165deg, #fdf6e3 0%, #f2dfba 100%) !important;
   background-color: #f7ead0 !important;
-  border: 1px solid rgba(156, 107, 30, .5) !important;
+  border: 1px solid rgba(20,64,107, .5) !important;
 }
 html body .fb-silver-card .product-content,
 html body .fb-silver-card .product-desc_info,
@@ -372,7 +372,7 @@ html body .fb-silver-card .product-name a:hover {
   color: #0e3a5c !important;
 }
 html body .fb-silver-card .product-short_desc p {
-  color: #6b5636 !important;
+  color: #14406b !important;
 }
 html body .fb-silver-card .fb-shop-card-details-btn {
   border-color: rgba(10, 34, 51, .4) !important;
@@ -504,7 +504,7 @@ html body .fb-co-ok a.fb-co-notify {
   height: 50px !important;
   padding: 0 34px !important;
   border-radius: 999px !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #14406b 100%) !important;
   color: #231303 !important;
   font-size: 14px !important;
   font-weight: 800 !important;
@@ -610,7 +610,7 @@ html body .fb-header-icons a i {
   line-height: 1 !important;
 }
 html body .fb-header-icons a:hover {
-  background: linear-gradient(135deg, #ffe27a, #c77a00) !important;
+  background: linear-gradient(135deg, #ffe27a, #14406b) !important;
   color: #231303 !important;
   border-color: transparent !important;
   transform: translateY(-2px) !important;
@@ -749,10 +749,10 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   html body #mobileMenu.mobile-menu_wrapper,
   html body #mobileMenu .offcanvas-menu-inner {
     background:
-      radial-gradient(circle at 85% 8%, rgba(201, 162, 74, .18), transparent 26%),
+      radial-gradient(circle at 85% 8%, rgba(47,128,237, .18), transparent 26%),
       linear-gradient(180deg, #f6eddc 0%, #eed9b8 100%) !important;
     background-color: #f6eddc !important;
-    border-left: 1px solid rgba(156, 107, 30, .4) !important;
+    border-left: 1px solid rgba(20,64,107, .4) !important;
   }
   html body .offcanvas-navigation .mobile-menu li a {
     display: block !important;
@@ -853,7 +853,7 @@ html body .fb-blog-area a.umino-btn_dark:hover {
   color: #0a2233 !important;
   border-color: rgba(10, 34, 51, .3) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 16px 32px rgba(90, 70, 40, .35) !important;
+  box-shadow: 0 16px 32px rgba(10,44,70, .35) !important;
 }
 
 /* ============================================================

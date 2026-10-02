@@ -15,7 +15,7 @@ html body div.rb-contact-hero {
 }
 html body div.rb-contact-kicker {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
 }
 html body div.rb-contact-hero h1 {
@@ -57,7 +57,7 @@ html body div.rb-contact-icon {
 }
 html body a.rb-contact-action-btn.primary {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border: 1px solid rgba(255, 248, 237, .5) !important;
 }
 html body div.rb-contact-support-note,
@@ -85,14 +85,14 @@ html body div.rb-contact-form select {
 }
 html body div.rb-contact-form input:focus,
 html body div.rb-contact-form textarea:focus {
-  border-color: #c9a24a !important;
-  box-shadow: 0 0 0 3px rgba(201, 162, 74, .18) !important;
+  border-color: #2f80ed !important;
+  box-shadow: 0 0 0 3px rgba(47,128,237, .18) !important;
 }
 html body button.rb-contact-submit {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #14406b 100%) !important;
   border: 0 !important;
-  box-shadow: 0 14px 30px rgba(199, 122, 0, .35) !important;
+  box-shadow: 0 14px 30px rgba(20,64,107, .35) !important;
 }
 
 /* ---------- breadcrumb ---------- */

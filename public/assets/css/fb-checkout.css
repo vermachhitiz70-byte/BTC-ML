@@ -11,7 +11,7 @@ div.fb-co-pay input:focus{border-color:#f5c542}
 div.fb-co-pay input[type=file]{height:auto;padding:12px}
 div.fb-co-pay #fb-co-preview{display:block;max-width:100%;max-height:220px;border-radius:12px;margin:0 auto 12px;border:1px solid rgba(148,163,184,.3)}
 div.fb-co-pay #fb-co-copy{height:34px;padding:0 14px;border-radius:999px;border:1px solid rgba(245,197,66,.5);background:transparent;color:#f5c542;cursor:pointer;font-size:12px;font-weight:800}
-div.fb-co-pay #fb-co-confirm{width:100%;height:52px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#c77a00 100%);color:#231303;font-size:15px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+div.fb-co-pay #fb-co-confirm{width:100%;height:52px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#14406b 100%);color:#231303;font-size:15px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
 div.fb-co-pay #fb-co-confirm:disabled{opacity:.6;cursor:wait}
 div.fb-co-grid{align-items:flex-start}
 div.fb-co-summary{background:rgba(15,23,42,.72);border:1px solid rgba(245,197,66,.25);border-radius:20px;padding:24px;margin-bottom:22px}
@@ -29,9 +29,9 @@ div.fb-co-formcard h3{color:#e8eef7;font-size:20px;margin:0 0 18px}
 div.fb-co-formcard label{display:block;color:#cbd5e1;font-size:13.5px;font-weight:600;margin-bottom:14px}
 div.fb-co-formcard input{display:block;width:100%;height:48px;margin-top:7px;padding:0 15px;border-radius:12px;border:1px solid rgba(148,163,184,.3);background:#0b1220;color:#e8eef7;font-size:14.5px;box-sizing:border-box;outline:none}
 div.fb-co-formcard input:focus{border-color:#f5c542;box-shadow:0 0 0 3px rgba(245,197,66,.15)}
-div.fb-co-formcard input.fb-co-bad{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.15)}
-div.fb-co-err{display:none;color:#f87171;font-size:13px;font-weight:600;margin-bottom:12px}
-div.fb-co-formcard button[type=submit]{width:100%;height:52px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#c77a00 100%);color:#231303;font-size:15px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
+div.fb-co-formcard input.fb-co-bad{border-color:#14406b;box-shadow:0 0 0 3px rgba(20,64,107,.15)}
+div.fb-co-err{display:none;color:#2f80ed;font-size:13px;font-weight:600;margin-bottom:12px}
+div.fb-co-formcard button[type=submit]{width:100%;height:52px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#14406b 100%);color:#231303;font-size:15px;font-weight:800;letter-spacing:.6px;text-transform:uppercase}
 div.fb-co-formcard button[type=submit]:hover{filter:brightness(1.06)}
 p.fb-co-secure{color:#94a3b8;font-size:12.5px;line-height:1.6;margin:12px 0 0;text-align:center}
 div.fb-co-ok{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.4);border-radius:16px;padding:24px;text-align:center;margin-bottom:6px}

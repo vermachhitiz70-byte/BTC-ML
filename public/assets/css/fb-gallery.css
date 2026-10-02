@@ -26,7 +26,7 @@ html body div.fb-gallery-page div.fb-gallery-img-wrap::after {
   background: linear-gradient(to top, rgba(6, 28, 46, .88) 0%, rgba(6, 28, 46, .25) 38%, transparent 60%) !important;
 }
 html body div.fb-gallery-page span.fb-gallery-badge {
-  background: linear-gradient(135deg, #ffe27a 0%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #14406b 100%) !important;
   color: #231303 !important;
   border-color: rgba(255, 248, 237, .5) !important;
 }
@@ -40,7 +40,7 @@ html body div.fb-gallery-page h1.fb-gallery-title {
 }
 html body div.fb-gallery-page div.fb-gallery-kicker {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border-color: rgba(255, 248, 237, .5) !important;
 }
 html body div.fb-gallery-page p.fb-gallery-subtitle {

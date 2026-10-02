@@ -14,7 +14,7 @@ html body section.fb-shop-title-section {
 }
 html body div.fb-shop-title-wrap span {
   color: #231303 !important;
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #d18b12 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border-color: rgba(255, 248, 237, .5) !important;
 }
 html body div.fb-shop-title-wrap h1 {
@@ -121,7 +121,7 @@ html body div.list-slide_item div.product-short_desc p {
 html body div.fb-silver-card div.single-product {
   background: linear-gradient(165deg, #fdf6e3 0%, #f2dfba 100%) !important;
   background-color: #f7ead0 !important;
-  border: 1px solid rgba(156, 107, 30, .5) !important;
+  border: 1px solid rgba(20,64,107, .5) !important;
 }
 html body div.fb-silver-card div.product-img {
   background: #f7ead0 !important;
@@ -130,12 +130,12 @@ html body div.fb-silver-card h6.product-name a {
   color: #0a2233 !important;
 }
 html body div.fb-silver-card div.product-short_desc p {
-  color: #6b5636 !important;
+  color: #14406b !important;
 }
 
 /* ---------- buttons ---------- */
 html body a.fb-shop-card-buy-btn {
-  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #c77a00 100%) !important;
+  background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #14406b 100%) !important;
   color: #231303 !important;
   border: 0 !important;
 }

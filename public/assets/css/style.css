@@ -228,14 +228,14 @@ button {
 }
 
 .sticker-2 {
-  background: #d8373e;
+  background: #14406b;
   border-radius: 4px;
   right: 20px;
   left: auto;
 }
 
 .sticker-2:before {
-  border-color: #d8373e transparent transparent transparent;
+  border-color: #14406b transparent transparent transparent;
 }
 
 /* ---Product Progressbar--- */
@@ -916,22 +916,22 @@ button,
 }
 
 .color-list_area .color-list .single-color span.bg-red_color {
-  background-color: #e01212;
+  background-color: #14406b;
   display: block;
 }
 
 .color-list_area .color-list .single-color span.burnt-orange_color {
-  background-color: #ff832b;
+  background-color: #2f80ed;
   display: block;
 }
 
 .color-list_area .color-list .single-color span.brown_color {
-  background-color: #a6311f;
+  background-color: #14406b;
   display: block;
 }
 
 .color-list_area .color-list .single-color span.raw-umber_color {
-  background-color: #824900;
+  background-color: #0a2c46;
   display: block;
 }
 
@@ -1233,7 +1233,7 @@ button,
 }
 
 .bg--mahogany {
-  background-color: #d8373e;
+  background-color: #14406b;
 }
 
 .bg--supernova {
@@ -1249,7 +1249,7 @@ button,
 }
 
 .bg--red {
-  background-color: #e01212;
+  background-color: #14406b;
 }
 
 .bg--snow_color {
@@ -1634,7 +1634,7 @@ button,
 }
 
 .template-color-3 a:hover {
-  color: #ae307c !important;
+  color: #14406b !important;
 }
 
 .template-color-3 a.umino-banner_btn:hover {
@@ -1646,7 +1646,7 @@ button,
 }
 
 .template-color-3 a.umino-btn_dark:hover {
-  background-color: #ae307c;
+  background-color: #14406b;
   color: #ffffff !important;
 }
 
@@ -1660,11 +1660,11 @@ button,
 }
 
 .template-color-3 .popup_wrapper .test .popup_off:hover {
-  background: #ae307c;
+  background: #14406b;
 }
 
 .template-color-3 .popup_wrapper .subscribe_area .subscribe-form-group form button:hover {
-  background: #ae307c;
+  background: #14406b;
   color: #ffffff;
 }
 
@@ -1709,7 +1709,7 @@ button,
 }
 
 .template-color-3 .main-slider .slick-arrow {
-  color: #ae307c;
+  color: #14406b;
 }
 
 .template-color-3 .umino-product_slider .slide-item .single-product,
@@ -1733,15 +1733,15 @@ button,
 .template-color-3 .list-product_slider-2 .slide-item .single-product:hover,
 .template-color-3 .umino-product-tab_slider .slide-item .single-product:hover,
 .template-color-3 .umino-content_wrapper .slide-item .single-product:hover {
-  border-color: #ae307c;
+  border-color: #14406b;
 }
 
 .template-color-3 .umino-social_link>ul>li>a:hover {
-  background-color: #ae307c;
+  background-color: #14406b;
 }
 
 .template-color-3 .footer-bottom_area .footer-bottom_nav .copyright>span>a {
-  color: #ae307c;
+  color: #14406b;
 }
 
 .template-color-3 #scrollUp {
@@ -1750,8 +1750,8 @@ button,
 }
 
 .template-color-3 #scrollUp:hover {
-  background-color: #ae307c;
-  border-color: #ae307c;
+  background-color: #14406b;
+  border-color: #14406b;
   color: #ffffff !important;
 }
 
@@ -1770,15 +1770,15 @@ button,
 }
 
 .template-color-3 .loading .middle .lds-ellipsis div {
-  background: #ae307c;
+  background: #14406b;
 }
 
 .template-color-3 .color-list .single-color.active {
-  border-color: #ae307c;
+  border-color: #14406b;
 }
 
 .template-color-3 .modal-body .close:hover {
-  color: #ae307c;
+  color: #14406b;
 }
 
 .template-color-3 .sp-slider .slide-item .single-product {
@@ -1786,7 +1786,7 @@ button,
 }
 
 .template-color-3 .sp-slider .slide-item .single-product:hover {
-  border-color: #ae307c;
+  border-color: #14406b;
 }
 
 .template-color-3 .sp-gallery_area .sp-nav .sp-gallery .lg-image {
@@ -1794,7 +1794,7 @@ button,
 }
 
 .template-color-3 .sp-gallery_area .sp-nav .sp-gallery .lg-image:hover {
-  outline: 1px solid #ae307c;
+  outline: 1px solid #14406b;
 }
 
 .template-color-4 {
@@ -2079,7 +2079,7 @@ button,
 }
 
 .umino-btn_red {
-  background-color: #e01212;
+  background-color: #14406b;
 }
 
 .umino-btn_red:hover {
@@ -2208,7 +2208,7 @@ button,
 }
 
 .umino-slider_area .main-slider .slider-content>a>span {
-  color: #cd131c;
+  color: #14406b;
   font-size: 28px;
   font-weight: 600;
 }
@@ -3788,7 +3788,7 @@ button,
 }
 
 .umino-banner_area .banner-item .banner-content>span {
-  color: #cd131c;
+  color: #14406b;
   font-weight: 600;
   padding-bottom: 5px;
   display: block;
@@ -3989,7 +3989,7 @@ button,
 }
 
 .umino-banner_area-5 .banner-item .banner-content.banner-content-2>span {
-  color: #e01212;
+  color: #14406b;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
@@ -4034,7 +4034,7 @@ button,
 }
 
 .umino-banner_area-5 .banner-item .banner-content.banner-content-2>.banner-sticker {
-  background-color: #e01212;
+  background-color: #14406b;
   width: 70px;
   height: 70px;
   border-radius: 100%;
@@ -4278,7 +4278,7 @@ button,
 .umino-product-tab_slider .slide-item .single-product .product-img .add-actions>ul>li>a:hover,
 .umino-product-tab_slider-2 .slide-item .single-product .product-img .add-actions>ul>li>a:hover,
 .umino-content_wrapper .slide-item .single-product .product-img .add-actions>ul>li>a:hover {
-  background-color: #e01212;
+  background-color: #14406b;
   color: #ffffff !important;
 }
 
@@ -4319,7 +4319,7 @@ button,
 .umino-product-tab_slider .slide-item .single-product .product-content .product-desc_info .price-box .new-price,
 .umino-product-tab_slider-2 .slide-item .single-product .product-content .product-desc_info .price-box .new-price,
 .umino-content_wrapper .slide-item .single-product .product-content .product-desc_info .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -4725,7 +4725,7 @@ button,
 
 .list-product_slider .slide-item .single-product .product-content .product-desc_info .price-box .new-price,
 .list-product_slider-2 .slide-item .single-product .product-content .product-desc_info .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -5280,7 +5280,7 @@ button,
 }
 
 .umino-product-tab_area-2 .product-tab-additional_stuff .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -5482,7 +5482,7 @@ button,
 }
 
 .modal-wrapper .modal-dialog .modal-content .modal-body .modal-inner-area .sp-content .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -5616,11 +5616,11 @@ button,
 }
 
 .modal-wrapper .modal-dialog .modal-content .modal-body .modal-inner-area .sp-content .umino-social_link ul>li.youtube>a:hover {
-  background-color: #d72525;
+  background-color: #14406b;
 }
 
 .modal-wrapper .modal-dialog .modal-content .modal-body .modal-inner-area .sp-content .umino-social_link ul>li.google-plus>a:hover {
-  background-color: #dd4b39;
+  background-color: #14406b;
 }
 
 .modal-wrapper .modal-dialog .modal-content .modal-body .modal-inner-area .sp-content .umino-social_link ul>li.instagram>a:hover {
@@ -6310,7 +6310,7 @@ button,
 }
 
 .hm-minicart_area>ul>li .minicart-body>li .minicart-single_item .minicart-content .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -7323,7 +7323,7 @@ button,
 }
 
 .umino-content_wrapper .umino-sidebar-catagories_area .umino-sidebar_categories.umino-list-product_area .list-product_slider .slide-item .single-product .product-content .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -7335,7 +7335,7 @@ button,
 }
 
 .umino-content_wrapper .umino-sidebar-catagories_area .umino-sidebar_categories.umino-list-product_area .list-product_slider .slide-item .single-product .product-content .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -7788,7 +7788,7 @@ button,
 }
 
 .umino-content_wrapper .shop-product-wrap.listview>[class*="col-"] .list-slide_item .single-product .umino-product-content .product-desc_info .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -7814,7 +7814,7 @@ button,
 }
 
 .umino-content_wrapper .shop-product-wrap.listview>[class*="col-"] .list-slide_item .single-product .umino-product-content .add-actions>ul>li>a:hover {
-  background-color: #e01212;
+  background-color: #14406b;
   color: #ffffff !important;
 }
 
@@ -8016,7 +8016,7 @@ button,
 }
 
 .sp-area .sp-nav .sp-content .price-box .new-price {
-  color: #e01212;
+  color: #14406b;
   font-size: 22px;
   font-weight: 600;
 }
@@ -8846,7 +8846,7 @@ button,
 }
 
 .umino-blog-sidebar-wrapper .umino-blog-sidebar .recent-post .recent-post_desc span a:hover {
-  color: #ea3a3c;
+  color: #14406b;
 }
 
 .umino-blog-sidebar-wrapper .umino-blog-sidebar .recent-post .recent-post_desc .post-date {
@@ -9887,7 +9887,7 @@ button,
 }
 
 .table-content table td.umino-product-stock-status span.out-stock {
-  color: #ea3a3c;
+  color: #14406b;
 }
 
 .table-content table td.umino-cart_btn a {
@@ -10093,7 +10093,7 @@ button,
 
 .coupon-accordion .coupon-content .coupon-info p.form-row-first label span.required,
 .coupon-accordion .coupon-content .coupon-info p.form-row-last label span.required {
-  color: #e01212;
+  color: #14406b;
   font-weight: 700;
 }
 
@@ -10617,7 +10617,7 @@ button,
 
 .contact-main-page .contact-form-content .contact-form .form-group label span,
 .contact-main-page .contact-form-content .contact-form .form-group label.required {
-  color: #e01212;
+  color: #14406b;
 }
 
 .contact-main-page .contact-form-content .contact-form .form-group input {

@@ -6,7 +6,7 @@
 .fb-auth-wrap{width:100%;max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 .fb-auth-wrap.fb-account-wrap,.fb-auth-wrap.fb-cart-wrap,.fb-auth-wrap.fb-co-page{max-width:720px}
 .fb-auth-card{background:linear-gradient(160deg,#0d3355 0%,#081f38 100%);border:1px solid rgba(245,197,66,.4);border-radius:24px;padding:36px 34px;box-shadow:0 30px 70px rgba(4,20,34,.45)}
-.fb-auth-kicker{display:inline-block;background:linear-gradient(135deg,#ffe27a,#c77a00);color:#231303;font-size:11.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:14px}
+.fb-auth-kicker{display:inline-block;background:linear-gradient(135deg,#ffe27a,#14406b);color:#231303;font-size:11.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:14px}
 .fb-auth-card h1{color:#fff;font-size:30px;margin:0 0 8px;letter-spacing:-.3px}
 .fb-auth-card h2{color:#fff;font-size:21px;margin:0 0 12px}
 .fb-auth-sub{color:rgba(233,226,205,.85);font-size:15px;line-height:1.7;margin:0 0 18px}
@@ -14,8 +14,8 @@
 .fb-auth-card label{display:block;color:#ffe9c4;font-size:13.5px;font-weight:700}
 .fb-auth-card input,.fb-auth-card textarea{display:block;width:100%;height:50px;margin-top:7px;padding:0 16px;border-radius:13px;border:1px solid rgba(245,197,66,.35);background:rgba(255,253,248,.97);font-size:14.5px;color:#1f2a33;box-sizing:border-box;outline:none}
 .fb-auth-card input:focus{border-color:#f5c542;box-shadow:0 0 0 3px rgba(245,197,66,.22)}
-.fb-auth-card button[type=submit],.fb-auth-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#c77a00 100%);color:#231303;font-size:14.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;text-decoration:none;box-shadow:0 14px 30px rgba(199,122,0,.35)}
-.fb-auth-err{background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.55);color:#fcd34d;font-size:13.5px;font-weight:600;border-radius:12px;padding:10px 14px}
+.fb-auth-card button[type=submit],.fb-auth-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border:0;border-radius:999px;cursor:pointer;background:linear-gradient(135deg,#ffe27a 0%,#f5c542 45%,#14406b 100%);color:#231303;font-size:14.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;text-decoration:none;box-shadow:0 14px 30px rgba(20,64,107,.35)}
+.fb-auth-err{background:rgba(47,128,237,.14);border:1px solid rgba(47,128,237,.55);color:#fcd34d;font-size:13.5px;font-weight:600;border-radius:12px;padding:10px 14px}
 .fb-auth-alt{margin:16px 0 0;font-size:14px;color:rgba(233,226,205,.85)}
 .fb-auth-alt a,.fb-auth-sub a{color:#ffe27a;font-weight:700}
 .fb-auth-ghost{background:transparent;border:1px solid rgba(245,197,66,.5);color:#ffe27a;border-radius:999px;min-height:44px;padding:0 22px;cursor:pointer;font-weight:700;margin-top:10px}
