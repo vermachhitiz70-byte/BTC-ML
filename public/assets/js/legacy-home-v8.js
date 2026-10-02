@@ -2985,7 +2985,15 @@ $(function () {
             {
                 breakpoint: 992,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 2800,
+                    pauseOnHover: true,
+                    pauseOnFocus: true,
+                    arrows: false,
+                    dots: true,
                 },
             },
             {
@@ -3006,6 +3014,14 @@ $(function () {
                 breakpoint: 575,
                 settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 2800,
+                    pauseOnHover: true,
+                    pauseOnFocus: true,
+                    arrows: false,
+                    dots: true,
                 },
             },
         ],
