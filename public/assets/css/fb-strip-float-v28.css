@@ -673,6 +673,18 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     align-items: center !important;
     justify-content: space-between !important;
   }
+  /* inner pages have no <header> ancestor — same fix without it */
+  html body .header-bottom_area-2 .row.no-gutters {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  html body .header-bottom_area-2 .header-logo img.fb-redbaaz-header-logo {
+    width: 78px !important;
+    max-width: 78px !important;
+    height: auto !important;
+    max-height: none !important;
+  }
   html body .header-bottom_nav > .row.no-gutters {
     flex-wrap: nowrap !important;
     padding: 8px 14px 8px 2px !important;
