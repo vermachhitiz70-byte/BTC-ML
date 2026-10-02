@@ -1,8 +1,8 @@
 import Panel from './panel';
 
 export const metadata = {
-  title: 'Admin Panel | BTC ML AI',
-  description: 'BTC ML AI administration.',
+  title: 'Admin Panel | BTCMLTAI',
+  description: 'BTCMLTAI administration.',
 };
 
 export default function Page() {

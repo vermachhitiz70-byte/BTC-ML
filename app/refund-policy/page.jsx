@@ -3,22 +3,22 @@ import BodyClass from '../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "BTC ML AI Cancellation and Refund Policy | Digital Software",
-  description: "Read the BTC ML AI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
-  alternates: { canonical: "https://btcmlai.com/refund-policy" },
+  title: "BTCMLTAI Cancellation and Refund Policy | Digital Software",
+  description: "Read the BTCMLTAI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
+  alternates: { canonical: "https://btcmltai.com/refund-policy" },
   openGraph: {
-    title: "BTC ML AI Cancellation and Refund Policy | Digital Software",
-    description: "Read the BTC ML AI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
-    url: "https://btcmlai.com/refund-policy",
-    siteName: "BTC ML AI",
+    title: "BTCMLTAI Cancellation and Refund Policy | Digital Software",
+    description: "Read the BTCMLTAI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
+    url: "https://btcmltai.com/refund-policy",
+    siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmlai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "BTC ML AI Cancellation and Refund Policy | Digital Software" }],
+    images: [{ url: "https://btcmltai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "BTCMLTAI Cancellation and Refund Policy | Digital Software" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTC ML AI Cancellation and Refund Policy | Digital Software",
-    description: "Read the BTC ML AI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
-    images: ["https://btcmlai.com/assets/images/btcmlai-logo.png"],
+    title: "BTCMLTAI Cancellation and Refund Policy | Digital Software",
+    description: "Read the BTCMLTAI cancellation and refund terms for digital software, licence activation, downloads, duplicate payments, non-delivery, technical support, and legally required remedies.",
+    images: ["https://btcmltai.com/assets/images/btcmlai-logo.png"],
   },
 };
 
@@ -48,8 +48,8 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
       <Script src="/assets/js/legacy-refund-policy.js" strategy="afterInteractive" />
     </>

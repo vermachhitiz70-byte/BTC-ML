@@ -3,22 +3,22 @@ import BodyClass from '../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "Contact BTC ML AI | Software Support and Order Help",
-  description: "Contact BTC ML AI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-  alternates: { canonical: "https://btcmlai.com/contact" },
+  title: "Contact BTCMLTAI | Software Support and Order Help",
+  description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
+  alternates: { canonical: "https://btcmltai.com/contact" },
   openGraph: {
-    title: "Contact BTC ML AI | Software Support and Order Help",
-    description: "Contact BTC ML AI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-    url: "https://btcmlai.com/contact",
-    siteName: "BTC ML AI",
+    title: "Contact BTCMLTAI | Software Support and Order Help",
+    description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
+    url: "https://btcmltai.com/contact",
+    siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmlai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "Contact BTC ML AI | Software Support and Order Help" }],
+    images: [{ url: "https://btcmltai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "Contact BTCMLTAI | Software Support and Order Help" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact BTC ML AI | Software Support and Order Help",
-    description: "Contact BTC ML AI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-    images: ["https://btcmlai.com/assets/images/btcmlai-logo.png"],
+    title: "Contact BTCMLTAI | Software Support and Order Help",
+    description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
+    images: ["https://btcmltai.com/assets/images/btcmlai-logo.png"],
   },
 };
 
@@ -49,8 +49,8 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-contact.css?v=2" />
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
       <Script src="/assets/js/legacy-contact.js" strategy="afterInteractive" />
     </>

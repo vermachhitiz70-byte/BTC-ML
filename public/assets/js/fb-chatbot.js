@@ -1,4 +1,4 @@
-/* BTC ML AI Support Chatbot v1 — floating help icon + lead capture popup. */
+/* BTCMLTAI Support Chatbot v1 — floating help icon + lead capture popup. */
 (function () {
   if (window.__fbChatbotInit) return;
   window.__fbChatbotInit = true;
@@ -56,7 +56,7 @@
     panel.innerHTML =
       '<div class="fb-chat-head">' +
         '<span class="fb-chat-avatar">B</span>' +
-        '<div class="fb-chat-headtext"><strong>BTC ML AI Support</strong>' +
+        '<div class="fb-chat-headtext"><strong>BTCMLTAI Support</strong>' +
         '<span>Typically replies within 24 hours</span></div>' +
       '</div>' +
       '<div class="fb-chat-body" id="fb-chat-body"></div>' +

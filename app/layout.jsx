@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'BTC ML AI | MT4 Trading Software & Analysis Tools',
+  title: 'BTCMLTAI | MT4 Trading Software & Analysis Tools',
   description:
-    'BTC ML AI provides rule-based MT4 trading software, market-analysis tools and educational video guides.',
+    'BTCMLTAI provides rule-based MT4 trading software, market-analysis tools and educational video guides.',
 };
 
 export const viewport = {

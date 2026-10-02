@@ -1,9 +1,9 @@
 import SignupForm from './form';
 
 export const metadata = {
-  title: 'Create Account | BTC ML AI',
-  description: 'Register a BTC ML AI account to track orders and check out faster.',
-  alternates: { canonical: 'https://btcmlai.com/signup' },
+  title: 'Create Account | BTCMLTAI',
+  description: 'Register a BTCMLTAI account to track orders and check out faster.',
+  alternates: { canonical: 'https://btcmltai.com/signup' },
 };
 
 export default function Page() {

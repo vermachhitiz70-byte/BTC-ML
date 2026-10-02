@@ -1,9 +1,9 @@
 import Account from './account';
 
 export const metadata = {
-  title: 'My Account | BTC ML AI',
-  description: 'View your BTC ML AI orders and account details.',
-  alternates: { canonical: 'https://btcmlai.com/account' },
+  title: 'My Account | BTCMLTAI',
+  description: 'View your BTCMLTAI orders and account details.',
+  alternates: { canonical: 'https://btcmltai.com/account' },
 };
 
 export default function Page() {

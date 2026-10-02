@@ -3,22 +3,22 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+  title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
   description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
-  alternates: { canonical: "https://btcmlai.com/blogs/btc-x-ea-mt5-complete-overview" },
+  alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-complete-overview" },
   openGraph: {
-    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
     description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
-    url: "https://btcmlai.com/blogs/btc-x-ea-mt5-complete-overview",
-    siteName: "BTC ML AI",
+    url: "https://btcmltai.com/blogs/btc-x-ea-mt5-complete-overview",
+    siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmlai.com/assets/images/blogs/blog-6a77140e7a9af.jpg", width: 1400, height: 933, alt: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a77140e7a9af.jpg", width: 1400, height: 933, alt: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTC ML AI",
+    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
     description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
-    images: ["https://btcmlai.com/assets/images/blogs/blog-6a77140e7a9af.jpg"],
+    images: ["https://btcmltai.com/assets/images/blogs/blog-6a77140e7a9af.jpg"],
   },
 };
 
@@ -52,8 +52,8 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmlai.com#organization\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmlai.com#website\",\"name\":\"BTC ML AI\",\"url\":\"https://btcmlai.com\",\"description\":\"BTC ML AI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmlai.com#organization\"},\"inLanguage\":\"en\"}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
       <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
       <Script src="/assets/js/legacy-blog-single.js" strategy="afterInteractive" />
     </>

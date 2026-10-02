@@ -1,9 +1,9 @@
 import Checkout from './checkout';
 
 export const metadata = {
-  title: 'Checkout | BTC ML AI',
-  description: 'Complete your BTC ML AI order securely with crypto payment.',
-  alternates: { canonical: 'https://btcmlai.com/checkout' },
+  title: 'Checkout | BTCMLTAI',
+  description: 'Complete your BTCMLTAI order securely with crypto payment.',
+  alternates: { canonical: 'https://btcmltai.com/checkout' },
 };
 
 export default function Page() {

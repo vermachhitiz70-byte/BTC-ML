@@ -1,4 +1,4 @@
-/* BTC ML AI Checkout v2 — details -> BEP20 crypto payment -> API order. */
+/* BTCMLTAI Checkout v2 — details -> BEP20 crypto payment -> API order. */
 (function () {
   if (window.__fbCheckoutInit) return;
   window.__fbCheckoutInit = true;

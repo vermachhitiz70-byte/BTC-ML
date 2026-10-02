@@ -1,9 +1,9 @@
 import Cart from './cart';
 
 export const metadata = {
-  title: 'Shopping Cart | BTC ML AI',
-  description: 'Review your BTC ML AI cart and proceed to secure checkout.',
-  alternates: { canonical: 'https://btcmlai.com/cart' },
+  title: 'Shopping Cart | BTCMLTAI',
+  description: 'Review your BTCMLTAI cart and proceed to secure checkout.',
+  alternates: { canonical: 'https://btcmltai.com/cart' },
 };
 
 export default function Page() {
