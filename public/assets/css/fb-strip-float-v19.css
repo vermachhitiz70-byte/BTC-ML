@@ -638,6 +638,30 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   }
 }
 
+/* ================= MOBILE: slim permanent header bar ================= */
+@media (max-width: 991px) {
+  /* static header becomes the permanent slim bar */
+  html body .header-bottom_nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9000 !important;
+    background: linear-gradient(135deg, #06283d 0%, #0a3a5c 100%) !important;
+    background-color: #07293f !important;
+    border-bottom: 1px solid rgba(245, 197, 66, .3) !important;
+    box-shadow: 0 10px 30px rgba(2, 8, 16, .4) !important;
+  }
+  html body .header-bottom_nav > .row.no-gutters {
+    flex-wrap: nowrap !important;
+    padding: 8px 14px !important;
+  }
+  html body .header-bottom_nav .header-logo img {
+    max-width: 104px !important;
+  }
+  /* hide scroll-gated sticky duplicate on mobile */
+  html body .header-sticky {
+    display: none !important;
+  }
+}
 /* ================= MOBILE: cream menu, navy header, single product ================= */
 @media (max-width: 991px) {
   /* offcanvas panel cream */
