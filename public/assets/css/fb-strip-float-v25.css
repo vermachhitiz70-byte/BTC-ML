@@ -678,6 +678,20 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     display: none !important;
   }
 }
+/* ================= DESKTOP: featured product image full cover ================= */
+@media (min-width: 768px) {
+  html body .fb-featured-software-slider .fb-featured-image-link {
+    inset: 0 !important;
+  }
+  html body .fb-featured-software-slider img.fb-featured-product-image {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+}
+
 /* ================= MOBILE: featured product image full cover ================= */
 @media (max-width: 767px) {
   html body .fb-featured-image-link {
