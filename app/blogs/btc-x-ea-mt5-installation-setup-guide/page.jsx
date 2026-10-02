@@ -3,20 +3,20 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "BTCML Installation & Setup Guide (Demo First) | BTCMLTAI",
+  title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
   description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
   alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-installation-setup-guide" },
   openGraph: {
-    title: "BTCML Installation & Setup Guide (Demo First) | BTCMLTAI",
+    title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
     description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
     url: "https://btcmltai.com/blogs/btc-x-ea-mt5-installation-setup-guide",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a771b80a5ce0.jpg", width: 1400, height: 933, alt: "BTCML Installation & Setup Guide (Demo First) | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a771b80a5ce0.jpg", width: 1400, height: 933, alt: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTCML Installation & Setup Guide (Demo First) | BTCMLTAI",
+    title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
     description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
     images: ["https://btcmltai.com/assets/images/blogs/blog-6a771b80a5ce0.jpg"],
   },
@@ -48,7 +48,7 @@ export default function Page() {
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
       <link rel="stylesheet" href="/assets/css/fb-blog.css?v=5" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float-v17.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
@@ -59,6 +59,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

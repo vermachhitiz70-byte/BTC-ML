@@ -616,6 +616,19 @@ html body .fb-header-icons a:hover {
   transform: translateY(-2px) !important;
 }
 
+/* ================= HERO: mobile images on small screens ================= */
+html body img.rb-hero-slide-image.rb-hero-slide-mobile {
+  display: none !important;
+}
+@media (max-width: 767px) {
+  html body img.rb-hero-slide-image:not(.rb-hero-slide-mobile) {
+    display: none !important;
+  }
+  html body img.rb-hero-slide-image.rb-hero-slide-mobile {
+    display: block !important;
+  }
+}
+
 /* ================= MOBILE: cream menu, navy header, single product ================= */
 @media (max-width: 991px) {
   /* offcanvas panel cream */

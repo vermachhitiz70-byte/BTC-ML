@@ -3,21 +3,21 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "BTCML | Automated BTCUSD Trading Software | BTCMLTAI",
-  description: "BTCML is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
+  title: "BTC MLT | Automated BTCUSD Trading Software | BTCMLTAI",
+  description: "BTC MLT is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
   alternates: { canonical: "https://btcmltai.com/products/btc-x-ea-mt5" },
   openGraph: {
-    title: "BTCML | Automated BTCUSD Trading Software | BTCMLTAI",
-    description: "BTCML is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
+    title: "BTC MLT | Automated BTCUSD Trading Software | BTCMLTAI",
+    description: "BTC MLT is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
     url: "https://btcmltai.com/products/btc-x-ea-mt5",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/products/btcml.png", width: 1254, height: 1254, alt: "BTCML | Automated BTCUSD Trading Software | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/products/btcml.png", width: 1254, height: 1254, alt: "BTC MLT | Automated BTCUSD Trading Software | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTCML | Automated BTCUSD Trading Software | BTCMLTAI",
-    description: "BTCML is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
+    title: "BTC MLT | Automated BTCUSD Trading Software | BTCMLTAI",
+    description: "BTC MLT is an automated Expert Advisor for BTCUSD on MT5 with trend filters and structured risk controls. Price 1,500 dollars, instant digital delivery.",
     images: ["https://btcmltai.com/assets/images/products/btcml.png"],
   },
 };
@@ -48,7 +48,7 @@ export default function Page() {
       <BodyClass cls="template-color-1" />
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float-v17.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
@@ -59,6 +59,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 

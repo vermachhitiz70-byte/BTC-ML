@@ -3,21 +3,21 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "Checkout \\u2014 BTCML | BTCMLTAI",
-  description: "Complete your secure BTCML order. Price $1,500 with digital delivery and installation guidance.",
+  title: "Checkout \\u2014 BTC MLT | BTCMLTAI",
+  description: "Complete your secure BTC MLT order. Price $1,500 with digital delivery and installation guidance.",
   alternates: { canonical: "https://btcmltai.com/checkout/btc-x-ea-mt5" },
   openGraph: {
-    title: "Checkout \\u2014 BTCML | BTCMLTAI",
-    description: "Complete your secure BTCML order. Price $1,500 with digital delivery and installation guidance.",
+    title: "Checkout \\u2014 BTC MLT | BTCMLTAI",
+    description: "Complete your secure BTC MLT order. Price $1,500 with digital delivery and installation guidance.",
     url: "https://btcmltai.com/checkout/btc-x-ea-mt5",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/products/btcml.png", width: 1254, height: 1254, alt: "Checkout \\u2014 BTCML | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/products/btcml.png", width: 1254, height: 1254, alt: "Checkout \\u2014 BTC MLT | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Checkout \\u2014 BTCML | BTCMLTAI",
-    description: "Complete your secure BTCML order. Price $1,500 with digital delivery and installation guidance.",
+    title: "Checkout \\u2014 BTC MLT | BTCMLTAI",
+    description: "Complete your secure BTC MLT order. Price $1,500 with digital delivery and installation guidance.",
     images: ["https://btcmltai.com/assets/images/products/btcml.png"],
   },
 };
@@ -50,7 +50,7 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
       <link rel="stylesheet" href="/assets/css/fb-checkout.css?v=2" />
       <script src="/assets/js/fb-checkout.js?v=1" defer></script>
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v16.css" />
+      <link rel="stylesheet" href="/assets/css/fb-strip-float-v17.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
       <div id="fb-chat-root" suppressHydrationWarning />
@@ -61,6 +61,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 
