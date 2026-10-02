@@ -621,6 +621,15 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   display: none !important;
 }
 @media (max-width: 767px) {
+  html body .rb-hero-slider-area {
+    height: clamp(480px, 135vw, 660px) !important;
+    min-height: 480px !important;
+    max-height: 660px !important;
+  }
+  html body img.rb-hero-slide-image.rb-hero-slide-mobile {
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
   html body img.rb-hero-slide-image:not(.rb-hero-slide-mobile) {
     display: none !important;
   }
