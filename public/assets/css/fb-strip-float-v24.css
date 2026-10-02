@@ -748,32 +748,7 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     padding: 0 8px !important;
   }
   html body .umino-tab_content ul.slick-dots {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 8px !important;
-    list-style: none !important;
-    margin: 18px 0 0 !important;
-    padding: 0 !important;
-  }
-  html body .umino-tab_content ul.slick-dots li {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  html body .umino-tab_content ul.slick-dots li button {
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 50% !important;
-    border: 1px solid rgba(245, 197, 66, .5) !important;
-    background: rgba(255, 255, 255, .08) !important;
-    color: #ffe27a !important;
-    font-size: 13px !important;
-    font-weight: 800 !important;
-  }
-  html body .umino-tab_content ul.slick-dots li.slick-active button {
-    background: linear-gradient(135deg, #ffe27a, #c77a00) !important;
-    color: #231303 !important;
-    border-color: transparent !important;
+    display: none !important;
   }
   html body .fb-coming-badge {
     white-space: nowrap !important;

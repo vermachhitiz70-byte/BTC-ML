@@ -2993,7 +2993,7 @@ $(function () {
                     pauseOnHover: true,
                     pauseOnFocus: true,
                     arrows: false,
-                    dots: true,
+                    dots: false,
                 },
             },
             {
@@ -3007,7 +3007,7 @@ $(function () {
                     pauseOnHover: true,
                     pauseOnFocus: true,
                     arrows: false,
-                    dots: true,
+                    dots: false,
                 },
             },
             {
@@ -3021,7 +3021,7 @@ $(function () {
                     pauseOnHover: true,
                     pauseOnFocus: true,
                     arrows: false,
-                    dots: true,
+                    dots: false,
                 },
             },
         ],
@@ -5673,7 +5673,7 @@ $(document).ready(function () {
         } else if (w >= 768) {
             return 2; // Tablet me 2
         } else {
-            return 2; // Mobile me 2
+            return 1; // Mobile me 1 (single product per slide)
         }
     }
 
@@ -5710,10 +5710,6 @@ $(document).ready(function () {
             if (currentPage > totalPages) currentPage = totalPages;
 
             var html = '<button type="button" class="fb-product-prev" aria-label="Previous products">‹</button>';
-
-            for (var i = 1; i <= totalPages; i++) {
-                html += '<button type="button" class="fb-product-page ' + (i === currentPage ? 'fb-active' : '') + '" data-page="' + i + '">' + i + '</button>';
-            }
 
             html += '<button type="button" class="fb-product-next" aria-label="Next products">›</button>';
 
