@@ -622,9 +622,10 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
 }
 @media (max-width: 767px) {
   html body .rb-hero-slider-area {
-    height: clamp(480px, 135vw, 660px) !important;
-    min-height: 480px !important;
-    max-height: 660px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 941 / 1672 !important;
   }
   html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     object-fit: cover !important;
@@ -662,6 +663,23 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     display: none !important;
   }
 }
+/* ================= MOBILE: featured product image full cover ================= */
+@media (max-width: 767px) {
+  html body .fb-featured-image-link {
+    inset: 10px 10px 12px !important;
+  }
+  html body img.fb-featured-product-image {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+  html body .fb-featured-visual {
+    min-height: 420px !important;
+  }
+}
+
 /* ================= MOBILE: cream menu, navy header, single product ================= */
 @media (max-width: 991px) {
   /* offcanvas panel cream */
