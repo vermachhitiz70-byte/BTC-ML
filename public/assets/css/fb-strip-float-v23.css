@@ -740,46 +740,40 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   }
 }
 @media (max-width: 767px) {
-  /* native swipe carousel (slick unslicked on mobile) */
-  html body .umino-product-tab_slider {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    scroll-snap-type: x mandatory !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-    gap: 0 !important;
-    transform: none !important;
-  }
-  html body .umino-product-tab_slider::-webkit-scrollbar {
-    display: none !important;
-  }
-  html body .umino-product-tab_slider > div {
-    flex: 0 0 84vw !important;
-    width: 84vw !important;
-    max-width: 400px !important;
-    margin-left: 8vw !important;
-    margin-right: 0 !important;
-    scroll-snap-align: center !important;
-  }
-  html body .umino-product-tab_slider > div:last-child {
-    margin-right: 8vw !important;
-  }
-  html body .umino-product-tab_slider .slick-list,
-  html body .umino-product-tab_slider .slick-track {
-    display: contents !important;
+  /* autoplay slick carousel: one full product per view */
+  html body .umino-product-tab_slider .slick-list {
+    overflow: hidden !important;
   }
   html body .umino-product-tab_slider .slick-slide {
-    flex: 0 0 84vw !important;
-    width: 84vw !important;
-    max-width: 400px !important;
-    margin-left: 8vw !important;
-    scroll-snap-align: center !important;
+    padding: 0 8px !important;
   }
-  html body .umino-tab_content .slick-dots,
-  html body .umino-tab_content .slick-arrow {
-    display: none !important;
+  html body .umino-tab_content ul.slick-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    list-style: none !important;
+    margin: 18px 0 0 !important;
+    padding: 0 !important;
+  }
+  html body .umino-tab_content ul.slick-dots li {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  html body .umino-tab_content ul.slick-dots li button {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(245, 197, 66, .5) !important;
+    background: rgba(255, 255, 255, .08) !important;
+    color: #ffe27a !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+  }
+  html body .umino-tab_content ul.slick-dots li.slick-active button {
+    background: linear-gradient(135deg, #ffe27a, #c77a00) !important;
+    color: #231303 !important;
+    border-color: transparent !important;
   }
   html body .fb-coming-badge {
     white-space: nowrap !important;

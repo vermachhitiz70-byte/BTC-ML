@@ -2990,7 +2990,17 @@ $(function () {
             },
             {
                 breakpoint: 768,
-                settings: 'unslick',
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 2800,
+                    pauseOnHover: true,
+                    pauseOnFocus: true,
+                    arrows: false,
+                    dots: true,
+                },
             },
             {
                 breakpoint: 575,
