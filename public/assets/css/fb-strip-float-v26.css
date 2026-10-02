@@ -660,8 +660,8 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     padding-right: 0 !important;
   }
   html body header.header-main_area.header-main_area-2 .header-bottom_area-2 .header-logo img.fb-redbaaz-header-logo {
-    width: 104px !important;
-    max-width: 104px !important;
+    width: 78px !important;
+    max-width: 78px !important;
     height: auto !important;
     max-height: none !important;
   }
@@ -675,7 +675,7 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
   }
   html body .header-bottom_nav > .row.no-gutters {
     flex-wrap: nowrap !important;
-    padding: 8px 14px !important;
+    padding: 8px 14px 8px 2px !important;
   }
   html body .header-bottom_nav > .row.no-gutters > div[class*="col-"] {
     flex: 0 0 auto !important;
@@ -688,12 +688,12 @@ html body img.rb-hero-slide-image.rb-hero-slide-mobile {
     flex: 1 1 auto !important;
   }
   html body .header-bottom_nav .header-logo img {
-    max-width: 104px !important;
+    max-width: 78px !important;
     width: auto !important;
     height: auto !important;
   }
   html body .header-bottom_nav .header-logo img {
-    max-width: 104px !important;
+    max-width: 78px !important;
   }
   /* hide scroll-gated sticky duplicate on mobile */
   html body .header-sticky {
