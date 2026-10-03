@@ -50,7 +50,9 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
       <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
+      <Script src="/assets/js/fb-cart.js?v=1" strategy="afterInteractive" />
       <Script src="/assets/js/fb-tabs.js?v=1" strategy="afterInteractive" />
       <div id="fb-chat-root" suppressHydrationWarning />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />

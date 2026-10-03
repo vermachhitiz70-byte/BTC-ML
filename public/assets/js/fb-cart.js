@@ -73,6 +73,16 @@
       var v = parseInt(inp.value, 10) || 1;
       v = Math.max(1, Math.min(10, v + parseInt(q.getAttribute('data-qty'), 10)));
       inp.value = v;
+      var info = q.closest('.fb-sp-info');
+      var pel = info ? info.querySelector('.fb-sp-new') : null;
+      if (pel) {
+        if (!pel.getAttribute('data-unit')) {
+          var u0 = parseFloat(pel.textContent.replace(/[^0-9.]/g, '')) || 0;
+          pel.setAttribute('data-unit', u0);
+        }
+        var unit = parseFloat(pel.getAttribute('data-unit')) || 0;
+        if (unit > 0) pel.textContent = '$' + (unit * v).toLocaleString('en-US');
+      }
     });
     // Buy Now: login-gated -> cart -> checkout
     document.addEventListener('click', function (e) {
