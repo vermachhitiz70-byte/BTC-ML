@@ -21,6 +21,17 @@ export async function GET(req) {
   return NextResponse.json({ conversations: rs.rows });
 }
 
+export async function DELETE(req) {
+  const { error, db } = await requireAdmin();
+  if (error) return error;
+  const { searchParams } = new URL(req.url);
+  const convoId = Number(searchParams.get('convo_id'));
+  if (!convoId) return NextResponse.json({ error: 'Invalid request.' }, { status: 400 });
+  await db.execute({ sql: 'DELETE FROM chat_messages WHERE convo_id = ?', args: [convoId] });
+  await db.execute({ sql: 'DELETE FROM conversations WHERE id = ?', args: [convoId] });
+  return NextResponse.json({ ok: true });
+}
+
 export async function POST(req) {
   const { error, db } = await requireAdmin();
   if (error) return error;
