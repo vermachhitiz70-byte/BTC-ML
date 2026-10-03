@@ -27,7 +27,7 @@
 #particles-bg {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
   background:
     radial-gradient(circle at 18% 12%, rgba(245, 197, 66, 0.10), transparent 32%),
@@ -222,7 +222,14 @@
 .adm-shell--collapsed .adm-side-btn { justify-content: center; padding: 9px 0; }
 .adm-shell--collapsed .adm-side-btn span { display: none; }
 
-.adm-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.adm-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
 
 .adm-topbar {
   position: sticky;
@@ -1079,4 +1086,250 @@ button.adm-stat:hover .adm-stat-arrow { color: #64748b; }
   .adm-stat-tile { width: 40px; height: 40px; }
   .adm-topbar-actions .adm-viewsite span { display: none; }
   .adm-login-card { padding: 32px 22px 26px; }
+}
+
+/* ============================================================
+   v4 — split login + sidebar profile/search + topbar chips
+   ============================================================ */
+.adm-login-card--split {
+  max-width: 780px;
+  padding: 0;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+}
+
+.adm-login-side {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 34px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(245, 197, 66, 0.18), transparent 42%),
+    radial-gradient(circle at 15% 85%, rgba(59, 130, 246, 0.25), transparent 45%),
+    linear-gradient(160deg, #14406b 0%, #0a2340 58%, #060f1e 100%);
+  border-right: 1px solid rgba(245, 197, 66, 0.18);
+}
+
+.adm-login-side::before {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 197, 66, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.adm-login-side-inner { position: relative; z-index: 1; text-align: center; }
+
+.adm-login-side-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 104px;
+  margin: 0 auto;
+}
+
+.adm-login-side-logo img { width: 104px; height: 104px; object-fit: contain; }
+
+.adm-login-side h2 { margin: 16px 0 4px; font-size: 26px; font-weight: 800; letter-spacing: 0.5px; }
+
+.adm-login-side p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+}
+
+.adm-login-feats {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.adm-login-feats li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.adm-login-feats svg { color: #f5c542; flex-shrink: 0; }
+
+.adm-login-side-chip {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(245, 197, 66, 0.13);
+  border: 1px solid rgba(245, 197, 66, 0.4);
+  color: #ffe27a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.adm-login-form {
+  background: #fff;
+  padding: 44px 40px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.adm-login-form-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #1d4ed8;
+  font-size: 12.5px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.adm-login-form .adm-login-title { font-size: 30px; margin: 0 0 6px; text-align: left; }
+.adm-login-form .adm-login-sub {
+  text-align: left;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 26px;
+}
+
+.adm-login-form .adm-hint { text-align: left; margin-top: 22px; }
+
+@media (max-width: 700px) {
+  .adm-login-card--split { grid-template-columns: 1fr; }
+  .adm-login-side { display: none; }
+  .adm-login-form { padding: 36px 26px 30px; }
+}
+
+/* ---------- sidebar: profile + search + groups ---------- */
+.adm-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 18px 0;
+}
+
+.adm-user-ava {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 14px rgba(30, 64, 175, 0.45);
+}
+
+.adm-user-ava::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2.5px solid #0a2340;
+}
+
+.adm-user-name { color: #fff; font-size: 14px; font-weight: 700; }
+.adm-user-sub { color: #8fa3b8; font-size: 12px; margin-top: 1px; }
+
+.adm-shell--collapsed .adm-user { justify-content: center; padding: 18px 0 0; }
+.adm-shell--collapsed .adm-user-ava + div { display: none; }
+
+.adm-side-search { position: relative; margin: 14px 14px 4px; }
+
+.adm-side-search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7f95;
+  pointer-events: none;
+}
+
+.adm-side-search input {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #dbe4f0;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.adm-side-search input::placeholder { color: #6b7f95; }
+.adm-side-search input:focus { border-color: rgba(245, 197, 66, 0.55); }
+
+.adm-nav-group {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #5d7290;
+  padding: 12px 10px 4px;
+}
+
+/* ---------- topbar chips ---------- */
+.adm-topbar-date {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.adm-topbar-ava {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f5c542, #b45309);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 5px 12px rgba(180, 83, 9, 0.4);
+  flex-shrink: 0;
 }

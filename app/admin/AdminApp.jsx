@@ -6,9 +6,9 @@ import { toast } from 'sonner';
 import {
   LayoutDashboard, Package, ShoppingBag, MessageSquare, Users,
   Settings, ChevronLeft, ChevronRight, Database, ExternalLink,
-  LogOut, Eye, EyeOff
+  LogOut, Eye, EyeOff, Search, CheckCircle
 } from 'lucide-react';
-import { Button, Select } from './ui';
+import { Button, Select, Input, Label } from './ui';
 import { Overview } from './Overview';
 import { ProductsManager, OrdersManager, LeadsManager } from './ResourceManager';
 import { SettingsPanel } from './Settings';
@@ -50,6 +50,7 @@ function AdminContent() {
   const [showPassword, setShowPassword] = useState(false);
   const [logoBroken, setLogoBroken] = useState(false);
   const [brandBroken, setBrandBroken] = useState(false);
+  const [navQ, setNavQ] = useState('');
 
   useEffect(() => {
     fetch('/api/admin/check').then((r) => setAuthed(r.ok)).catch(() => setAuthed(false));
@@ -102,50 +103,69 @@ function AdminContent() {
     return (
       <div className="adm-login">
         <div id="particles-bg" />
-        <div className="adm-login-card">
-          <div className="adm-login-logo">
-            {logoBroken ? (
-              <div className="adm-login-fallback"><Package size={40} /></div>
-            ) : (
-              <img
-                src="/assets/images/btcmlai-logo.png"
-                alt="BTCMLTAI"
-                onError={() => setLogoBroken(true)}
-              />
-            )}
-          </div>
-          <h1 className="adm-login-title">BTCMLTAI</h1>
-          <p className="adm-login-sub">ADMIN PANEL</p>
-          <form onSubmit={login}>
-            <div className="adm-field">
-              <div className="adm-pw-wrap">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter admin password"
-                  autoFocus
-                  autoComplete="current-password"
-                  className="adm-input adm-input--lg"
-                  aria-label="Admin password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="adm-eye"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                </button>
+        <div className="adm-login-card adm-login-card--split">
+          <div className="adm-login-side">
+            <div className="adm-login-side-inner">
+              <div className="adm-login-side-logo">
+                {logoBroken ? (
+                  <div className="adm-login-fallback"><Package size={40} /></div>
+                ) : (
+                  <img src="/assets/images/btcmlai-logo.png" alt="BTCMLTAI" onError={() => setLogoBroken(true)} />
+                )}
               </div>
+              <h2>BTCMLTAI</h2>
+              <p>Administration Console</p>
+              <ul className="adm-login-feats">
+                <li><CheckCircle size={16} /> Real-time orders &amp; payment verification</li>
+                <li><CheckCircle size={16} /> Live chat with your visitors</li>
+                <li><CheckCircle size={16} /> Full catalogue &amp; settings control</li>
+              </ul>
+              <div className="adm-login-side-chip">Secure access &bull; Admin only</div>
             </div>
-            <Button type="submit" variant="gold" block disabled={logging}>
-              {logging ? 'Signing in…' : 'Sign In'}
-            </Button>
-          </form>
-          <p className="adm-hint">
-            Default password: <code>VdxixXoXmfcz</code>
-          </p>
+          </div>
+          <div className="adm-login-form">
+            <div className="adm-login-form-head">
+              <Package size={16} />
+              <span>Admin Panel</span>
+            </div>
+            <h1 className="adm-login-title">Welcome back</h1>
+            <p className="adm-login-sub">Sign in with your admin password to manage the store.</p>
+            <form onSubmit={login}>
+              <div className="adm-field">
+                <Label>Logged in as</Label>
+                <Input type="text" value="admin@btcmlai.com" readOnly tabIndex={-1} />
+              </div>
+              <div className="adm-field">
+                <Label>Password</Label>
+                <div className="adm-pw-wrap">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter admin password"
+                    autoFocus
+                    autoComplete="current-password"
+                    className="adm-input adm-input--lg"
+                    aria-label="Admin password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="adm-eye"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+              <Button type="submit" variant="gold" block disabled={logging}>
+                {logging ? 'Signing in…' : 'Sign In  →'}
+              </Button>
+            </form>
+            <p className="adm-hint">
+              Default password: <code>VdxixXoXmfcz</code>
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -171,8 +191,50 @@ function AdminContent() {
           )}
         </div>
 
+        <div className="adm-user">
+          <div className="adm-user-ava">A</div>
+          {!collapsed && (
+            <div>
+              <div className="adm-user-name">Administrator</div>
+              <div className="adm-user-sub">Welcome back</div>
+            </div>
+          )}
+        </div>
+
+        {!collapsed && (
+          <div className="adm-side-search">
+            <Search size={15} />
+            <input
+              value={navQ}
+              onChange={(e) => setNavQ(e.target.value)}
+              placeholder="Search menu…"
+              aria-label="Search menu"
+            />
+          </div>
+        )}
+
         <nav className="adm-nav">
-          {NAV.map((n) => {
+          {!collapsed && <span className="adm-nav-group">Menu</span>}
+          {NAV.slice(0, 5).filter((n) => n.label.toLowerCase().includes(navQ.toLowerCase())).map((n) => {
+            const Icon = n.icon;
+            const isActive = tab === n.id;
+            return (
+              <button
+                key={n.id}
+                onClick={() => setTab(n.id)}
+                className={isActive ? 'adm-nav-item is-active' : 'adm-nav-item'}
+                title={collapsed ? n.label : undefined}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                <span className={`adm-nav-tile ${n.tile}`}>
+                  <Icon size={17} />
+                </span>
+                {!collapsed && <span className="adm-nav-label">{n.label}</span>}
+              </button>
+            );
+          })}
+          {!collapsed && <span className="adm-nav-group">Settings</span>}
+          {NAV.slice(5).filter((n) => n.label.toLowerCase().includes(navQ.toLowerCase())).map((n) => {
             const Icon = n.icon;
             const isActive = tab === n.id;
             return (
@@ -219,9 +281,13 @@ function AdminContent() {
             <p className="adm-topbar-sub">{active?.sub}</p>
           </div>
           <div className="adm-topbar-actions">
+            <span className="adm-topbar-date">
+              {new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}
+            </span>
             <a href="/" target="_blank" rel="noreferrer" className="adm-viewsite">
               <ExternalLink size={15} /> <span>View Site</span>
             </a>
+            <div className="adm-topbar-ava" title="Administrator">A</div>
           </div>
         </header>
 

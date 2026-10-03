@@ -10,7 +10,7 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <link rel="stylesheet" href="/assets/css/fb-admin.css?v=3" />
+      <link rel="stylesheet" href="/assets/css/fb-admin.css?v=4" />
       <script src="/assets/js/fb-admin-particles.js" defer />
       <div className="fb-admin-page">
         <AdminApp />
