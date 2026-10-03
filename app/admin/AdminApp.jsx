@@ -48,8 +48,6 @@ const LEAD_COLUMNS = [
   { key: 'read', label: 'Read' },
 ];
 
-// type TabId = 'overview' | 'products' | 'orders' | 'leads' | 'chat' | 'settings';
-
 const NAV = [
   { id: 'overview', label: 'Dashboard', icon: LayoutDashboard, color: 'from-blue-500 to-indigo-600' },
   { id: 'products', label: 'Products', icon: Package, color: 'from-emerald-500 to-green-600' },
@@ -59,7 +57,7 @@ const NAV = [
   { id: 'settings', label: 'Settings', icon: Settings, color: 'from-slate-500 to-gray-600' },
 ];
 
-export default function AdminApp() {
+function AdminContent() {
   const qc = useQueryClient();
   const [authed, setAuthed] = useState(null);
   const [tab, setTab] = useState('overview');
@@ -133,8 +131,7 @@ export default function AdminApp() {
   }
 
   return (
-    <AdminProviders>
-      <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
+    <div className="flex min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
       {/* Particle Background */}
       <div className="fixed inset-0 -z-10" id="particles-bg"></div>
 
@@ -210,6 +207,13 @@ export default function AdminApp() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function AdminApp() {
+  return (
+    <AdminProviders>
+      <AdminContent />
     </AdminProviders>
   );
 }
