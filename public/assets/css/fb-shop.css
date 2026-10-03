@@ -175,3 +175,48 @@ html body a.fb-product-area-details-btn:hover {
     min-height: 260px !important;
   }
 }
+
+/* ---------- card action buttons (Add to Cart / Buy Now) ---------- */
+html body ul.fb-shop-card-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+html body ul.fb-shop-card-actions li {
+  margin: 0 !important;
+  flex: 1 1 0 !important;
+  min-width: 120px !important;
+}
+html body a.fb-shop-card-buy-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  width: 100% !important;
+  padding: 11px 14px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+html body a.fb-shop-card-buy-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .35) !important;
+}
+html body a.fb-shop-card-buy-btn.buy-now-btn,
+html body a.fb-shop-card-buy-btn.notify-btn {
+  background: transparent !important;
+  border: 1px solid rgba(245, 197, 66, .55) !important;
+  color: #ffe27a !important;
+}
+html body a.fb-shop-card-buy-btn.buy-now-btn:hover,
+html body a.fb-shop-card-buy-btn.notify-btn:hover {
+  background: rgba(245, 197, 66, .14) !important;
+}

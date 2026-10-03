@@ -10,7 +10,7 @@ export async function GET() {
   await ensureSchema().catch(() => {});
   try {
     const rs = await getDb().execute(
-      'SELECT slug, name, short_desc, new_price, old_price, image, badge, status, active, sort_order FROM products WHERE active = 1 ORDER BY sort_order, id'
+      'SELECT slug, name, short_desc, new_price, old_price, image, badge, status, active, sort_order FROM products WHERE active = 1 AND status != \'draft\' ORDER BY sort_order, id'
     );
     return NextResponse.json({ source: 'turso', products: rs.rows });
   } catch (e) {

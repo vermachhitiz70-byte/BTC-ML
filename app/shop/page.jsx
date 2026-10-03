@@ -45,51 +45,69 @@ function ProductCard({ product }) {
   const image = product.image || '/assets/images/products/btcml.png';
   const slug = product.slug;
   const name = product.name;
+  const src = image.startsWith('/') ? image : `/assets/images/products/${image}`;
 
   return (
-    <div className="single-product">
-      <div className="product-img">
-        <a href={`/products/${slug}`}>
-          <img src={image.startsWith('/') ? image : `/assets/images/products/${image}`} alt={name} className="primary-img" />
-        </a>
-        <div className="add-actions">
-          <ul>
-            <li>
-              <a href={`/products/${slug}`} className="fb-shop-card-details-btn" title="Details">
-                <i className="fa fa-search" />
-              </a>
-            </li>
+    <div className={`slide-item${isComingSoon ? ' fb-silver-card' : ''}`}>
+      <div className="single-product">
+        <div className="product-img">
+          <a href={`/products/${slug}`}>
+            <img src={src} alt={name} className="primary-img" />
+          </a>
+          <div className="add-actions">
+            <ul>
+              {isComingSoon ? (
+                <li>
+                  <a href="javascript:void(0)" data-fb-chat="1" data-bs-toggle="tooltip" data-bs-placement="top" title="Notify Me">
+                    <i className="ion-bag" />
+                  </a>
+                </li>
+              ) : (
+                <li>
+                  <a href="javascript:void(0)" data-add-cart={slug} data-bs-toggle="tooltip" data-bs-placement="top" title="Add To Cart">
+                    <i className="ion-bag" />
+                  </a>
+                </li>
+              )}
+              <li className="quick-view-btn">
+                <a href={`/products/${slug}`} data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View">
+                  <i className="ion-ios-search" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          {badge && <span className="fb-coming-badge">{badge}</span>}
+        </div>
+        <div className="product-content">
+          <div className="product-desc_info">
+            <div className="price-box">
+              {price && <span className="new-price">{price}</span>}
+              {oldPrice && <span className="old-price">{oldPrice}</span>}
+            </div>
+            <h6 className="product-name">
+              <a href={`/products/${slug}`}>{name}</a>
+            </h6>
+          </div>
+          <ul className="fb-shop-card-actions">
             {isComingSoon ? (
               <li>
-                <a href="/#chat" className="fb-shop-card-buy-btn notify-btn" title="Notify Me">
-                  Notify Me
-                </a>
+                <a href="/#chat" className="fb-shop-card-buy-btn notify-btn">Notify Me</a>
               </li>
             ) : (
               <>
                 <li>
-                  <a href={`/cart?add=${slug}`} className="fb-shop-card-buy-btn add-to-cart-btn" data-slug={slug} title="Add to Cart">
+                  <a href="javascript:void(0)" className="fb-shop-card-buy-btn add-to-cart-btn" data-add-cart={slug}>
                     <i className="fa fa-shopping-bag" /> Add to Cart
                   </a>
                 </li>
                 <li>
-                  <a href={`/products/${slug}`} className="fb-shop-card-buy-btn buy-now-btn" title="Buy Now">
+                  <a href={`/products/${slug}`} className="fb-shop-card-buy-btn buy-now-btn">
                     <i className="fa fa-bolt" /> Buy Now
                   </a>
                 </li>
               </>
             )}
           </ul>
-        </div>
-        {badge && <span className="fb-coming-badge">{badge}</span>}
-      </div>
-      <div className="product-content">
-        <h6 className="product-name">
-          <a href={`/products/${slug}`}>{name}</a>
-        </h6>
-        <div className="product-price">
-          {price && <span className="new-price">{price}</span>}
-          {oldPrice && <span className="old-price">{oldPrice}</span>}
         </div>
       </div>
     </div>
@@ -123,26 +141,12 @@ function ProductSlider({ products, title }) {
           </h2>
         </div>
 
-        <div className="product-tab" style={{ background: 'linear-gradient(180deg, #0a2c46 0%, #0a2c46 100%)', border: '1px solid rgba(245,197,66,.58)', borderRadius: '20px', boxShadow: '0 18px 42px rgba(10,44,70,.18)', padding: '30px' }}>
-          <div className="umino-tab_content" style={{ background: 'linear-gradient(145deg, #0d3355 0%, #081f38 100%)', border: '1px solid rgba(245,197,66,.3)', borderRadius: '16px', padding: '20px' }}>
-            <div className="umino-product-tab_slider" style={{ overflow: 'hidden' }}>
-              <div className="row no-gutters slick-initialized slick-slider" style={{ display: 'flex' }}>
-                <div className="slick-list" style={{ overflow: 'hidden' }}>
-                  <div className="slick-track" style={{ display: 'flex', gap: '24px' }}>
-                    {products.map((product) => (
-                      <div key={product.slug} className="slick-slide" style={{ flex: '0 0 calc(33.333% - 16px)', minWidth: '280px' }}>
-                        <ProductCard product={product} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Pager */}
-            <div className="fb-product-mobile-pager" style={{ display: 'none', justifyContent: 'center', alignItems: 'center', gap: '12px', marginTop: '20px' }}>
-              <button className="fb-product-prev" style={{ background: '#141416', border: '1px solid rgba(245,197,66,.38)', color: '#ddd7cf', width: '44px', height: '44px', borderRadius: '50%', fontSize: '20px', cursor: 'pointer' }}>‹</button>
-              <button className="fb-product-next" style={{ background: '#141416', border: '1px solid rgba(245,197,66,.38)', color: '#ddd7cf', width: '44px', height: '44px', borderRadius: '50%', fontSize: '20px', cursor: 'pointer' }}>›</button>
+        <div className="product-tab">
+          <div className="tab-content umino-tab_content">
+            <div className="umino-product-tab_slider slider-navigation_style-1">
+              {products.map((product) => (
+                <ProductCard key={product.slug} product={product} />
+              ))}
             </div>
           </div>
         </div>
@@ -214,13 +218,13 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/font-awesome.css" />
       <link rel="stylesheet" href="/assets/css/slick.css" />
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
-      <link rel="stylesheet" href="/assets/css/fb-shop.css?v=4" />
+      <link rel="stylesheet" href="/assets/css/fb-shop.css?v=5" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
       <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
       
       <Script src="/assets/js/fb-cart.js?v=1" strategy="afterInteractive" />
       <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
-      <Script src="/assets/js/legacy-shop.js" strategy="afterInteractive" />
+      <Script src="/assets/js/legacy-home-v9.js" strategy="afterInteractive" />
       
       <div id="fb-chat-root" suppressHydrationWarning />
       
