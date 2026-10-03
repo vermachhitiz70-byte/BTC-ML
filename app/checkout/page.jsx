@@ -1,3 +1,5 @@
+import Script from 'next/script';
+import { StoreHeader, StoreFooter } from '../store-chrome';
 import Checkout from './checkout';
 
 export const metadata = {
@@ -8,13 +10,14 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <>
-      <link rel="stylesheet" href="/assets/css/fb-account.css?v=3" />
-      <div className="fb-auth-page">
-        <Checkout />
-      </div>
-    </>
+    <div className="st-page">
+      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
+      <link rel="stylesheet" href="/assets/css/fb-store.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
+      <StoreHeader active="/checkout" />
+      <Checkout />
+      <StoreFooter />
+      <Script src="/assets/js/fb-cart.js?v=2" strategy="afterInteractive" />
+    </div>
   );
 }
-
-
