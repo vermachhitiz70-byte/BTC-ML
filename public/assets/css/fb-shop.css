@@ -73,8 +73,9 @@ html body div.shop-product-wrap span.new-price {
   font-size: 27px !important;
 }
 html body div.shop-product-wrap div.product-img {
-  height: 400px !important;
-  min-height: 400px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 4 / 5 !important;
   background: #081f38 !important;
   border: 0 !important;
   border-radius: 0 !important;
