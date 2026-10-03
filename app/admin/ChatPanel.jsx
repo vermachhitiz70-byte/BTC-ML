@@ -3,14 +3,22 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Button, Card } from './ui';
-import { Send, X, MessageSquare } from 'lucide-react';
+import { Button, Card, Input, Modal } from './ui';
+import { Send, X, Trash, MessageSquare } from 'lucide-react';
+
+function formatTime(v) {
+  if (!v) return '';
+  const d = new Date(String(v).replace(' ', 'T') + 'Z');
+  if (Number.isNaN(d.getTime())) return String(v);
+  return d.toLocaleString();
+}
 
 export function ChatPanel() {
   const qc = useQueryClient();
   const [open, setOpen] = useState(null);
   const [msgs, setMsgs] = useState([]);
   const [text, setText] = useState('');
+  const [deleteId, setDeleteId] = useState(null);
 
   const { data: convos, refetch } = useQuery({
     queryKey: ['admin-chat'],
@@ -23,10 +31,13 @@ export function ChatPanel() {
   });
 
   async function openConvo(id) {
+    if (open === id) { setOpen(null); return; }
     setOpen(id);
-    const res = await fetch(`/api/admin/chat?convo_id=${id}`, { cache: 'no-store' });
-    const j = await res.json();
-    setMsgs(j.messages || []);
+    try {
+      const res = await fetch(`/api/admin/chat?convo_id=${id}`, { cache: 'no-store' });
+      const j = await res.json();
+      setMsgs(j.messages || []);
+    } catch { /* ignore */ }
   }
 
   useEffect(() => {
@@ -52,12 +63,29 @@ export function ChatPanel() {
       if (!res.ok) throw new Error('Failed to send');
     },
     onSuccess: async () => {
-      const res = await fetch(`/api/admin/chat?convo_id=${open}&after=${msgs.length ? msgs[msgs.length - 1].id : 0}`, { cache: 'no-store' });
-      const j = await res.json();
-      if (j.messages && j.messages.length) setMsgs((m) => [...m, ...j.messages]);
+      try {
+        const last = msgs.length ? msgs[msgs.length - 1].id : 0;
+        const res = await fetch(`/api/admin/chat?convo_id=${open}&after=${last}`, { cache: 'no-store' });
+        const j = await res.json();
+        if (j.messages && j.messages.length) setMsgs((m) => [...m, ...j.messages]);
+      } catch { /* ignore */ }
       qc.invalidateQueries({ queryKey: ['admin-chat'] });
     },
-    onError: (e) => toast.error(String(e)),
+    onError: (e) => toast.error(String(e.message || e)),
+  });
+
+  const remove = useMutation({
+    mutationFn: async (id) => {
+      const res = await fetch(`/api/admin/chat?convo_id=${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+    },
+    onSuccess: () => {
+      toast.success('Conversation deleted');
+      setDeleteId(null);
+      if (open === deleteId) { setOpen(null); setMsgs([]); }
+      refetch();
+    },
+    onError: (e) => toast.error(String(e.message || e)),
   });
 
   function handleSend(e) {
@@ -78,43 +106,51 @@ export function ChatPanel() {
     refetch();
   }
 
+  const list = convos?.conversations || [];
+
   return (
     <div>
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-slate-800">Live Chat Conversations</h2>
-        <span className="text-sm text-slate-500">{(convos?.conversations || []).length} active</span>
+      <div className="adm-pagehead">
+        <div>
+          <h2>Live Chat</h2>
+          <p>{list.length} conversation{list.length !== 1 ? 's' : ''}</p>
+        </div>
       </div>
 
-      {(convos?.conversations || []).map((c) => (
-        <Card key={c.id} className="mb-4 overflow-hidden shadow-lg shadow-slate-200/50">
-          <div className="p-4 bg-slate-50/50 border-b border-slate-100">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white">
-                  <MessageSquare size={18} />
-                </div>
+      {list.map((c) => (
+        <Card key={c.id} className="adm-convo">
+          <div className="adm-convo-head">
+            <div className="adm-convo-row">
+              <button type="button" onClick={() => openConvo(c.id)} className="adm-convo-who"
+                style={{ background: 'none', border: 0, padding: 0, textAlign: 'left' }} aria-label={`Open chat with ${c.visitor_name}`}>
+                <div className="adm-avatar"><MessageSquare size={18} /></div>
                 <div>
-                  <div className="font-semibold text-slate-800">{c.visitor_name}</div>
-                  <div className="text-sm text-slate-500">{c.visitor_email} • {c.status}{c.unread ? ` • ${c.unread} NEW` : ''}</div>
+                  <div className="adm-convo-name">{c.visitor_name || 'Visitor'}</div>
+                  <div className="adm-convo-sub">
+                    {c.visitor_email} &bull; {c.status}
+                    {c.unread ? <> &bull; <strong>{c.unread} NEW</strong></> : null}
+                  </div>
                 </div>
-              </div>
-              <div className="text-right">
-                <p className="text-sm text-slate-600 truncate max-w-xs">{(c.last_msg || 'No messages yet').slice(0, 80)}</p>
-                <p className="text-xs text-slate-400">{new Date(c.updated_at).toLocaleTimeString()}</p>
+              </button>
+              <div className="adm-convo-side">
+                <div className="adm-convo-last">{(c.last_msg || 'No messages yet').slice(0, 80)}</div>
+                <div className="adm-convo-time">{formatTime(c.updated_at)}</div>
+                <div className="adm-convo-actions">
+                  <button type="button" className="adm-iconbtn adm-iconbtn--danger" title="Delete conversation"
+                    onClick={() => setDeleteId(c.id)}>
+                    <Trash size={15} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
           {open === c.id && (
-            <div className="border-t border-slate-100 bg-white">
-              <div className="h-80 overflow-y-auto p-4 space-y-3">
+            <div className="adm-thread">
+              <div className="adm-msgs">
                 {msgs.map((m) => (
-                  <div key={m.id} className={`flex ${m.sender === 'admin' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[70%] rounded-2xl px-4 py-2 text-sm ${
-                      m.sender === 'admin'
-                        ? 'bg-navy-600 text-white rounded-tr-sm'
-                        : 'bg-slate-100 text-slate-800 rounded-tl-sm'
-                    }`}>
+                  <div key={m.id} className={m.sender === 'admin' ? 'adm-msgrow adm-msgrow--admin' : 'adm-msgrow adm-msgrow--visitor'}>
+                    <div className={m.sender === 'admin' ? 'adm-msg adm-msg--admin' : 'adm-msg adm-msg--visitor'}>
                       {m.text}
                     </div>
                   </div>
@@ -122,19 +158,19 @@ export function ChatPanel() {
                 <div ref={(el) => { if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
               </div>
 
-              <form onSubmit={handleSend} className="p-4 border-t border-slate-100 bg-slate-50/50 flex gap-2">
-                <input
+              <form onSubmit={handleSend} className="adm-composer">
+                <Input
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="Reply as support…"
                   maxLength={1000}
-                  className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100"
+                  aria-label="Reply message"
                 />
-                <Button type="submit" disabled={send.isPending} className="shadow-lg shadow-navy-500/25">
+                <Button type="submit" disabled={send.isPending} aria-label="Send reply">
                   <Send size={16} />
                 </Button>
-                <Button type="button" variant="ghost" onClick={closeConvo} className="text-red-600 hover:bg-red-50">
-                  <X size={16} className="mr-1" /> Close
+                <Button type="button" variant="ghost" onClick={closeConvo}>
+                  <X size={16} /> Close
                 </Button>
               </form>
             </div>
@@ -142,13 +178,25 @@ export function ChatPanel() {
         </Card>
       ))}
 
-      {(convos?.conversations || []).length === 0 && (
-        <Card className="p-12 text-center">
-          <MessageSquare className="mx-auto mb-4 h-12 w-12 text-slate-300" />
-          <h3 className="text-lg font-semibold text-slate-700 mb-2">No conversations yet</h3>
-          <p className="text-slate-500">Chat conversations will appear here when visitors start chatting.</p>
+      {list.length === 0 && (
+        <Card className="adm-empty" style={{ padding: 56 }}>
+          <MessageSquare size={44} style={{ color: '#cbd5e1', marginBottom: 12 }} />
+          <h3 style={{ margin: '0 0 6px', fontSize: 17, color: '#334155' }}>No conversations yet</h3>
+          <p className="adm-muted" style={{ margin: 0 }}>Chat conversations will appear here when visitors start chatting.</p>
         </Card>
       )}
+
+      <Modal open={deleteId != null} onClose={() => setDeleteId(null)} title="Delete Conversation">
+        <p className="adm-muted" style={{ margin: '0 0 20px' }}>
+          Delete this conversation and all its messages? This cannot be undone.
+        </p>
+        <div className="adm-modal-foot" style={{ padding: 0 }}>
+          <Button variant="ghost" onClick={() => setDeleteId(null)}>Cancel</Button>
+          <Button variant="danger" onClick={() => remove.mutate(deleteId)} disabled={remove.isPending}>
+            {remove.isPending ? 'Deleting…' : 'Delete'}
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

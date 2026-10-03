@@ -4,26 +4,23 @@ function cn(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export function Button({
-  variant = 'primary',
-  className,
-  children,
-  ...props
-}) {
-  const styles = {
-    primary: 'bg-navy-600 hover:bg-navy-700 text-white shadow-[0_5px_0_0_#1e3a8a]',
-    secondary: 'bg-slate-800 hover:bg-slate-700 text-white shadow-[0_5px_0_0_#1f2937]',
-    ghost: 'bg-transparent hover:bg-slate-100 text-slate-700 shadow-none active:translate-y-0',
-    outline: 'border border-slate-300 hover:bg-slate-50 text-slate-700 shadow-[0_5px_0_0_#cbd5e1]',
-    danger: 'bg-red-600 hover:bg-red-700 text-white shadow-[0_5px_0_0_#b91c1c]',
-    success: 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-[0_5px_0_0_#047857]',
-  };
+const VARIANTS = {
+  primary: 'adm-btn--primary',
+  gold: 'adm-btn--gold',
+  success: 'adm-btn--success',
+  danger: 'adm-btn--danger',
+  ghost: 'adm-btn--ghost',
+  outline: 'adm-btn--outline',
+};
 
+export function Button({ variant = 'primary', size, block, className, children, ...props }) {
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-100 active:translate-y-[3px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed disabled:active:translate-y-0',
-        styles[variant],
+        'adm-btn',
+        VARIANTS[variant] || VARIANTS.primary,
+        size === 'sm' && 'adm-btn--sm',
+        block && 'adm-btn--block',
         className
       )}
       {...props}
@@ -34,32 +31,24 @@ export function Button({
 }
 
 export function Input({ className, ...props }) {
-  return (
-    <input
-      className={cn(
-        'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100',
-        className
-      )}
-      {...props}
-    />
-  );
+  return <input className={cn('adm-input', className)} {...props} />;
 }
 
 export function Textarea({ className, ...props }) {
+  return <textarea className={cn('adm-textarea', className)} {...props} />;
+}
+
+export function Select({ className, children, ...props }) {
   return (
-    <textarea
-      className={cn(
-        'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100',
-        className
-      )}
-      {...props}
-    />
+    <select className={cn('adm-select', className)} {...props}>
+      {children}
+    </select>
   );
 }
 
 export function Label({ className, children, ...props }) {
   return (
-    <label className={cn('block text-xs font-semibold uppercase tracking-wide text-slate-500 mb-1.5', className)} {...props}>
+    <label className={cn('adm-label', className)} {...props}>
       {children}
     </label>
   );
@@ -67,38 +56,51 @@ export function Label({ className, children, ...props }) {
 
 export function Card({ className, children, ...props }) {
   return (
-    <div className={cn('rounded-xl border border-slate-200 bg-white shadow-sm', className)} {...props}>
+    <div className={cn('adm-card', className)} {...props}>
       {children}
     </div>
   );
 }
 
-export function Badge({ className, children, ...props }) {
+const CHIP_COLORS = {
+  green: 'adm-chip--green',
+  amber: 'adm-chip--amber',
+  slate: 'adm-chip--slate',
+  red: 'adm-chip--red',
+  blue: 'adm-chip--blue',
+  purple: 'adm-chip--purple',
+};
+
+export function Chip({ color = 'slate', className, children, ...props }) {
   return (
-    <span
-      className={cn(
-        'inline-flex items-center rounded-full bg-navy-50 px-2.5 py-0.5 text-xs font-medium text-navy-700',
-        className
-      )}
-      {...props}
-    >
+    <span className={cn('adm-chip', CHIP_COLORS[color] || CHIP_COLORS.slate, className)} {...props}>
       {children}
     </span>
   );
 }
 
-export function Modal({ open, onClose, title, children, wide }) {
+// Backwards-compatible alias (was dynamic Tailwind classes before — now static).
+export function Badge({ className, children, ...props }) {
+  return (
+    <span className={cn('adm-chip adm-chip--slate', className)} {...props}>
+      {children}
+    </span>
+  );
+}
+
+export function Modal({ open, onClose, title, children, wide, footer }) {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/40 p-4 pt-10">
-      <div className={`w-full rounded-2xl bg-white shadow-xl ${wide ? 'max-w-5xl' : 'max-w-2xl'}`}>
-        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4">
-          <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
-          <button onClick={onClose} className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700">
-            ✕
+    <div className="adm-modal-ov" onClick={(e) => { if (e.target === e.currentTarget) onClose?.(); }}>
+      <div className={cn('adm-modal', wide && 'adm-modal--wide')} role="dialog" aria-modal="true" aria-label={title}>
+        <div className="adm-modal-head">
+          <h3 className="adm-modal-title">{title}</h3>
+          <button type="button" onClick={onClose} className="adm-modal-x" aria-label="Close">
+            &times;
           </button>
         </div>
-        <div className="max-h-[70vh] overflow-y-auto px-6 py-5">{children}</div>
+        <div className="adm-modal-body">{children}</div>
+        {footer ? <div className="adm-modal-foot">{footer}</div> : null}
       </div>
     </div>
   );
