@@ -64,5 +64,38 @@
       badge();
       toast();
     });
+    // quantity stepper on detail pages
+    document.addEventListener('click', function (e) {
+      var q = e.target && e.target.closest ? e.target.closest('[data-qty]') : null;
+      if (!q) return;
+      var inp = document.getElementById('fb-sp-qty');
+      if (!inp) return;
+      var v = parseInt(inp.value, 10) || 1;
+      v = Math.max(1, Math.min(10, v + parseInt(q.getAttribute('data-qty'), 10)));
+      inp.value = v;
+    });
+    // Buy Now: login-gated -> cart -> checkout
+    document.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('[data-buy-now]') : null;
+      if (!b) return;
+      e.preventDefault();
+      var slug = b.getAttribute('data-buy-now');
+      var qtyEl = document.getElementById('fb-sp-qty');
+      var qty = qtyEl ? Math.max(1, Math.min(10, parseInt(qtyEl.value, 10) || 1)) : 1;
+      fetch('/api/auth/me').then(function (r) { return r.json(); }).then(function (j) {
+        var cart = getCart();
+        var found = false;
+        for (var i = 0; i < cart.length; i++) {
+          if (cart[i].slug === slug) { cart[i].qty = qty; found = true; break; }
+        }
+        if (!found) cart.push({ slug: slug, qty: qty });
+        saveCart(cart);
+        badge();
+        if (j && j.user) window.location.href = '/cart';
+        else window.location.href = '/login?next=/cart';
+      }).catch(function () {
+        window.location.href = '/login?next=/cart';
+      });
+    });
   });
 })();

@@ -21,7 +21,12 @@ export default function SignupForm() {
       });
       const j = await r.json();
       if (!r.ok) throw new Error(j.error || 'Signup failed.');
-      window.location.href = '/account';
+      let next = '/account';
+      try {
+        const q = new URLSearchParams(window.location.search).get('next');
+        if (q && q.startsWith('/') && !q.startsWith('//')) next = q;
+      } catch { /* ignore */ }
+      window.location.href = next;
     } catch (e) {
       setErr(e.message);
     } finally {

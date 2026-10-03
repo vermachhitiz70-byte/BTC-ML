@@ -20,7 +20,16 @@ export default function LoginForm() {
       });
       const j = await r.json();
       if (!r.ok) throw new Error(j.error || 'Login failed.');
-      window.location.href = j.user && j.user.role === 'admin' ? '/admin' : '/account';
+      if (j.user && j.user.role === 'admin') {
+        window.location.href = '/admin';
+        return;
+      }
+      let next = '/account';
+      try {
+        const q = new URLSearchParams(window.location.search).get('next');
+        if (q && q.startsWith('/') && !q.startsWith('//')) next = q;
+      } catch { /* ignore */ }
+      window.location.href = next;
     } catch (e) {
       setErr(e.message);
     } finally {

@@ -71,7 +71,14 @@ export default function Cart() {
               })}
             </div>
             <div className="fb-cart-total">Total: <strong>${total.toLocaleString()}</strong></div>
-            <a className="fb-auth-btn" href="/checkout">Proceed to Checkout</a>
+            <button className="fb-auth-btn" onClick={async () => {
+              try {
+                const me = await fetch('/api/auth/me').then((r) => r.json());
+                window.location.href = me && me.user ? '/checkout' : '/login?next=/checkout';
+              } catch {
+                window.location.href = '/login?next=/checkout';
+              }
+            }}>Proceed to Checkout</button>
           </>
         )}
       </div>
