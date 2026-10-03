@@ -3,21 +3,21 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "BTC X EA Risk Management: Lot Scaling, Drawdown & Trailing Stop | BTCMLTAI",
-  description: "How BTC X EA controls risk: dynamic lot sizing, multi-position exposure limits, trailing stops, and the account rules you should apply before trading BTCUSD live.",
+  title: "Currency Bot Coins: Multi-Currency Prop-Firm Trading Guide | BTCMLTAI",
+  description: "Currency Bot Coins trades 8 Forex pairs on MT5 H1 with drawdown protection and automatic money management. This guide covers how it works and the account rules to apply.",
   alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-risk-management-guide" },
   openGraph: {
-    title: "BTC X EA Risk Management: Lot Scaling, Drawdown & Trailing Stop | BTCMLTAI",
-    description: "How BTC X EA controls risk: dynamic lot sizing, multi-position exposure limits, trailing stops, and the account rules you should apply before trading BTCUSD live.",
+    title: "Currency Bot Coins: Multi-Currency Prop-Firm Trading Guide | BTCMLTAI",
+    description: "Currency Bot Coins trades 8 Forex pairs on MT5 H1 with drawdown protection and automatic money management. This guide covers how it works and the account rules to apply.",
     url: "https://btcmltai.com/blogs/btc-x-ea-mt5-risk-management-guide",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a7723004cc8b.jpg", width: 1400, height: 933, alt: "BTC X EA Risk Management: Lot Scaling, Drawdown & Trailing Stop | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a7723004cc8b.jpg", width: 1400, height: 933, alt: "Currency Bot Coins: Multi-Currency Prop-Firm Trading Guide | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTC X EA Risk Management: Lot Scaling, Drawdown & Trailing Stop | BTCMLTAI",
-    description: "How BTC X EA controls risk: dynamic lot sizing, multi-position exposure limits, trailing stops, and the account rules you should apply before trading BTCUSD live.",
+    title: "Currency Bot Coins: Multi-Currency Prop-Firm Trading Guide | BTCMLTAI",
+    description: "Currency Bot Coins trades 8 Forex pairs on MT5 H1 with drawdown protection and automatic money management. This guide covers how it works and the account rules to apply.",
     images: ["https://btcmltai.com/assets/images/blogs/blog-6a7723004cc8b.jpg"],
   },
 };

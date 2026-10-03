@@ -4,11 +4,11 @@ import { BODY } from './body';
 
 export const metadata = {
   title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
-  description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
+  description: "Step-by-step: how to install BTCMLTAI software on MetaTrader 4 and 5, attach it to a chart, choose starting settings, and validate everything on demo before risking real funds.",
   alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-installation-setup-guide" },
   openGraph: {
     title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
-    description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
+    description: "Step-by-step: how to install BTCMLTAI software on MetaTrader 4 and 5, attach it to a chart, choose starting settings, and validate everything on demo before risking real funds.",
     url: "https://btcmltai.com/blogs/btc-x-ea-mt5-installation-setup-guide",
     siteName: "BTCMLTAI",
     type: "website",
@@ -17,7 +17,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "BTC MLT Installation & Setup Guide (Demo First) | BTCMLTAI",
-    description: "Step-by-step: how to install BTC X EA on MetaTrader 5, attach it to a BTCUSD chart, choose starting settings, and validate everything on demo before risking real funds.",
+    description: "Step-by-step: how to install BTCMLTAI software on MetaTrader 4 and 5, attach it to a chart, choose starting settings, and validate everything on demo before risking real funds.",
     images: ["https://btcmltai.com/assets/images/blogs/blog-6a771b80a5ce0.jpg"],
   },
 };

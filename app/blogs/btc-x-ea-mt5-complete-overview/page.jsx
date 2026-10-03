@@ -3,21 +3,21 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
-  description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+  title: "What Is BTC MLT AI? Complete Overview, Features & Risk Guide | BTCMLTAI",
+  description: "BTC MLT AI is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
   alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-complete-overview" },
   openGraph: {
-    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
-    description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+    title: "What Is BTC MLT AI? Complete Overview, Features & Risk Guide | BTCMLTAI",
+    description: "BTC MLT AI is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
     url: "https://btcmltai.com/blogs/btc-x-ea-mt5-complete-overview",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a77140e7a9af.jpg", width: 1400, height: 933, alt: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a77140e7a9af.jpg", width: 1400, height: 933, alt: "What Is BTC MLT AI? Complete Overview, Features & Risk Guide | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "What Is BTC X EA? Complete MT5 Overview, Features & Risk Guide | BTCMLTAI",
-    description: "BTC X EA is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
+    title: "What Is BTC MLT AI? Complete Overview, Features & Risk Guide | BTCMLTAI",
+    description: "BTC MLT AI is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls. This guide explains what it does, how it works, and what to check before use.",
     images: ["https://btcmltai.com/assets/images/blogs/blog-6a77140e7a9af.jpg"],
   },
 };

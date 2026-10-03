@@ -3,21 +3,21 @@ import BodyClass from '../../body-class';
 import { BODY } from './body';
 
 export const metadata = {
-  title: "BTC X EA BTCUSD Settings & Backtest Guide (2026) | BTCMLTAI",
-  description: "How to backtest BTC X EA on BTCUSD in MT5, which settings matter most (ADX/ATR filters, lots, trailing), and how to read results without fooling yourself.",
+  title: "Silver by BTCMLTAI: Launch Preview & What to Expect | BTCMLTAI",
+  description: "Silver is the upcoming BTCMLTAI release, currently in final testing. This preview covers what is planned, launch updates, and how to join the early list.",
   alternates: { canonical: "https://btcmltai.com/blogs/btc-x-ea-mt5-backtest-settings-guide" },
   openGraph: {
-    title: "BTC X EA BTCUSD Settings & Backtest Guide (2026) | BTCMLTAI",
-    description: "How to backtest BTC X EA on BTCUSD in MT5, which settings matter most (ADX/ATR filters, lots, trailing), and how to read results without fooling yourself.",
+    title: "Silver by BTCMLTAI: Launch Preview & What to Expect | BTCMLTAI",
+    description: "Silver is the upcoming BTCMLTAI release, currently in final testing. This preview covers what is planned, launch updates, and how to join the early list.",
     url: "https://btcmltai.com/blogs/btc-x-ea-mt5-backtest-settings-guide",
     siteName: "BTCMLTAI",
     type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a7726ca0bd2e.jpg", width: 1400, height: 933, alt: "BTC X EA BTCUSD Settings & Backtest Guide (2026) | BTCMLTAI" }],
+    images: [{ url: "https://btcmltai.com/assets/images/blogs/blog-6a7726ca0bd2e.jpg", width: 1400, height: 933, alt: "Silver by BTCMLTAI: Launch Preview & What to Expect | BTCMLTAI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "BTC X EA BTCUSD Settings & Backtest Guide (2026) | BTCMLTAI",
-    description: "How to backtest BTC X EA on BTCUSD in MT5, which settings matter most (ADX/ATR filters, lots, trailing), and how to read results without fooling yourself.",
+    title: "Silver by BTCMLTAI: Launch Preview & What to Expect | BTCMLTAI",
+    description: "Silver is the upcoming BTCMLTAI release, currently in final testing. This preview covers what is planned, launch updates, and how to join the early list.",
     images: ["https://btcmltai.com/assets/images/blogs/blog-6a7726ca0bd2e.jpg"],
   },
 };
