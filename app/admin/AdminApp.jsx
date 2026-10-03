@@ -162,9 +162,6 @@ function AdminContent() {
                 {logging ? 'Signing in…' : 'Sign In  →'}
               </Button>
             </form>
-            <p className="adm-hint">
-              Default password: <code>VdxixXoXmfcz</code>
-            </p>
           </div>
         </div>
       </div>
