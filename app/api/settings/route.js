@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server';
 import { dbEnabled, getDb } from '@/lib/turso';
+import { ensureSchema } from '@/lib/schema';
 
 const PUBLIC_KEYS = ['pay_coin', 'pay_address', 'pay_qr', 'support_note'];
 
 export async function GET() {
+  await ensureSchema().catch(() => {});
   const fallback = {
     pay_coin: 'USDT (BEP20)',
     pay_address: '0xYourBEP20WalletAddressHere',

@@ -1,6 +1,8 @@
 import Script from 'next/script';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "BTCMLTAI Basic Software | MT4 Trading Tools",
   description: "Explore BTCMLTAI basic MT4 trading software, product information, access requirements, digital delivery details, licence information, and risk disclosures.",
@@ -22,10 +24,17 @@ export const metadata = {
 };
 
 async function getProducts() {
-  const res = await fetch('/api/products', { cache: 'no-store' });
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.products || [];
+  try {
+    const { dbEnabled, getDb } = await import('@/lib/turso');
+    const { SEED_PRODUCTS } = await import('@/lib/seed');
+    if (!dbEnabled) return SEED_PRODUCTS;
+    const rs = await getDb().execute(
+      'SELECT slug, name, short_desc, new_price, old_price, image, badge, status, active, sort_order FROM products WHERE active = 1 ORDER BY sort_order, id'
+    );
+    return rs.rows.map((r) => ({ ...r, active: Number(r.active) }));
+  } catch {
+    return [];
+  }
 }
 
 function ProductCard({ product }) {

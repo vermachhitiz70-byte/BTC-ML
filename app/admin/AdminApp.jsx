@@ -64,6 +64,8 @@ function AdminContent() {
   const [password, setPassword] = useState('');
   const [logging, setLogging] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [logoBroken, setLogoBroken] = useState(false);
 
   useEffect(() => {
     fetch('/api/admin/check').then((r) => setAuthed(r.ok)).catch(() => setAuthed(false));
@@ -107,7 +109,6 @@ function AdminContent() {
   );
 
   if (!authed) {
-    const [showPassword, setShowPassword] = useState(false);
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-navy-600 via-blue-700 to-navy-800 p-6">
         <div className="fixed inset-0 -z-10" style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0f172a 100%)' }} />
@@ -115,10 +116,18 @@ function AdminContent() {
           <Card className="p-8 bg-white/95 backdrop-blur shadow-2xl border-0 rounded-2xl">
             <div className="mb-8 text-center">
               <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center">
-                <img src="/assets/images/logo.png" alt="BTCMLTAI" style={{ width: 144, height: 144, objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-navy-500 to-blue-600 text-white" style={{ display: 'none' }}>
-                  <Package size={32} />
-                </div>
+                {logoBroken ? (
+                  <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-navy-500 to-blue-600 text-white">
+                    <Package size={40} />
+                  </div>
+                ) : (
+                  <img
+                    src="/assets/images/btcmlai-logo.png"
+                    alt="BTCMLTAI"
+                    style={{ width: 144, height: 144, objectFit: 'contain' }}
+                    onError={() => setLogoBroken(true)}
+                  />
+                )}
               </div>
               <h1 className="text-2xl font-bold text-slate-900">BTCMLTAI</h1>
               <p className="mt-1 text-sm text-slate-500">Admin Panel</p>

@@ -2,8 +2,10 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getDb } from '@/lib/turso';
 import { getSessionUser, orderCode, validEmail, SESSION_COOKIE } from '@/lib/auth';
+import { ensureSchema } from '@/lib/schema';
 
 export async function POST(req) {
+  await ensureSchema().catch(() => {});
   let body;
   try {
     body = await req.json();
@@ -69,6 +71,7 @@ export async function POST(req) {
 }
 
 export async function GET(req) {
+  await ensureSchema().catch(() => {});
   const store = await cookies();
   const user = await getSessionUser(store.get(SESSION_COOKIE)?.value).catch(() => null);
   const { searchParams } = new URL(req.url);

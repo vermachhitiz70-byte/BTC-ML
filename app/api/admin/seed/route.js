@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/turso';
 import { hashPassword } from '@/lib/auth';
+import { ensureSchema } from '@/lib/schema';
 
 export async function POST() {
+  await ensureSchema().catch(() => {});
   const db = getDb();
   const adminEmail = (process.env.ADMIN_EMAIL || 'admin@btcmlai.com').toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD || 'VdxixXoXmfcz';

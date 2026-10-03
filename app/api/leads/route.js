@@ -2,8 +2,10 @@ import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getDb } from '@/lib/turso';
 import { getSessionUser, validEmail, SESSION_COOKIE } from '@/lib/auth';
+import { ensureSchema } from '@/lib/schema';
 
 export async function POST(req) {
+  await ensureSchema().catch(() => {});
   let body;
   try {
     body = await req.json();
@@ -27,6 +29,7 @@ export async function POST(req) {
 }
 
 export async function GET() {
+  await ensureSchema().catch(() => {});
   const store = await cookies();
   const user = await getSessionUser(store.get(SESSION_COOKIE)?.value).catch(() => null);
   if (!user || user.role !== 'admin') return NextResponse.json({ error: 'Forbidden.' }, { status: 403 });

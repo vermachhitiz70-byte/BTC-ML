@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/turso';
 import { verifyPassword, createSession, sessionCookie, validEmail } from '@/lib/auth';
+import { ensureSchema } from '@/lib/schema';
 
 export async function POST(req) {
+  await ensureSchema().catch(() => {});
   let body;
   try {
     body = await req.json();

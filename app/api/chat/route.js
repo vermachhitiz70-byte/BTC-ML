@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '@/lib/turso';
 import { validEmail } from '@/lib/auth';
+import { ensureSchema } from '@/lib/schema';
 
 function isOnline(lastSeen) {
   if (!lastSeen) return false;
@@ -19,6 +20,7 @@ async function presence(db) {
 
 // Visitor: start conversation / send message
 export async function POST(req) {
+  await ensureSchema().catch(() => {});
   let body;
   try {
     body = await req.json();
@@ -55,6 +57,7 @@ export async function POST(req) {
 
 // Visitor: poll messages
 export async function GET(req) {
+  await ensureSchema().catch(() => {});
   const { searchParams } = new URL(req.url);
   const convoId = Number(searchParams.get('convo_id')) || 0;
   const after = Number(searchParams.get('after') || 0);
