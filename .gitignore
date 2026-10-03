@@ -4,3 +4,5 @@ out/
 .env*.local
 *.log
 .vercel
+# local source images staging area (not for deploy)
+/images/
