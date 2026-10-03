@@ -22,7 +22,7 @@ export const metadata = {
 };
 
 async function getProducts() {
-  const res = await fetch('https://btcmltai.com/api/products', { cache: 'no-store' });
+  const res = await fetch('/api/products', { cache: 'no-store' });
   if (!res.ok) return [];
   const data = await res.json();
   return data.products || [];

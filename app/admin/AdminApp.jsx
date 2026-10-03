@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import {
   LayoutDashboard, Package, ShoppingBag, MessageSquare, Users,
   FileText, Settings, ChevronLeft, ChevronRight, Database, ExternalLink,
-  LogOut, ArrowRight
+  LogOut, ArrowRight, Eye, EyeOff
 } from 'lucide-react';
 import { Button, Card, Modal } from './ui';
 import { Overview } from './Overview';
@@ -93,39 +93,67 @@ function AdminContent() {
   }
 
   if (authed === null) return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      Loading…
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-navy-600 via-blue-700 to-navy-800">
+      <div className="text-center">
+        <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-navy-500 to-blue-600 text-white animate-pulse">
+            <Package size={32} />
+          </div>
+        </div>
+        <h1 className="text-2xl font-bold text-white">BTCMLTAI</h1>
+        <p className="mt-1 text-sm text-blue-200">Loading admin panel…</p>
+      </div>
     </div>
   );
 
   if (!authed) {
+    const [showPassword, setShowPassword] = useState(false);
     return (
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-navy-600 via-blue-700 to-navy-800 p-6">
-        <Card className="w-full max-w-sm p-8 bg-white/95 backdrop-blur shadow-2xl border-0">
-          <div className="mb-8 text-center">
-            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center">
-              <img src="/assets/images/logo.png" alt="BTCMLTAI" style={{ width: 144, height: 144, objectFit: 'contain' }} />
+        <div className="fixed inset-0 -z-10" style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0f172a 100%)' }} />
+        <div className="relative z-10 w-full max-w-sm">
+          <Card className="p-8 bg-white/95 backdrop-blur shadow-2xl border-0 rounded-2xl">
+            <div className="mb-8 text-center">
+              <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center">
+                <img src="/assets/images/logo.png" alt="BTCMLTAI" style={{ width: 144, height: 144, objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-navy-500 to-blue-600 text-white" style={{ display: 'none' }}>
+                  <Package size={32} />
+                </div>
+              </div>
+              <h1 className="text-2xl font-bold text-slate-900">BTCMLTAI</h1>
+              <p className="mt-1 text-sm text-slate-500">Admin Panel</p>
             </div>
-            <h1 className="text-2xl font-bold text-slate-900">BTCMLTAI</h1>
-            <p className="mt-1 text-sm text-slate-500">Admin Panel</p>
-          </div>
-          <form onSubmit={login} className="space-y-4">
-            <div>
-              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter admin password"
-                autoFocus
-                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100"
-              />
-            </div>
-            <Button type="submit" className="w-full shadow-lg shadow-navy-500/25" disabled={logging}>
-              {logging ? 'Signing in…' : 'Sign In'}
-            </Button>
-          </form>
-        </Card>
+            <form onSubmit={login} className="space-y-4">
+              <div className="relative">
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter admin password"
+                    autoFocus
+                    className="w-full rounded-lg border border-slate-300 bg-white px-12 py-3 text-base text-slate-900 outline-none focus:border-navy-500 focus:ring-2 focus:ring-navy-100 pr-12"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              </div>
+              <Button type="submit" className="w-full shadow-lg shadow-navy-500/25 text-base py-3" disabled={logging}>
+                {logging ? 'Signing in…' : 'Sign In'}
+              </Button>
+            </form>
+            <p className="mt-6 text-center text-xs text-slate-400">
+              Default: <code className="bg-slate-100 px-1.5 py-0.5 rounded font-mono">VdxixXoXmfcz</code>
+            </p>
+          </Card>
+        </div>
       </div>
     );
   }
