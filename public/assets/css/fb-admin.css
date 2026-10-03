@@ -1,39 +1,159 @@
-.fb-admin-page{background:#0f172a;min-height:100vh;padding:30px 16px 70px;color:#e8eef7}
-.fb-chat-thread{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;margin-bottom:12px}
-.fb-chat-line{display:flex}
-.fb-chat-line.left{justify-content:flex-start}
-.fb-chat-line.right{justify-content:flex-end}
-.fb-chat-line span{max-width:80%;padding:9px 13px;border-radius:14px;font-size:13.5px;line-height:1.5}
-.fb-chat-line.left span{background:#1a2436;border:1px solid rgba(148,163,184,.3);color:#e8eef7}
-.fb-chat-line.right span{background:linear-gradient(135deg,#ffe27a,#c77a00);color:#231303;font-weight:600}
-.fb-chat-sendrow{display:flex;gap:8px}
-.fb-chat-sendrow input{flex:1;height:44px;padding:0 14px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#0b1220;color:#fff;box-sizing:border-box}
-.fb-admin-wrap{max-width:1080px;margin:0 auto}
-.fb-admin-login{max-width:420px;margin:60px auto;background:#1a2436;border:1px solid rgba(245,197,66,.3);border-radius:18px;padding:32px}
-.fb-admin-login h1,.fb-admin-top h1{color:#ffe27a;margin:0 0 16px;font-size:26px}
-.fb-admin-login label{display:block;font-size:13px;font-weight:700;margin-bottom:12px;color:#cbd5e1}
-.fb-admin-login input{width:100%;height:46px;margin-top:6px;padding:0 14px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#0b1220;color:#fff;box-sizing:border-box}
-.fb-admin-login button,.fb-admin-top button,.fb-admin-btns button,.fb-admin-form button,.fb-admin-wrap button{cursor:pointer;border-radius:10px;border:1px solid rgba(245,197,66,.4);background:rgba(245,197,66,.12);color:#ffe27a;font-weight:700;padding:9px 16px;font-size:13px}
-.fb-admin-err{background:rgba(47,128,237,.14);border:1px solid #14406b;color:#fcd34d;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13.5px}
-.fb-admin-top{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
-.fb-admin-top span{color:#94a3b8;font-size:13px;margin-right:10px}
-.fb-admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.fb-admin-tabs button{text-transform:capitalize;opacity:.75}
-.fb-admin-tabs button.on{background:linear-gradient(135deg,#ffe27a,#14406b);color:#231303;border:0;opacity:1}
-.fb-admin-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.fb-admin-stat{background:#1a2436;border:1px solid rgba(148,163,184,.25);border-radius:14px;padding:18px;text-align:center}
-.fb-admin-stat strong{display:block;font-size:28px;color:#ffe27a}
-.fb-admin-stat span{font-size:12.5px;color:#94a3b8;text-transform:capitalize}
-.fb-admin-wide{grid-column:1/-1;background:#1a2436;border:1px solid rgba(148,163,184,.25);border-radius:14px;padding:18px}
-.fb-admin-wide h3,.fb-admin-wrap h3{color:#e8eef7;margin:18px 0 10px}
-.fb-admin-row{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#1a2436;border:1px solid rgba(148,163,184,.2);border-radius:12px;padding:12px 15px;margin-bottom:8px;font-size:14px;flex-wrap:wrap}
-.fb-admin-row small{color:#94a3b8}
-.fb-admin-btns{display:flex;gap:6px;flex-wrap:wrap}
-.fb-order-status{background:rgba(245,197,66,.15);border-radius:999px;padding:3px 12px;font-size:11.5px;font-weight:800;text-transform:uppercase;color:#ffe27a}
-.fb-admin-detail{background:#0b1220;border:1px solid rgba(245,197,66,.3);border-radius:12px;padding:16px;margin:-4px 0 10px;font-size:13.5px}
-.fb-admin-detail code{color:#7dd3fc;word-break:break-all;font-size:12px}
-.fb-admin-shot{display:block;max-width:320px;max-height:240px;border-radius:10px;margin:8px 0;border:1px solid rgba(148,163,184,.3)}
-.fb-admin-form{display:flex;flex-direction:column;gap:10px;max-width:560px;background:#1a2436;border:1px solid rgba(148,163,184,.25);border-radius:14px;padding:18px}
-.fb-admin-form label{font-size:13px;font-weight:700;color:#cbd5e1}
-.fb-admin-form input{height:44px;padding:0 14px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#0b1220;color:#fff;box-sizing:border-box;width:100%}
-@media(max-width:767px){.fb-admin-row{flex-direction:column;align-items:flex-start}}
+/* New Admin Panel Styles - BTCMLTAI Navy/Blue/Cream Theme */
+.fb-admin-page { background: transparent; min-height: 100vh; }
+
+/* Particle Background */
+#particles-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #dbeafe 100%);
+  overflow: hidden;
+}
+
+#particles-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(30, 58, 138, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Floating particles animation */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(30, 58, 138, 0.15);
+  pointer-events: none;
+  animation: float 20s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) scale(1); opacity: 0; }
+}
+
+/* Admin Login Page */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #0f172a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(30, 58, 138, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.admin-login-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 28rem;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-login-logo {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+}
+
+.admin-login-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.admin-login-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-login-form { display: flex; flex-direction: column; gap: 1rem; }
+
+.admin-login-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.admin-login-input {
+  width: 100%;
+  height: 2.75rem;
+  padding: 0 0.875rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #0f172a;
+  font-size: 0.875rem;
+  outline: none;
+  transition: all 0.15s;
+  box-sizing: border-box;
+}
+
+.admin-login-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.admin-login-btn {
+  width: 100%;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #1e3a8a, #1e40af);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 4px 14px -4px rgba(30, 58, 138, 0.5);
+}
+
+.admin-login-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  box-shadow: 0 6px 20px -4px rgba(30, 58, 138, 0.6);
+}
+
+.admin-login-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.admin-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toast notifications */
+.toast-container { z-index: 9999; }
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .admin-login-card { padding: 1.5rem; margin: 1rem; }
+}

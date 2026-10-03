@@ -1,10 +1,11 @@
 /* ============================================================
-   FB Shop — BLUE theme + full-frame product images v1
-   Overrides cream/maroon inline styles on /shop.
+   FB Shop — BLUE theme + full-frame product images v2
+   Applies to BOTH /shop AND homepage product area (.fb-product-area)
    ============================================================ */
 
 /* ---------- title hero: navy panel ---------- */
-html body section.fb-shop-title-section {
+html body section.fb-shop-title-section,
+html body section.fb-product-title-section {
   background:
     radial-gradient(circle at 15% 20%, rgba(245, 197, 66, .14), transparent 30%),
     radial-gradient(circle at 85% 15%, rgba(34, 158, 217, .14), transparent 30%),
@@ -12,16 +13,19 @@ html body section.fb-shop-title-section {
   background-color: #07293f !important;
   border-bottom: 2px solid rgba(245, 197, 66, .4) !important;
 }
-html body div.fb-shop-title-wrap span {
+html body div.fb-shop-title-wrap span,
+html body div.fb-product-title-wrap span {
   color: #231303 !important;
   background: linear-gradient(135deg, #ffe27a 0%, #f5c542 52%, #14406b 100%) !important;
   border-color: rgba(255, 248, 237, .5) !important;
 }
-html body div.fb-shop-title-wrap h1 {
+html body div.fb-shop-title-wrap h1,
+html body div.fb-product-title-wrap h1 {
   color: #ffffff !important;
   text-shadow: 0 4px 26px rgba(0, 0, 0, .4) !important;
 }
-html body div.fb-shop-title-wrap p {
+html body div.fb-shop-title-wrap p,
+html body div.fb-product-title-wrap p {
   color: rgba(233, 226, 205, .9) !important;
 }
 
@@ -55,7 +59,8 @@ html body div.shop-banner_area {
 }
 
 /* ---------- product cards: navy, full-frame images ---------- */
-html body div.shop-product-wrap div.single-product {
+html body div.shop-product-wrap div.single-product,
+html body div.fb-product-area div.single-product {
   background: linear-gradient(170deg, #0d3355 0%, #081f38 100%) !important;
   background-color: #0a2540 !important;
   border: 1px solid rgba(245, 197, 66, .3) !important;
@@ -63,16 +68,20 @@ html body div.shop-product-wrap div.single-product {
   overflow: hidden !important;
   padding: 0 0 26px !important;
 }
-html body div.shop-product-wrap div.product-content {
+html body div.shop-product-wrap div.product-content,
+html body div.fb-product-area div.product-content {
   padding: 22px 24px 0 !important;
 }
-html body div.shop-product-wrap h6.product-name a {
+html body div.shop-product-wrap h6.product-name a,
+html body div.fb-product-area h6.product-name a {
   font-size: 19px !important;
 }
-html body div.shop-product-wrap span.new-price {
+html body div.shop-product-wrap span.new-price,
+html body div.fb-product-area span.new-price {
   font-size: 27px !important;
 }
-html body div.shop-product-wrap div.product-img {
+html body div.shop-product-wrap div.product-img,
+html body div.fb-product-area div.product-img {
   height: auto !important;
   min-height: 0 !important;
   aspect-ratio: 4 / 5 !important;
@@ -83,7 +92,9 @@ html body div.shop-product-wrap div.product-img {
   padding: 0 !important;
 }
 html body div.shop-product-wrap div.product-img img,
-html body div.shop-product-wrap img.primary-img {
+html body div.shop-product-wrap img.primary-img,
+html body div.fb-product-area div.product-img img,
+html body div.fb-product-area img.primary-img {
   width: 100% !important;
   max-width: 100% !important;
   height: 100% !important;
@@ -93,16 +104,21 @@ html body div.shop-product-wrap img.primary-img {
   margin: 0 !important;
 }
 html body div.shop-product-wrap div.product-content,
-html body div.shop-product-wrap div.product-desc_info {
+html body div.shop-product-wrap div.product-desc_info,
+html body div.fb-product-area div.product-content,
+html body div.fb-product-area div.product-desc_info {
   background: transparent !important;
 }
-html body div.shop-product-wrap h6.product-name a {
+html body div.shop-product-wrap h6.product-name a,
+html body div.fb-product-area h6.product-name a {
   color: #ffffff !important;
 }
-html body div.shop-product-wrap h6.product-name a:hover {
+html body div.shop-product-wrap h6.product-name a:hover,
+html body div.fb-product-area h6.product-name a:hover {
   color: #ffe27a !important;
 }
-html body div.shop-product-wrap span.new-price {
+html body div.shop-product-wrap span.new-price,
+html body div.fb-product-area span.new-price {
   color: #22c55e !important;
 }
 /* list view */
@@ -135,22 +151,26 @@ html body div.fb-silver-card div.product-short_desc p {
 }
 
 /* ---------- buttons ---------- */
-html body a.fb-shop-card-buy-btn {
+html body a.fb-shop-card-buy-btn,
+html body a.fb-product-area-buy-btn {
   background: linear-gradient(135deg, #ffe27a 0%, #f5c542 45%, #14406b 100%) !important;
   color: #231303 !important;
   border: 0 !important;
 }
-html body a.fb-shop-card-details-btn {
+html body a.fb-shop-card-details-btn,
+html body a.fb-product-area-details-btn {
   border: 1px solid rgba(245, 197, 66, .55) !important;
   color: #ffe27a !important;
   background: transparent !important;
 }
-html body a.fb-shop-card-details-btn:hover {
+html body a.fb-shop-card-details-btn:hover,
+html body a.fb-product-area-details-btn:hover {
   background: rgba(245, 197, 66, .14) !important;
 }
 
 @media (max-width: 767px) {
-  html body div.shop-product-wrap div.product-img {
+  html body div.shop-product-wrap div.product-img,
+  html body div.fb-product-area div.product-img {
     height: 260px !important;
     min-height: 260px !important;
   }

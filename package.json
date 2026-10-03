@@ -1,1 +1,1 @@
-{"name": "btcmlai","version": "1.0.0","private": true,"scripts": {"dev": "next dev","build": "next build","start": "next start"},"dependencies": {"@libsql/client": "^0.15.0","next": "^15.1.0","react": "^19.0.0","react-dom": "^19.0.0"}}
+{"name":"btcmlai","version":"1.0.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start"},"dependencies":{"@libsql/client":"^0.15.0","@tanstack/react-query":"^5.104.1","lucide-react":"^1.51.0","next":"^15.1.0","react":"^19.0.0","react-dom":"^19.0.0","sonner":"^2.0.8"}}
