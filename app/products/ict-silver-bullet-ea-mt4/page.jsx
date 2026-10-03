@@ -50,7 +50,7 @@ export default function Page() {
       <link rel="stylesheet" href="/assets/css/fb-product-detail.css?v=2" />
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
       <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
-      <script src="/assets/js/fb-chatbot.js?v=3" defer></script>
+      <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
       <div id="fb-chat-root" suppressHydrationWarning />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
@@ -59,6 +59,7 @@ export default function Page() {
     </>
   );
 }
+
 
 
 
