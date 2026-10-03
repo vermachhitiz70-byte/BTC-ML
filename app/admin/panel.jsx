@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const TABS = ['dashboard', 'products', 'orders', 'leads', 'slides', 'testimonials', 'faqs', 'settings'];
+const TABS = ['dashboard', 'products', 'orders', 'leads', 'chat', 'slides', 'testimonials', 'faqs', 'settings'];
 
 async function api(path, opts) {
   const r = await fetch(path, { headers: { 'Content-Type': 'application/json' }, ...(opts || {}) });
@@ -28,6 +28,7 @@ export default function Admin() {
       else if (t === 'products') setData(await api('/api/admin/products'));
       else if (t === 'orders') setData(await api('/api/orders?all=1'));
       else if (t === 'leads') setData(await api('/api/admin/leads'));
+      else if (t === 'chat') setData(await api('/api/admin/chat'));
       else if (t === 'settings') setData(await api('/api/admin/settings'));
       else setData(await api('/api/admin/content/' + t));
     } catch (e) {
@@ -49,6 +50,14 @@ export default function Admin() {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    const beat = () => fetch('/api/admin/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ heartbeat: true }) }).catch(() => {});
+    beat();
+    const id = setInterval(beat, 30000);
+    return () => clearInterval(id);
+  }, [user]);
 
   async function login(e) {
     e.preventDefault();
@@ -109,6 +118,7 @@ export default function Admin() {
       {tab === 'products' && data && <Products d={data} reload={() => load('products')} />}
       {tab === 'orders' && data && <Orders d={data} reload={() => load('orders')} />}
       {tab === 'leads' && data && <Leads d={data} reload={() => load('leads')} />}
+      {tab === 'chat' && data && <Chat d={data} reload={() => load('chat')} />}
       {tab === 'settings' && data && <Settings d={data} />}
       {['slides', 'testimonials', 'faqs'].includes(tab) && data && <Generic table={tab} d={data} reload={() => load(tab)} />}
     </div>
@@ -236,6 +246,73 @@ function Leads({ d, reload }) {
         <div className="fb-admin-row" key={l.id}>
           <span><strong>{l.name}</strong> — {l.email} — {l.phone} <small>{l.page} • {l.created_at} {l.read ? '' : '• NEW'}</small></span>
           <span className="fb-admin-btns"><button onClick={() => del(l.id)}>Delete</button></span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Chat({ d, reload }) {
+  const [open, setOpen] = useState(null);
+  const [msgs, setMsgs] = useState([]);
+  const [text, setText] = useState('');
+  async function openConvo(id) {
+    setOpen(id);
+    const j = await api('/api/admin/chat?convo_id=' + id);
+    setMsgs(j.messages || []);
+  }
+  useEffect(() => {
+    if (!open) return;
+    const id = setInterval(async () => {
+      try {
+        const last = msgs.length ? msgs[msgs.length - 1].id : 0;
+        const j = await api('/api/admin/chat?convo_id=' + open + '&after=' + last);
+        if (j.messages && j.messages.length) setMsgs((m) => [...m, ...j.messages]);
+      } catch { /* ignore */ }
+    }, 3000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+  async function send(e) {
+    e.preventDefault();
+    const v = text.trim();
+    if (!v || !open) return;
+    setText('');
+    await api('/api/admin/chat', { method: 'POST', body: JSON.stringify({ convo_id: open, text: v }) });
+    const j = await api('/api/admin/chat?convo_id=' + open + '&after=' + (msgs.length ? msgs[msgs.length - 1].id : 0));
+    if (j.messages && j.messages.length) setMsgs((m) => [...m, ...j.messages]);
+    reload();
+  }
+  async function close() {
+    await api('/api/admin/chat', { method: 'POST', body: JSON.stringify({ convo_id: open, text: 'Chat closed by support. Thank you!', close: true }) });
+    setOpen(null);
+    reload();
+  }
+  return (
+    <div>
+      <h3>Live Chat Conversations ({(d.conversations || []).length})</h3>
+      {(d.conversations || []).map((c) => (
+        <div key={c.id}>
+          <div className="fb-admin-row" onClick={() => openConvo(c.id)} style={{ cursor: 'pointer' }}>
+            <span><strong>{c.visitor_name}</strong> — {c.visitor_email} <small>{c.status}{c.unread ? ' • ' + c.unread + ' NEW' : ''}</small></span>
+            <span className="fb-admin-btns"><small>{(c.last_msg || '').slice(0, 60)}</small></span>
+          </div>
+          {open === c.id && (
+            <div className="fb-admin-detail">
+              <div className="fb-chat-thread">
+                {msgs.map((m) => (
+                  <div key={m.id} className={'fb-chat-line ' + (m.sender === 'admin' ? 'right' : 'left')}>
+                    <span>{m.text}</span>
+                  </div>
+                ))}
+              </div>
+              <form onSubmit={send} className="fb-chat-sendrow">
+                <input value={text} onChange={(e) => setText(e.target.value)} placeholder="Reply as support…" maxLength={1000} />
+                <button type="submit">Send</button>
+                <button type="button" onClick={close}>Close chat</button>
+              </form>
+            </div>
+          )}
         </div>
       ))}
     </div>

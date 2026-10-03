@@ -1,4 +1,13 @@
 .fb-admin-page{background:#0f172a;min-height:100vh;padding:30px 16px 70px;color:#e8eef7}
+.fb-chat-thread{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;margin-bottom:12px}
+.fb-chat-line{display:flex}
+.fb-chat-line.left{justify-content:flex-start}
+.fb-chat-line.right{justify-content:flex-end}
+.fb-chat-line span{max-width:80%;padding:9px 13px;border-radius:14px;font-size:13.5px;line-height:1.5}
+.fb-chat-line.left span{background:#1a2436;border:1px solid rgba(148,163,184,.3);color:#e8eef7}
+.fb-chat-line.right span{background:linear-gradient(135deg,#ffe27a,#c77a00);color:#231303;font-weight:600}
+.fb-chat-sendrow{display:flex;gap:8px}
+.fb-chat-sendrow input{flex:1;height:44px;padding:0 14px;border-radius:10px;border:1px solid rgba(148,163,184,.35);background:#0b1220;color:#fff;box-sizing:border-box}
 .fb-admin-wrap{max-width:1080px;margin:0 auto}
 .fb-admin-login{max-width:420px;margin:60px auto;background:#1a2436;border:1px solid rgba(245,197,66,.3);border-radius:18px;padding:32px}
 .fb-admin-login h1,.fb-admin-top h1{color:#ffe27a;margin:0 0 16px;font-size:26px}

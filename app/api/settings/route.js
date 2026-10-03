@@ -8,7 +8,7 @@ export async function GET() {
     pay_coin: 'USDT (BEP20)',
     pay_address: '0xYourBEP20WalletAddressHere',
     pay_qr: '/assets/images/bep20-qr-placeholder.svg',
-    support_note: 'Our team will contact you within 24 hours.',
+    support_note: 'Our team will contact you within 2 to 3 hours.',
   };
   if (!dbEnabled) return NextResponse.json({ settings: fallback });
   try {

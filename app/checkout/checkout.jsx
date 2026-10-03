@@ -145,7 +145,7 @@ export default function Checkout() {
             <span className="fb-pay-tick">✓</span>
             <h2>Thank you for your order. Your order has been confirmed.</h2>
             <p>Order ID: <strong>{done.order_code}</strong></p>
-            <p className="fb-auth-sub">Our team will verify your payment and contact you within 24 hours.</p>
+            <p className="fb-auth-sub">Our team will verify your payment and contact you within 2 to 3 hours.</p>
             <a className="fb-auth-btn" href="/shop">Continue Shopping</a>
           </div>
         )}
