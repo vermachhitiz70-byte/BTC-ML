@@ -6,3 +6,4 @@ out/
 .vercel
 # local source images staging area (not for deploy)
 /images/
+/*.png
