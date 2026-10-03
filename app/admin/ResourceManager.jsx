@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { Button, Input, Textarea, Select, Label, Card, Modal, Chip } from './ui';
 import { ImageInput } from './ImageInput';
 import { RichTextEditor } from './RichTextEditor';
-import { Plus, Search, Trash, Pencil, X, CheckCheck, Image as IconImage } from 'lucide-react';
+import { Plus, Search, Trash, Pencil, X, CheckCheck, Image as IconImage, Info, Copy, Download } from 'lucide-react';
 
 export function formatDate(v) {
   if (!v) return '—';
@@ -274,11 +274,22 @@ export function ProductsManager({ fields }) {
 }
 
 /* ================= ORDERS ================= */
+function parseItems(raw) {
+  if (!raw) return [];
+  try {
+    const v = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+
 export function OrdersManager() {
   const qc = useQueryClient();
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState(null);
   const [open, setOpen] = useState(false);
+  const [viewing, setViewing] = useState(null);
 
   const { data, isLoading } = useQuery({
     queryKey: ['admin-orders'],
@@ -356,6 +367,10 @@ export function OrdersManager() {
                     <td>{formatDate(o.created_at)}</td>
                     <td className="adm-td-right">
                       <div className="adm-row-actions">
+                        <button type="button" className="adm-iconbtn" title="View full order report"
+                          onClick={() => setViewing(o)}>
+                          <Info size={16} />
+                        </button>
                         <button type="button" className="adm-iconbtn" title="Verify / update order"
                           onClick={() => { setEditing({ id: o.id, status: o.status, admin_note: o.admin_note || '' }); setOpen(true); }}>
                           <Pencil size={16} />
@@ -398,6 +413,103 @@ export function OrdersManager() {
             </div>
           </form>
         )}
+      </Modal>
+
+      <Modal open={viewing != null} onClose={() => setViewing(null)} title="Order Report" wide>
+        {viewing && (() => {
+          const items = parseItems(viewing.items);
+          const total = items.reduce((s, it) => s + Number(it.price || 0) * Number(it.qty || 1), 0);
+          return (
+            <div className="adm-report">
+              <div className="adm-report-sec">
+                <div className="adm-report-head">
+                  <span className="adm-report-code">{viewing.order_code}</span>
+                  <StatusChip value={viewing.status} />
+                  <span className="adm-muted" style={{ marginLeft: 'auto' }}>{formatDate(viewing.created_at)}</span>
+                </div>
+              </div>
+
+              <div className="adm-report-sec">
+                <h4 className="adm-report-title">Order Items</h4>
+                {items.length ? (
+                  <div className="adm-report-table">
+                    <div className="adm-report-row adm-report-row--head">
+                      <span>Product</span><span>Qty</span><span>Price</span><span className="adm-th-right">Total</span>
+                    </div>
+                    {items.map((it, i) => (
+                      <div className="adm-report-row" key={i}>
+                        <span>{it.name || it.slug}</span>
+                        <span>{it.qty || 1}</span>
+                        <span>{money(it.price)}</span>
+                        <span className="adm-th-right" style={{ fontWeight: 700 }}>{money((Number(it.price) || 0) * (Number(it.qty) || 1))}</span>
+                      </div>
+                    ))}
+                    <div className="adm-report-row adm-report-row--total">
+                      <span>Order total</span><span />
+                      <span className="adm-th-right" style={{ fontSize: 15 }}>{money(viewing.amount || total)}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="adm-muted">{viewing.product_slug} — {money(viewing.amount)}</p>
+                )}
+              </div>
+
+              <div className="adm-report-sec">
+                <h4 className="adm-report-title">Customer</h4>
+                <div className="adm-report-grid">
+                  <div><span className="adm-report-k">Name</span><span className="adm-report-v">{viewing.customer_name || '—'}</span></div>
+                  <div><span className="adm-report-k">Email</span><span className="adm-report-v">{viewing.customer_email || '—'}</span></div>
+                  <div><span className="adm-report-k">Phone</span><span className="adm-report-v">{viewing.phone || '—'}</span></div>
+                  <div><span className="adm-report-k">Coin</span><span className="adm-report-v">{viewing.coin || '—'}</span></div>
+                </div>
+              </div>
+
+              <div className="adm-report-sec">
+                <h4 className="adm-report-title">Payment Verification</h4>
+                <div className="adm-report-grid">
+                  <div>
+                    <span className="adm-report-k">Transaction Hash</span>
+                    <span className="adm-report-v adm-report-hash">{viewing.tx_hash || '—'}</span>
+                  </div>
+                </div>
+                {viewing.screenshot ? (
+                  <div style={{ marginTop: 12 }}>
+                    <span className="adm-report-k">Payment Screenshot</span>
+                    <a href={viewing.screenshot} target="_blank" rel="noreferrer">
+                      <img className="adm-report-shot" src={viewing.screenshot} alt="Payment screenshot" />
+                    </a>
+                    <a className="adm-report-dl" href={viewing.screenshot} download="payment-screenshot.png">
+                      <Download size={14} /> Download screenshot
+                    </a>
+                  </div>
+                ) : (
+                  <p className="adm-muted" style={{ marginTop: 8 }}>No screenshot provided.</p>
+                )}
+              </div>
+
+              {viewing.admin_note ? (
+                <div className="adm-report-sec">
+                  <h4 className="adm-report-title">Admin Note</h4>
+                  <p className="adm-report-note">{viewing.admin_note}</p>
+                </div>
+              ) : null}
+
+              <div className="adm-form-actions">
+                <Button variant="ghost" onClick={() => setViewing(null)}>Close</Button>
+                {viewing.status === 'pending_verification' && (
+                  <>
+                    <Button variant="danger" onClick={() => { save.mutate({ id: viewing.id, status: 'rejected', admin_note: viewing.admin_note || '' }); setViewing(null); }}>
+                      Reject
+                    </Button>
+                    <Button variant="success" disabled={save.isPending} onClick={() => { save.mutate({ id: viewing.id, status: 'confirmed', admin_note: viewing.admin_note || '' }); setViewing(null); }}>
+                      {save.isPending ? 'Saving…' : 'Accept Order'}
+                    </Button>
+                  </>
+                )}
+              </div>
+            </div>
+          );
+        })()}
       </Modal>
     </div>
   );

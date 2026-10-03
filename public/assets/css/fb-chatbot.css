@@ -243,3 +243,6 @@
     bottom: 76px !important;
   }
 }
+
+/* v2 — multi-line structured inquiry bubbles */
+.fb-chat-msg { white-space: pre-line !important; }

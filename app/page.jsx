@@ -49,7 +49,7 @@ export default function Page() {
       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
       <link rel="stylesheet" href="/assets/css/fb-premium.css" />
       <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
-      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=2" />
       <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
       <Script src="/assets/js/fb-cart.js?v=1" strategy="afterInteractive" />
       <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />

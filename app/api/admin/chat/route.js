@@ -16,7 +16,7 @@ export async function GET(req) {
     return NextResponse.json({ messages: rs.rows });
   }
   const rs = await db.execute({
-    sql: 'SELECT c.id, c.visitor_name, c.visitor_email, c.status, c.updated_at, (SELECT COUNT(*) FROM chat_messages m WHERE m.convo_id = c.id AND m.sender = \'visitor\' AND m.seen = 0) AS unread, (SELECT text FROM chat_messages m2 WHERE m2.convo_id = c.id ORDER BY m2.id DESC LIMIT 1) AS last_msg FROM conversations c ORDER BY c.updated_at DESC LIMIT 100',
+    sql: 'SELECT c.id, c.visitor_name, c.visitor_email, c.status, c.updated_at, (SELECT COUNT(*) FROM chat_messages m WHERE m.convo_id = c.id AND m.sender = \'visitor\' AND m.seen = 0) AS unread, (SELECT text FROM chat_messages m2 WHERE m2.convo_id = c.id AND m2.sender = \'visitor\' ORDER BY m2.id DESC LIMIT 1) AS last_msg FROM conversations c ORDER BY c.updated_at DESC LIMIT 100',
   });
   return NextResponse.json({ conversations: rs.rows });
 }

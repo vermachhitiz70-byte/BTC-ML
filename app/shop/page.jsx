@@ -93,7 +93,7 @@ export default async function Page() {
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="stylesheet" href="/assets/css/fb-store.css?v=1" />
       <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=2" />
       <StoreHeader active="/shop" />
 
       <section className="st-section">

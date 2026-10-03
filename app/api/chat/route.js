@@ -18,6 +18,23 @@ async function presence(db) {
   }
 }
 
+const OFFLINE_ACK =
+  'Hello! The support team is not live right now, but your query has been received. ' +
+  'We will contact you soon regarding your query. You are a valued customer of ours — thank you for your patience.';
+
+function inquiryMessage(name, email, phone, query) {
+  return [
+    'New Inquiry',
+    'Name: ' + name,
+    'Email: ' + email,
+    phone ? 'Phone: ' + phone : null,
+    '────────────────',
+    query,
+  ]
+    .filter(Boolean)
+    .join('\n');
+}
+
 // Visitor: start conversation / send message
 export async function POST(req) {
   await ensureSchema().catch(() => {});
@@ -29,6 +46,7 @@ export async function POST(req) {
   }
   const text = String(body.text || '').trim().slice(0, 1000);
   if (!text) return NextResponse.json({ error: 'Please write a message.' }, { status: 400 });
+  const phone = String(body.phone || '').trim().slice(0, 20);
 
   const db = getDb();
   let convoId = Number(body.convo_id) || 0;
@@ -36,6 +54,7 @@ export async function POST(req) {
     const c = await db.execute({ sql: 'SELECT id FROM conversations WHERE id = ?', args: [convoId] });
     if (!c.rows.length) convoId = 0;
   }
+  let adminOnline = await presence(db);
   if (!convoId) {
     const name = String(body.name || '').trim().slice(0, 60);
     const email = String(body.email || '').trim().toLowerCase();
@@ -46,13 +65,24 @@ export async function POST(req) {
       args: [name, email],
     });
     convoId = Number(r.lastInsertRowid);
+    await db.execute({
+      sql: "INSERT INTO chat_messages(convo_id, sender, text, seen) VALUES(?, 'visitor', ?, 0)",
+      args: [convoId, inquiryMessage(name, email, phone, text)],
+    });
+    if (!adminOnline) {
+      await db.execute({
+        sql: "INSERT INTO chat_messages(convo_id, sender, text, seen) VALUES(?, 'admin', ?, 1)",
+        args: [convoId, OFFLINE_ACK],
+      });
+    }
+  } else {
+    await db.execute({
+      sql: "INSERT INTO chat_messages(convo_id, sender, text, seen) VALUES(?, 'visitor', ?, 0)",
+      args: [convoId, text],
+    });
   }
-  await db.execute({
-    sql: "INSERT INTO chat_messages(convo_id, sender, text, seen) VALUES(?, 'visitor', ?, 0)",
-    args: [convoId, text],
-  });
   await db.execute({ sql: "UPDATE conversations SET updated_at = datetime('now') WHERE id = ?", args: [convoId] });
-  return NextResponse.json({ ok: true, convo_id: convoId, admin_online: await presence(db) });
+  return NextResponse.json({ ok: true, convo_id: convoId, admin_online: adminOnline });
 }
 
 // Visitor: poll messages

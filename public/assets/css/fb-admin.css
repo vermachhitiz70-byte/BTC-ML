@@ -1333,3 +1333,33 @@ button.adm-stat:hover .adm-stat-arrow { color: #64748b; }
     0 5px 12px rgba(180, 83, 9, 0.4);
   flex-shrink: 0;
 }
+
+/* v5 — multi-line structured inquiry bubbles */
+.adm-msg { white-space: pre-line; }
+
+/* v5 — order report modal */
+.adm-report { display: grid; gap: 4px; }
+.adm-report-sec { padding: 14px 0; border-bottom: 1px solid #eef2f7; }
+.adm-report-sec:last-of-type { border-bottom: none; }
+.adm-report-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.adm-report-code { font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 15px; font-weight: 800; letter-spacing: .4px; color: #0f172a; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 9px; padding: 5px 10px; }
+.adm-report-title { margin: 0 0 10px; font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #94a3b8; }
+.adm-report-table { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+.adm-report-row { display: grid; grid-template-columns: 1fr 54px 90px 110px; gap: 10px; align-items: center; padding: 10px 14px; font-size: 13.5px; color: #0f172a; background: #fff; }
+.adm-report-row + .adm-report-row { border-top: 1px solid #f1f5f9; }
+.adm-report-row--head { background: #f8fafc; font-size: 11px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: #64748b; }
+.adm-report-row--total { background: #fffbeb; font-weight: 800; color: #92400e; }
+.adm-report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
+.adm-report-grid > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.adm-report-k { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #94a3b8; }
+.adm-report-v { font-size: 14px; font-weight: 600; color: #0f172a; word-break: break-word; }
+.adm-report-hash { font-family: 'Cascadia Code', 'Consolas', monospace; font-size: 12px; background: #0f172a; color: #a5f3fc; padding: 9px 12px; border-radius: 9px; word-break: break-all; line-height: 1.5; }
+.adm-report-shot { display: block; width: 100%; max-width: 340px; margin-top: 8px; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 10px 26px rgba(15, 23, 42, .12); cursor: zoom-in; }
+.adm-report-shot:hover { box-shadow: 0 16px 34px rgba(15, 23, 42, .2); }
+.adm-report-dl { display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 13px; font-weight: 700; color: #1d4ed8; text-decoration: none; }
+.adm-report-dl:hover { text-decoration: underline; }
+.adm-report-note { margin: 0; padding: 12px 14px; border-radius: 11px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 13.5px; color: #334155; line-height: 1.6; }
+@media (max-width: 640px) {
+  .adm-report-row { grid-template-columns: 1fr 44px 74px 88px; font-size: 12.5px; }
+  .adm-report-grid { grid-template-columns: 1fr; }
+}
