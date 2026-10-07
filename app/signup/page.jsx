@@ -1,20 +1,19 @@
 import SignupForm from './form';
+import { PageShell, SiteJsonLd } from '../site/chrome';
 
 export const metadata = {
   title: 'Create Account | BTCMLTAI',
-  description: 'Register a BTCMLTAI account to track orders and check out faster.',
+  description: 'Create a free BTCMLTAI customer account to track orders, licences, downloads and installation guidance.',
   alternates: { canonical: 'https://btcmltai.com/signup' },
 };
 
 export default function Page() {
   return (
-    <>
-      <link rel="stylesheet" href="/assets/css/fb-account.css?v=3" />
-      <div className="fb-auth-page">
+    <PageShell active="/login" cart chat={false}>
+      <section className="bs-section">
         <SignupForm />
-      </div>
-    </>
+      </section>
+      <SiteJsonLd />
+    </PageShell>
   );
 }
-
-

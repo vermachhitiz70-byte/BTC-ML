@@ -1,31 +1,37 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { ShieldCheck, Trash2, Lock } from 'lucide-react';
+import { Btn, Card, EmptyState, Chip } from '../site/ui';
 
 export function readCart() {
   try {
-    return JSON.parse(localStorage.getItem('btcmlai_cart') || '[]');
+    const v = JSON.parse(localStorage.getItem('btcmlai_cart') || '[]');
+    return Array.isArray(v) ? v : [];
   } catch {
     return [];
   }
 }
 
 function syncBadge() {
+  let n = 0;
   try {
     const cart = JSON.parse(localStorage.getItem('btcmlai_cart') || '[]');
-    const n = cart.reduce((s, i) => s + (i.qty || 1), 0);
-    const b = document.querySelector('a[href="/cart"] .fb-cart-count');
-    if (b) {
-      b.textContent = n > 9 ? '9+' : String(n);
-      b.style.display = n > 0 ? 'inline-flex' : 'none';
-    }
-  } catch { /* ignore */ }
+    if (Array.isArray(cart)) n = cart.reduce((s, i) => s + (i.qty || 1), 0);
+  } catch { n = 0; }
+  document.querySelectorAll('.bs-cart-count').forEach((b) => {
+    b.textContent = n > 9 ? '9+' : String(n);
+    b.style.display = n > 0 ? 'inline-flex' : 'none';
+  });
 }
 
-function productImage(p) {
-  if (!p || !p.image) return '/assets/images/products/btcml.png';
-  return p.image.startsWith('/') ? p.image : `/assets/images/products/${p.image}`;
+function img(p) {
+  if (!p || !p.image) return '/assets/images/products/btcml.jpg';
+  return String(p.image).startsWith('/') ? p.image : `/assets/images/products/${p.image}`;
 }
+
+const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
 
 export default function Cart() {
   const [items, setItems] = useState([]);
@@ -36,133 +42,116 @@ export default function Cart() {
     (async () => {
       setItems(readCart());
       try {
-        const r = await fetch('/api/products').then((x) => x.json());
+        const r = await fetch('/api/products', { cache: 'no-store' });
+        const j = await r.json();
         const map = {};
-        for (const p of r.products || []) map[p.slug] = p;
+        for (const p of j.products || []) map[p.slug] = p;
         setProducts(map);
-      } catch { /* ignore */ }
+      } catch { /* keep going with localStorage data */ }
       setLoading(false);
     })();
   }, []);
 
-  useEffect(() => {
-    if (!loading) syncBadge();
-  }, [items, loading]);
+  useEffect(() => { if (!loading) syncBadge(); }, [items, loading]);
+
+  const rows = useMemo(
+    () => items.map((i) => ({ item: i, p: products[i.slug] || {} })).filter((r) => r.p.slug),
+    [items, products]
+  );
+  const total = rows.reduce((s, r) => s + Number(r.p.new_price || 0) * (r.item.qty || 1), 0);
 
   function save(next) {
     setItems(next);
     localStorage.setItem('btcmlai_cart', JSON.stringify(next));
+    syncBadge();
   }
-  function qty(slug, d) {
-    save(items.map((i) => (i.slug === slug ? { ...i, qty: Math.max(1, Math.min(10, (i.qty || 1) + d)) } : i)));
-  }
-  function remove(slug) {
-    save(items.filter((i) => i.slug !== slug));
-  }
-
-  const total = items.reduce((s, i) => s + Number((products[i.slug] || {}).new_price || 0) * (i.qty || 1), 0);
+  const qty = (slug, d) => save(items.map((i) => (i.slug === slug ? { ...i, qty: Math.max(1, Math.min(10, (i.qty || 1) + d)) } : i)));
+  const remove = (slug) => save(items.filter((i) => i.slug !== slug));
 
   if (loading) {
     return (
-      <section className="st-section">
-        <div className="st-container" style={{ textAlign: 'center', color: 'var(--st-muted)' }}>Loading your cart…</div>
-      </section>
+      <div className="bs-container">
+        <div className="bs-card bs-card--pad" style={{ maxWidth: 460, margin: '60px auto' }}>
+          <p className="bs-note" style={{ textAlign: 'center' }}>Loading your cart…</p>
+        </div>
+      </div>
     );
   }
 
-  if (!items.length) {
+  if (!rows.length) {
     return (
-      <section className="st-section">
-        <div className="st-container">
-          <div className="st-empty">
-            <span className="st-empty-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-            </span>
-            <h2>Your cart is empty</h2>
-            <p>Browse our rule-based trading software and add a product to get started with instant digital delivery.</p>
-            <a className="st-btn" href="/shop">Browse Software</a>
-          </div>
-        </div>
-      </section>
+      <div className="bs-container">
+        <Card pad={false}>
+          <EmptyState
+            title="Your cart is empty"
+            text="Browse our rule-based trading software and add a product — delivery is instant and digital."
+          >
+            <Btn href="/shop">Browse Software</Btn>
+          </EmptyState>
+        </Card>
+      </div>
     );
   }
 
   return (
-    <section className="st-section">
-      <div className="st-container">
-        <div className="st-section-head" style={{ marginBottom: 30 }}>
-          <span className="st-eyebrow">Your Cart</span>
-          <h1 className="st-h1" style={{ fontSize: 'clamp(26px, 3.4vw, 34px)' }}>Shopping Cart</h1>
-        </div>
+    <div className="bs-container">
+      <div className="bs-cart">
+        <Card>
+          <div className="bs-cart-head">
+            <h2>Order items</h2>
+            <Chip tone="slate">{rows.length} {rows.length === 1 ? 'item' : 'items'}</Chip>
+          </div>
 
-        <div className="st-cart-layout">
-          <div className="st-panel">
-            <div className="st-panel-head">
-              <h2>Order Items</h2>
-              <span className="st-chip">{items.length} {items.length === 1 ? 'item' : 'items'}</span>
-            </div>
-            {items.map((i) => {
-              const p = products[i.slug] || {};
-              const price = Number(p.new_price || 0);
-              return (
-                <div className="st-cart-row" key={i.slug}>
-                  <div className="st-thumb">
-                    <img src={productImage(p)} alt={p.name || i.slug} loading="lazy" />
-                  </div>
-                  <div className="st-cart-main">
-                    <p className="st-cart-name"><a href={`/products/${i.slug}`}>{p.name || i.slug}</a></p>
-                    <div className="st-cart-meta">${price.toLocaleString('en-US')} · one-time licence · digital delivery</div>
-                  </div>
-                  <div className="st-qty">
-                    <button type="button" onClick={() => qty(i.slug, -1)} aria-label="Decrease quantity">−</button>
-                    <span>{i.qty || 1}</span>
-                    <button type="button" onClick={() => qty(i.slug, 1)} aria-label="Increase quantity">+</button>
-                  </div>
-                  <div className="st-line-total">${(price * (i.qty || 1)).toLocaleString('en-US')}</div>
-                  <button type="button" className="st-remove" onClick={() => remove(i.slug)} aria-label="Remove item">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                      <path d="M18 6L6 18M6 6l12 12" />
-                    </svg>
-                  </button>
+          {rows.map(({ item, p }) => {
+            const price = Number(p.new_price || 0);
+            const q = item.qty || 1;
+            return (
+              <div className="bs-cart-row" key={item.slug}>
+                <Link href={`/products/${item.slug}`} className="bs-thumb" aria-label={p.name}>
+                  <img src={img(p)} alt={p.name || item.slug} loading="lazy" />
+                </Link>
+                <div className="bs-cart-info">
+                  <h3><Link href={`/products/${item.slug}`}>{p.name || item.slug}</Link></h3>
+                  <p>{usd(price)} · single-account licence · instant digital delivery</p>
                 </div>
-              );
-            })}
-          </div>
+                <div className="bs-qty">
+                  <button type="button" onClick={() => qty(item.slug, -1)} aria-label={`Decrease quantity of ${p.name}`}>−</button>
+                  <span aria-live="polite">{q}</span>
+                  <button type="button" onClick={() => qty(item.slug, 1)} aria-label={`Increase quantity of ${p.name}`}>+</button>
+                </div>
+                <div className="bs-line-total">{usd(price * q)}</div>
+                <button type="button" className="bs-remove" onClick={() => remove(item.slug)} aria-label={`Remove ${p.name} from cart`}>
+                  <Trash2 size={17} aria-hidden="true" />
+                </button>
+              </div>
+            );
+          })}
+        </Card>
 
-          <div className="st-panel st-summary">
-            <h3>Order Summary</h3>
-            <div className="st-summary-row"><span>Subtotal</span><strong>${total.toLocaleString('en-US')}</strong></div>
-            <div className="st-summary-row"><span>Delivery</span><strong>Digital · Free</strong></div>
-            <div className="st-summary-total">
-              <span>Total due</span>
-              <strong>${total.toLocaleString('en-US')}</strong>
-            </div>
-            <button className="st-btn st-btn-block" onClick={async () => {
-              try {
-                const me = await fetch('/api/auth/me').then((r) => r.json());
-                window.location.href = me && me.user ? '/checkout' : '/login?next=/checkout';
-              } catch {
-                window.location.href = '/login?next=/checkout';
-              }
-            }}>
-              Proceed to Checkout
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-            <a className="st-btn-ghost st-btn-block" href="/shop" style={{ marginTop: 12 }}>Continue Shopping</a>
-            <div className="st-secure-note">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              Secure checkout · USDT (BEP20) crypto payment
-            </div>
+        <Card className="bs-summary">
+          <h3>Order summary</h3>
+          <div className="bs-summary-row"><span>Subtotal</span><b>{usd(total)}</b></div>
+          <div className="bs-summary-row"><span>Digital delivery</span><b>Free</b></div>
+          <div className="bs-summary-row"><span>Licence type</span><b>Single account</b></div>
+          <div className="bs-summary-total"><span>Total due</span><b>{usd(total)}</b></div>
+
+          <Btn variant="gold" block href="/checkout">
+            Proceed to Checkout
+          </Btn>
+          <Btn variant="ghost" block href="/shop" style={{ marginTop: 10 }}>
+            Continue Shopping
+          </Btn>
+
+          <div className="bs-trust">
+            <ShieldCheck size={16} aria-hidden="true" />
+            <span>Secure checkout · USDT (BEP20) crypto payment</span>
           </div>
-        </div>
+          <div className="bs-trust" style={{ marginTop: 8 }}>
+            <Lock size={16} aria-hidden="true" />
+            <span>We never accept or hold client trading funds</span>
+          </div>
+        </Card>
       </div>
-    </section>
+    </div>
   );
 }

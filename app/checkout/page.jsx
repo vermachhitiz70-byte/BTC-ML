@@ -1,23 +1,25 @@
-import Script from 'next/script';
-import { StoreHeader, StoreFooter } from '../store-chrome';
 import Checkout from './checkout';
+import { PageShell, PageHero, SiteJsonLd } from '../site/chrome';
 
 export const metadata = {
-  title: 'Checkout | BTCMLTAI',
-  description: 'Complete your BTCMLTAI order securely with crypto payment.',
+  title: 'Secure Checkout | BTCMLTAI',
+  description: 'Complete your BTCMLTAI order with USDT (BEP20) crypto payment. Instant digital delivery with installation guidance.',
   alternates: { canonical: 'https://btcmltai.com/checkout' },
 };
 
 export default function Page() {
   return (
-    <div className="st-page">
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="stylesheet" href="/assets/css/fb-store.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
-      <StoreHeader active="/checkout" />
-      <Checkout />
-      <StoreFooter />
-      <Script src="/assets/js/fb-cart.js?v=2" strategy="afterInteractive" />
-    </div>
+    <PageShell active="/checkout">
+      <PageHero
+        eyebrow="Step-by-step"
+        title="Secure checkout"
+        text="Enter your details, send the exact amount, and submit your payment proof. Delivery follows within 2 to 3 hours."
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'Cart', href: '/cart' }, { label: 'Checkout' }]}
+      />
+      <section className="bs-section">
+        <Checkout />
+      </section>
+      <SiteJsonLd />
+    </PageShell>
   );
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import {
-  LayoutDashboard, Package, ShoppingBag, MessageSquare, Users,
+  LayoutDashboard, Package, ShoppingBag, MessageSquare, Users, Mail,
   Settings, ChevronLeft, ChevronRight, Database, ExternalLink,
   LogOut, Eye, EyeOff, Search, CheckCircle
 } from 'lucide-react';
@@ -13,6 +13,7 @@ import { Overview } from './Overview';
 import { ProductsManager, OrdersManager, LeadsManager } from './ResourceManager';
 import { SettingsPanel } from './Settings';
 import { ChatPanel } from './ChatPanel';
+import { MessagesManager } from './MessagesPanel';
 import { AdminProviders } from './Providers';
 
 const PRODUCT_FIELDS = [
@@ -36,6 +37,7 @@ const NAV = [
   { id: 'products', label: 'Products', icon: Package, tile: 'adm-nav-tile--emerald', sub: 'Catalogue, pricing & availability' },
   { id: 'orders', label: 'Orders', icon: ShoppingBag, tile: 'adm-nav-tile--amber', sub: 'Verify payments & fulfil orders' },
   { id: 'leads', label: 'Leads', icon: Users, tile: 'adm-nav-tile--purple', sub: 'Contact & chatbot enquiries' },
+  { id: 'messages', label: 'Messages', icon: Mail, tile: 'adm-nav-tile--gold', sub: 'Contact form submissions' },
   { id: 'chat', label: 'Live Chat', icon: MessageSquare, tile: 'adm-nav-tile--pink', sub: 'Reply to visitors in real time' },
   { id: 'settings', label: 'Settings', icon: Settings, tile: 'adm-nav-tile--slate', sub: 'Payments, password & site config' },
 ];
@@ -298,8 +300,9 @@ function AdminContent() {
           {tab === 'overview' && <Overview onNavigate={setTab} />}
           {tab === 'products' && <ProductsManager fields={PRODUCT_FIELDS} />}
           {tab === 'orders' && <OrdersManager />}
-          {tab === 'leads' && <LeadsManager />}
-          {tab === 'chat' && <ChatPanel />}
+{tab === 'leads' && <LeadsManager />}
+      {tab === 'messages' && <MessagesManager />}
+      {tab === 'chat' && <ChatPanel />}
           {tab === 'settings' && <SettingsPanel />}
         </main>
       </div>

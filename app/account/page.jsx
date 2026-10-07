@@ -1,22 +1,19 @@
 import Account from './account';
+import { PageShell, SiteJsonLd } from '../site/chrome';
 
 export const metadata = {
   title: 'My Account | BTCMLTAI',
-  description: 'View your BTCMLTAI orders and account details.',
+  description: 'View your BTCMLTAI orders, payment status, licences and digital delivery details.',
   alternates: { canonical: 'https://btcmltai.com/account' },
 };
 
 export default function Page() {
   return (
-    <>
-      <link rel="stylesheet" href="/assets/css/fb-account.css?v=3" />
-      <script src="/assets/js/fb-auth-particles.js" defer />
-      <div className="fb-auth-bg" />
-      <div className="fb-auth-page">
+    <PageShell active="/account" cart chat={false}>
+      <section className="bs-section">
         <Account />
-      </div>
-    </>
+      </section>
+      <SiteJsonLd />
+    </PageShell>
   );
 }
-
-

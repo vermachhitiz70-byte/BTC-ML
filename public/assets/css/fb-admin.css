@@ -1363,3 +1363,4 @@ button.adm-stat:hover .adm-stat-arrow { color: #64748b; }
   .adm-report-row { grid-template-columns: 1fr 44px 74px 88px; font-size: 12.5px; }
   .adm-report-grid { grid-template-columns: 1fr; }
 }
+.adm-nav-tile--gold { color: #231303; background: linear-gradient(135deg, #ffe27a, #f5c542 55%, #e8b62a); }

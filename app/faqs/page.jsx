@@ -1,80 +1,90 @@
-import Script from 'next/script';
-import BodyClass from '../body-class';
-import { BODY } from './body';
+import { PageShell, PageHero, SiteJsonLd, JsonLd } from '../site/chrome';
+import { Btn, Card, Accordion, SectionHead, Tile } from '../site/ui';
+import { Sparkles, ShieldCheck, Wallet, Cpu, FileText, Headset, CircleQuestionMark } from 'lucide-react';
+import { FAQ_GROUPS } from '@/lib/site-content';
 
 export const metadata = {
-  title: "BTCMLTAI FAQs | Orders, Software Access and Support",
-  description: "Find clear information about BTCMLTAI software, analysis tools, educational video guides, orders, licences, delivery, support, refunds, and trading risks.",
-  alternates: { canonical: "https://btcmltai.com/faqs" },
-  openGraph: {
-    title: "BTCMLTAI FAQs | Orders, Software Access and Support",
-    description: "Find clear information about BTCMLTAI software, analysis tools, educational video guides, orders, licences, delivery, support, refunds, and trading risks.",
-    url: "https://btcmltai.com/faqs",
-    siteName: "BTCMLTAI",
-    type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "BTCMLTAI FAQs | Orders, Software Access and Support" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BTCMLTAI FAQs | Orders, Software Access and Support",
-    description: "Find clear information about BTCMLTAI software, analysis tools, educational video guides, orders, licences, delivery, support, refunds, and trading risks.",
-    images: ["https://btcmltai.com/assets/images/btcmlai-logo.png"],
-  },
+  title: 'Frequently Asked Questions | BTCMLTAI',
+  description:
+    'Answers about BTCMLTAI accounts, orders, digital software delivery, product licences, installation, support, refunds, platform compatibility and responsible software use.',
+  alternates: { canonical: 'https://btcmltai.com/faqs' },
 };
 
-export default function Page() {
+const ICONS = {
+  sparkles: Sparkles,
+  shield: ShieldCheck,
+  wallet: Wallet,
+  cpu: Cpu,
+  fileText: FileText,
+};
+
+export default function FaqsPage() {
+  const total = FAQ_GROUPS.reduce((s, g) => s + g.items.length, 0);
+
   return (
-    <>
-      
-      
-      
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="/assets/css/font-awesome.css" />
-      <link rel="stylesheet" href="/assets/css/fontawesome-stars.css" />
-      <link rel="stylesheet" href="/assets/css/ion-fonts.css" />
-      <link rel="stylesheet" href="/assets/css/slick.css" />
-      <link rel="stylesheet" href="/assets/css/animate.css" />
-      <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-      <link rel="stylesheet" href="/assets/css/venobox.css" />
-      <link rel="stylesheet" href="/assets/css/nice-select.css" />
-      <link rel="stylesheet" href="/assets/css/timecircles.css" />
-      <link rel="stylesheet" href="/assets/css/style.css" />
-      <link rel="stylesheet" href="/assets/css/styletwo.css" />
-      <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #0a2c46;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #0e3a5c 0%, #0a2c46 52%, #071f38 100%) !important;\n            background-color: #0a2c46 !important;\n        }\n    " }} />
-      <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
-      <BodyClass cls="template-color-1" />
-      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
-      <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
-      <Script src="/assets/js/legacy-faqs.js" strategy="afterInteractive" />
-    </>
+    <PageShell active="/faqs">
+      <PageHero
+        eyebrow="Help centre"
+        title="Frequently Asked Questions"
+        text="Find answers about accounts, orders, digital delivery, licences, installation, support, refunds and responsible software use."
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'FAQs' }]}
+      />
+
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow={`${total} answers`}
+            tone="emerald"
+            title="Everything you usually ask us"
+            sub="Grouped by topic. If your question is not here, our support team replies within 2–3 hours."
+          />
+
+          <div style={{ display: 'grid', gap: 30 }}>
+            {FAQ_GROUPS.map((g) => {
+              const Icon = ICONS[g.icon] || CircleQuestionMark;
+              return (
+                <div key={g.title}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 13, marginBottom: 16 }}>
+                    <Tile icon={Icon} tone="blue" />
+                    <h2 className="bs-title bs-title--sm" style={{ margin: 0 }}>{g.title}</h2>
+                  </div>
+                  <Accordion items={g.items} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container">
+          <Card gold style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
+            <Tile icon={Headset} tone="gold" size="lg" />
+            <h2 className="bs-title bs-title--sm" style={{ marginTop: 16 }}>Still need help?</h2>
+            <p className="bs-note" style={{ marginTop: 10 }}>
+              Send us your question and our support team will get back to you within 2 to 3 hours.
+              You can also use the chat widget on any page for a quicker reply.
+            </p>
+            <div style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 22, flexWrap: 'wrap' }}>
+              <Btn variant="gold" href="/contact">Contact Support</Btn>
+              <Btn variant="ghost" href="/shop">Browse Software</Btn>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: FAQ_GROUPS.flatMap((g) =>
+          g.items.map((it) => ({
+            '@type': 'Question',
+            name: it.q,
+            acceptedAnswer: { '@type': 'Answer', text: it.a },
+          }))
+        ),
+      }} />
+      <SiteJsonLd />
+    </PageShell>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

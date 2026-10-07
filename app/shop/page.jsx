@@ -1,177 +1,162 @@
-import Script from 'next/script';
-import { StoreHeader, StoreFooter } from '../store-chrome';
+import Link from 'next/link';
+import { PageShell, PageHero, JsonLd } from '../site/chrome';
+import { Btn, Card, SectionHead, Stats, RiskNote, Tile } from '../site/ui';
+import { CircleQuestionMark, Cpu, Gauge, Layers, ShieldCheck, Wallet, Zap } from 'lucide-react';
+import { getStoreProducts, productImage } from '@/lib/products';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata = {
-  title: "BTCMLTAI Basic Software | MT4 Trading Tools",
-  description: "Explore BTCMLTAI basic MT4 trading software, product information, access requirements, digital delivery details, licence information, and risk disclosures.",
-  alternates: { canonical: "https://btcmltai.com/shop" },
-  openGraph: {
-    title: "BTCMLTAI Basic Software | MT4 Trading Tools",
-    description: "Explore BTCMLTAI basic MT4 trading software, product information, access requirements, digital delivery details, licence information, and risk disclosures.",
-    url: "https://btcmltai.com/shop",
-    siteName: "BTCMLTAI",
-    type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/products/btcml.png", width: 1254, height: 1254, alt: "BTCMLTAI Basic Software | MT4 Trading Tools" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BTCMLTAI Basic Software | MT4 Trading Tools",
-    description: "Explore BTCMLTAI basic MT4 trading software, product information, access requirements, digital delivery details, licence information, and risk disclosures.",
-    images: ["https://btcmltai.com/assets/images/products/btcml.png"],
-  },
-};
+const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
 
-async function getProducts() {
-  try {
-    const { dbEnabled, getDb } = await import('@/lib/turso');
-    const { SEED_PRODUCTS } = await import('@/lib/seed');
-    if (!dbEnabled) return SEED_PRODUCTS;
-    const rs = await getDb().execute(
-      'SELECT slug, name, short_desc, new_price, old_price, image, badge, status, active, sort_order FROM products WHERE active = 1 ORDER BY sort_order, id'
-    );
-    return rs.rows.map((r) => ({ ...r, active: Number(r.active) }));
-  } catch {
-    return [];
-  }
-}
-
-function productImage(product) {
-  const image = product.image || '/assets/images/products/btcml.png';
-  return image.startsWith('/') ? image : `/assets/images/products/${image}`;
-}
-
-function ProductCard({ product }) {
-  const isComingSoon = product.status === 'coming_soon';
-  const price = product.new_price ? Number(product.new_price).toLocaleString('en-US') : '';
+function ProductCard({ p }) {
+  const soon = p.status === 'coming_soon';
   return (
-    <article className="st-card">
-      <div className="st-card-media">
-        {product.badge ? <span className={`st-card-badge ${isComingSoon ? 'is-soon' : 'is-live'}`}>{product.badge}</span> : (
-          isComingSoon ? <span className="st-card-badge is-soon">Coming Soon</span> : <span className="st-card-badge is-live">Available</span>
-        )}
-        <a href={`/products/${product.slug}`} aria-label={product.name}>
-          <img src={productImage(product)} alt={product.name} loading="lazy" />
-        </a>
+    <Card hover className="bs-pcard" pad={false}>
+      <div className="bs-pcard-media">
+        <span className={`bs-badge ${soon ? 'bs-badge--soon' : 'bs-badge--live'}`}>
+          {soon ? 'Coming soon' : 'Available'}
+        </span>
+        <Link href={`/products/${p.slug}`} aria-label={p.name} style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src={productImage(p.image)} alt={p.name} loading="lazy" />
+        </Link>
       </div>
-      <div className="st-card-body">
-        <h3 className="st-card-name">
-          <a href={`/products/${product.slug}`}>{product.name}</a>
-        </h3>
-        <p className="st-card-desc">
-          {product.short_desc || 'Rule-based automated trading system with structured risk controls, digital delivery and installation guidance.'}
+      <div className="bs-pcard-body">
+        <h3 className="bs-pcard-name"><Link href={`/products/${p.slug}`}>{p.name}</Link></h3>
+        <p className="bs-pcard-desc">
+          {p.short_desc || 'Rule-based automated trading system with structured risk controls, instant digital delivery and installation guidance.'}
         </p>
-        <div className="st-card-foot">
-          {isComingSoon ? (
-            <span className="st-price-soon">Coming Soon</span>
+        <div className="bs-pcard-foot">
+          {soon ? (
+            <span className="bs-price bs-price--soon">Coming soon</span>
           ) : (
-            <span className="st-price">${price}<small>USD · one-time licence</small></span>
+            <span className="bs-price bs-price--gold">{usd(p.new_price)}<small>USD · one-time</small></span>
           )}
-          {isComingSoon ? (
-            <a className="st-btn-ghost st-btn-sm" href="#chat" data-fb-chat="1">Notify Me</a>
+          {soon ? (
+            <Btn size="sm" variant="ghost" href={`/products/${p.slug}`}>Notify Me</Btn>
           ) : (
-            <a className="st-btn st-btn-sm" href="javascript:void(0)" data-add-cart={product.slug}>
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              Add to Cart
-            </a>
+            <Btn size="sm" variant="gold" href="javascript:void(0)" data-add-cart={p.slug}>Add to Cart</Btn>
           )}
         </div>
       </div>
-    </article>
+    </Card>
   );
 }
 
-export default async function Page() {
-  const products = (await getProducts()).filter((p) => p.active === 1 && p.status !== 'draft');
+export default async function ShopPage() {
+  const products = await getStoreProducts();
 
   return (
-    <div className="st-page">
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="stylesheet" href="/assets/css/fb-store.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=2" />
-      <StoreHeader active="/shop" />
+    <PageShell active="/shop">
+      <PageHero
+        eyebrow="Premium trading software"
+        title="Shop automated trading tools"
+        text="Rule-based Expert Advisors engineered for structured entries, disciplined risk controls and instant digital delivery."
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'Shop' }]}
+      />
 
-      <section className="st-section">
-        <div className="st-container">
-          <div className="st-section-head">
-            <span className="st-eyebrow">Premium Trading Software</span>
-            <h1 className="st-h1">Our Products</h1>
-            <p className="st-sub">
-              Rule-based Expert Advisors engineered for structured entries, disciplined risk
-              controls and instant digital delivery.
-            </p>
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow={`${products.length} product${products.length === 1 ? '' : 's'} available`}
+            title="Choose your system"
+            sub="Every product ships with setup files, installation guidance and support within 2–3 hours."
+          />
+
+          <div className="bs-products">
+            {products.map((p) => <ProductCard key={p.slug} p={p} />)}
           </div>
 
-          <div className="st-grid">
-            {products.map((p) => <ProductCard key={p.slug} product={p} />)}
-          </div>
-
-          {products.length === 0 ? (
-            <div className="st-empty">
-              <h2>Products are being updated</h2>
-              <p>Please check back shortly. Meanwhile, our team is ready to answer your questions.</p>
-              <a className="st-btn" href="/contact">Contact Support</a>
-            </div>
+          {!products.length ? (
+            <Card pad={false}>
+              <div className="bs-empty">
+                <div className="bs-empty-icon"><Layers size={34} aria-hidden="true" /></div>
+                <h2>Products are being updated</h2>
+                <p>Our catalogue is being refreshed. Please check back shortly, or contact support for details.</p>
+                <Btn href="/contact">Contact Support</Btn>
+              </div>
+            </Card>
           ) : null}
         </div>
       </section>
 
-      <section className="st-section" style={{ background: 'rgba(4, 20, 37, 0.45)' }}>
-        <div className="st-container">
-          <div className="st-section-head">
-            <span className="st-eyebrow is-green">Before You Order</span>
-            <h2 className="st-h2">Review Product Requirements</h2>
-            <p className="st-sub">
-              Before purchasing, please ensure your setup meets the following requirements for
-              optimal performance.
-            </p>
-          </div>
-          <div className="st-req-grid">
-            <div className="st-req-card">
-              <h4>Platform</h4>
-              <p>MetaTrader 5 (MT5) — Build 3300+</p>
-            </div>
-            <div className="st-req-card">
-              <h4>Account Type</h4>
-              <p>Hedging enabled, leverage 1:100 or higher</p>
-            </div>
-            <div className="st-req-card">
-              <h4>VPS</h4>
-              <p>Low-latency VPS (recommended for 24/7 operation)</p>
-            </div>
-            <div className="st-req-card">
-              <h4>Symbols</h4>
-              <p>BTCUSD, XAUUSD, major Forex pairs</p>
-            </div>
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Before you order"
+            tone="emerald"
+            title="Review product requirements"
+            sub="Make sure your setup meets these requirements for optimal performance."
+          />
+          <div className="bs-features">
+            {[
+              { icon: Cpu, title: 'Platform', text: 'MetaTrader 5 (MT5) — build 3300 or newer. MT4 supported products are noted on each page.' },
+              { icon: Gauge, title: 'Account type', text: 'Hedging enabled, leverage 1:100 or higher, and enough margin for your lot settings.' },
+              { icon: Zap, title: 'VPS', text: 'A low-latency VPS is recommended so the system runs 24/7 without interruptions.' },
+              { icon: Layers, title: 'Instruments', text: 'BTCUSD, XAUUSD and major Forex pairs depending on the product you choose.' },
+            ].map((f) => (
+              <Card key={f.title} hover className="bs-feature">
+                <Tile icon={f.icon} tone="blue" size="lg" />
+                <h3>{f.title}</h3>
+                <p>{f.text}</p>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="st-section tight">
-        <div className="st-container">
-          <div className="st-strip">
-            <div>
-              <h3>Ready to trade with structure?</h3>
-              <p>
-                Every product ships with instant digital delivery, setup files and installation
-                guidance. Our support team responds within 2–3 hours.
-              </p>
-            </div>
-            <a className="st-btn" href="/contact">Talk to Our Team</a>
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Why buy from BTCMLTAI"
+            title="Clear information before you purchase"
+            sub="We publish platform, timeframe, licence and delivery details on every product page."
+          />
+          <Stats
+            items={[
+              { icon: Wallet, tone: 'gold', title: 'Digital software provider', text: 'No client funds are ever accepted or held by us.' },
+              { icon: ShieldCheck, tone: 'emerald', title: 'No guaranteed returns', text: 'We never promise profit, income, accuracy or any specific result.' },
+              { icon: CircleQuestionMark, tone: 'blue', title: 'Demo-first guidance', text: 'Every product recommends validation on a demo account before live use.' },
+            ]}
+          />
+
+          <div style={{ marginTop: 28 }}>
+            <RiskNote>
+              <b>Risk disclosure.</b> Trading involves substantial risk and past performance never
+              guarantees future results. Educational materials and software outputs are general
+              information only and are not personalised investment recommendations. Always test on a
+              demo account first and never trade with funds you cannot afford to lose.
+            </RiskNote>
           </div>
         </div>
       </section>
 
-      <StoreFooter />
-
-      <Script src="/assets/js/fb-cart.js?v=2" strategy="afterInteractive" />
-      <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
-      <div id="fb-chat-root" suppressHydrationWarning />
-    </div>
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://btcmltai.com/' },
+          { '@type': 'ListItem', position: 2, name: 'Shop', item: 'https://btcmltai.com/shop' },
+        ],
+      }} />
+      {products.map((p) => (
+        <JsonLd key={p.slug} data={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: p.name,
+          description: p.short_desc || undefined,
+          image: [`https://btcmltai.com${productImage(p.image)}`],
+          brand: { '@type': 'Brand', name: 'BTCMLTAI' },
+          offers: {
+            '@type': 'Offer',
+            price: p.new_price || 0,
+            priceCurrency: 'USD',
+            availability: p.status === 'coming_soon'
+              ? 'https://schema.org/PreOrder'
+              : 'https://schema.org/InStock',
+            url: `https://btcmltai.com/products/${p.slug}`,
+          },
+        }} />
+      ))}
+    </PageShell>
   );
 }

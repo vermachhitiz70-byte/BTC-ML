@@ -1,19 +1,23 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { CircleAlert, CircleCheck, Copy, QrCode, Wallet, Package } from 'lucide-react';
+import { Btn, Card, Chip, EmptyState, SectionHead } from '../site/ui';
 
-function StepBar({ step }) {
-  const labels = ['Your Details', 'Payment', 'Confirmation'];
+const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
+
+function Steps({ step }) {
+  const labels = ['Your details', 'Payment', 'Confirmation'];
   return (
-    <div className="st-steps">
+    <div className="bs-stepsbar">
       {labels.map((label, i) => {
         const n = i + 1;
-        const cls = n < step ? 'is-done' : n === step ? 'is-active' : '';
+        const cls = n < step ? 'is-done' : n === step ? 'is-on' : '';
         return (
           <span key={label} style={{ display: 'inline-flex', alignItems: 'center' }}>
-            {i > 0 ? <span className="st-step-line" /> : null}
-            <span className={`st-step ${cls}`}>
-              <span className="st-step-dot">{n < step ? '✓' : n}</span>
+            {i > 0 ? <span className="bs-stepsline" /> : null}
+            <span className={`bs-stepsitem ${cls}`}>
+              <span className="bs-stepsdot">{n < step ? '✓' : n}</span>
               {label}
             </span>
           </span>
@@ -33,22 +37,28 @@ export default function Checkout() {
   const [phone, setPhone] = useState('');
   const [tx, setTx] = useState('');
   const [shot, setShot] = useState('');
+  const [copied, setCopied] = useState(false);
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(null);
 
   useEffect(() => {
     try {
-      setItems(JSON.parse(localStorage.getItem('btcmlai_cart') || '[]'));
+      const v = JSON.parse(localStorage.getItem('btcmlai_cart') || '[]');
+      setItems(Array.isArray(v) ? v : []);
     } catch { setItems([]); }
-    fetch('/api/products').then((r) => r.json()).then((j) => {
-      const map = {};
-      for (const p of j.products || []) map[p.slug] = p;
-      setProducts(map);
-    }).catch(() => {});
-    fetch('/api/settings').then((r) => r.json()).then((j) => {
-      if (j.settings) setSettings((s) => ({ ...s, ...j.settings }));
-    }).catch(() => {});
+    fetch('/api/products', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((j) => {
+        const map = {};
+        for (const p of j.products || []) map[p.slug] = p;
+        setProducts(map);
+      })
+      .catch(() => {});
+    fetch('/api/settings', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((j) => { if (j.settings) setSettings((s) => ({ ...s, ...j.settings })); })
+      .catch(() => {});
   }, []);
 
   const total = items.reduce((s, i) => s + Number((products[i.slug] || {}).new_price || 0) * (i.qty || 1), 0);
@@ -88,8 +98,9 @@ export default function Checkout() {
         body: JSON.stringify({ items, name, email, phone, coin: settings.pay_coin, tx_hash: tx.trim(), screenshot: shot }),
       });
       const j = await r.json();
-      if (!r.ok) throw new Error(j.error || 'Order failed.');
+      if (!r.ok) throw new Error(j.error || 'Order could not be placed.');
       localStorage.setItem('btcmlai_cart', '[]');
+      document.querySelectorAll('.bs-cart-count').forEach((b) => { b.style.display = 'none'; });
       setItems([]);
       setDone(j);
       setStep(3);
@@ -111,144 +122,191 @@ export default function Checkout() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function copyAddr() {
+    if (!settings.pay_address) return;
+    navigator.clipboard?.writeText(settings.pay_address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
   if (!items.length && !done) {
     return (
-      <section className="st-section">
-        <div className="st-container">
-          <div className="st-empty">
-            <span className="st-empty-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-            </span>
-            <h2>Your cart is empty</h2>
-            <p>Add a product to your cart to continue to secure checkout.</p>
-            <a className="st-btn" href="/shop">Browse Software</a>
-          </div>
-        </div>
-      </section>
+      <div className="bs-container">
+        <Card pad={false}>
+          <EmptyState
+            title="Your cart is empty"
+            text="Add a product to your cart before starting checkout."
+          >
+            <Btn href="/shop">Browse Software</Btn>
+          </EmptyState>
+        </Card>
+      </div>
     );
   }
 
   if (step === 3 && done) {
     return (
-      <section className="st-section">
-        <div className="st-container">
-          <div className="st-panel" style={{ maxWidth: 640, margin: '0 auto' }}>
-            <StepBar step={3} />
-            <div className="st-done">
-              <span className="st-done-tick">✓</span>
-              <h2>Thank you for your order</h2>
-              <p className="st-note" style={{ marginBottom: 0 }}>Your order has been confirmed.</p>
-              <div className="st-order-code">{done.order_code}</div>
-              <p className="st-note" style={{ marginTop: 16 }}>
-                Our team will verify your payment and contact you within 2 to 3 hours.
-              </p>
-              <a className="st-btn" href="/shop">Continue Shopping</a>
+      <div className="bs-container">
+        <Card style={{ maxWidth: 620, margin: '0 auto' }}>
+          <Steps step={3} />
+          <div className="bs-done">
+            <div className="bs-done-tick"><CircleCheck size={40} aria-hidden="true" /></div>
+            <h2>Thank you for your order</h2>
+            <p className="bs-note" style={{ margin: 0 }}>Your order has been received and is pending payment verification.</p>
+            <div className="bs-code bs-mono">{done.order_code}</div>
+            <p className="bs-note" style={{ marginTop: 16 }}>
+              Our team verifies the transaction and contacts you within 2 to 3 hours with your
+              licence and setup files.
+            </p>
+            <div style={{ marginTop: 24 }}>
+              <Btn href="/shop">Continue Shopping</Btn>
             </div>
           </div>
-        </div>
-      </section>
+        </Card>
+      </div>
     );
   }
 
   return (
-    <section className="st-section">
-      <div className="st-container">
-        <div className="st-section-head" style={{ marginBottom: 0 }}>
-          <span className="st-eyebrow">Secure Checkout</span>
-          <h1 className="st-h1" style={{ fontSize: 'clamp(26px, 3.4vw, 34px)' }}>Complete Your Order</h1>
-        </div>
-        <StepBar step={step} />
+    <div className="bs-container">
+      <Steps step={step} />
 
-        <div className="st-co-layout">
-          <div className="st-panel">
-            {step === 1 && (
-              <form onSubmit={detailsNext}>
-                <div className="st-panel-head">
-                  <h2>Delivery Details</h2>
-                  <span className="st-chip">Step 1 of 2</span>
-                </div>
-                <div className="st-field">
-                  <label>Full name</label>
-                  <input className="st-input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" maxLength={60} />
-                </div>
-                <div className="st-field">
-                  <label>Email address</label>
-                  <input className="st-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />
-                </div>
-                <div className="st-field">
-                  <label>Phone number</label>
-                  <input className="st-input" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 43210" />
-                </div>
-                {err ? <div className="st-err">{err}</div> : null}
-                <button className="st-btn st-btn-block" type="submit">
-                  Continue to Payment
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </form>
-            )}
+      <div className="bs-co">
+        <Card>
+          {step === 1 ? (
+            <form onSubmit={detailsNext} noValidate>
+              <div className="bs-cart-head">
+                <h2>Delivery details</h2>
+                <Chip tone="slate">Step 1 of 2</Chip>
+              </div>
 
-            {step === 2 && (
-              <form onSubmit={placeOrder}>
-                <div className="st-panel-head">
-                  <h2>Payment</h2>
-                  <span className="st-chip">Step 2 of 2</span>
+              <div className="bs-field">
+                <label className="bs-label" htmlFor="co-name">Full name</label>
+                <input id="co-name" className="bs-input" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your full name" autoComplete="name" maxLength={60} />
+              </div>
+
+              <div className="bs-field-row">
+                <div className="bs-field">
+                  <label className="bs-label" htmlFor="co-email">Email address</label>
+                  <input id="co-email" className="bs-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" autoComplete="email" />
                 </div>
-                <div className="st-field">
-                  <label>Transaction hash ID</label>
-                  <input className="st-input" value={tx} onChange={(e) => setTx(e.target.value)} placeholder="e.g. 0xabc123…" maxLength={200} />
+                <div className="bs-field">
+                  <label className="bs-label" htmlFor="co-phone">Phone number</label>
+                  <input id="co-phone" className="bs-input" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 98765 43210" autoComplete="tel" />
                 </div>
-                <div className="st-field">
-                  <label>Payment screenshot</label>
-                  <label className="st-file-btn">
-                    Upload Screenshot
-                    <input type="file" accept="image/*" onChange={onFile} style={{ display: 'none' }} />
-                  </label>
+              </div>
+
+              <div className="bs-alert bs-alert--info" style={{ marginBottom: 20 }}>
+                <CircleCheck size={17} aria-hidden="true" />
+                <span>Your licence, setup files and installation guidance are delivered to this email address.</span>
+              </div>
+
+              {err ? (
+                <div className="bs-alert bs-alert--error" role="alert" style={{ marginBottom: 16 }}>
+                  <CircleAlert size={17} aria-hidden="true" /><span>{err}</span>
                 </div>
-                {shot ? <img className="st-shot-preview" src={shot} alt="Payment screenshot preview" /> : null}
-                {err ? <div className="st-err">{err}</div> : null}
-                <button className="st-btn st-btn-block" type="submit" disabled={busy}>
-                  {busy ? 'Placing order…' : 'Confirm Order'}
-                </button>
-                <button type="button" className="st-btn-ghost st-btn-block" style={{ marginTop: 12 }} onClick={() => setStep(1)}>
-                  Back to Details
-                </button>
-              </form>
-            )}
+              ) : null}
+
+              <Btn variant="gold" block type="submit">Continue to Payment</Btn>
+            </form>
+          ) : (
+            <form onSubmit={placeOrder} noValidate>
+              <div className="bs-cart-head">
+                <h2>Payment proof</h2>
+                <Chip tone="slate">Step 2 of 2</Chip>
+              </div>
+
+              <div className="bs-field">
+                <label className="bs-label" htmlFor="co-tx">Transaction hash ID</label>
+                <input id="co-tx" className="bs-input bs-mono" value={tx} onChange={(e) => setTx(e.target.value)} placeholder="0x…" maxLength={200} />
+              </div>
+
+              <div className="bs-field">
+                <label className="bs-label" htmlFor="co-shot">Payment screenshot</label>
+                <label className={`bs-file${shot ? ' has-file' : ''}`} htmlFor="co-shot">
+                  <CircleCheck size={18} aria-hidden="true" />
+                  {shot ? 'Screenshot attached — click to replace' : 'Upload your payment screenshot'}
+                  <input id="co-shot" type="file" accept="image/*" onChange={onFile} />
+                </label>
+              </div>
+
+              {shot ? <img className="bs-shot" src={shot} alt="Payment screenshot preview" /> : null}
+
+              {err ? (
+                <div className="bs-alert bs-alert--error" role="alert" style={{ marginBottom: 16 }}>
+                  <CircleAlert size={17} aria-hidden="true" /><span>{err}</span>
+                </div>
+              ) : null}
+
+              <Btn variant="gold" block type="submit" disabled={busy}>
+                {busy ? 'Placing your order…' : 'Confirm Order'}
+              </Btn>
+              <Btn variant="ghost" block type="button" style={{ marginTop: 10 }} onClick={() => setStep(1)}>
+                Back to details
+              </Btn>
+            </form>
+          )}
+        </Card>
+
+        <Card gold className="bs-pay">
+          <h3><Wallet size={17} style={{ verticalAlign: -3, marginRight: 8 }} aria-hidden="true" />Payment details</h3>
+
+          {items.map((i) => {
+            const p = products[i.slug] || {};
+            const q = i.qty || 1;
+            return (
+              <div className="bs-payrow" key={i.slug}>
+                <span>{p.name || i.slug} × {q}</span>
+                <b>{usd(Number(p.new_price || 0) * q)}</b>
+              </div>
+            );
+          })}
+
+          <div className="bs-payrow">
+            <span>Total to pay</span>
+            <b>{usd(total)} in {settings.pay_coin}</b>
           </div>
 
-          <div className="st-pay-card">
-            <h3>Order Summary</h3>
-            {items.map((i) => {
-              const p = products[i.slug] || {};
-              return (
-                <div className="st-pay-row" key={i.slug}>
-                  <span>{p.name || i.slug} × {i.qty || 1}</span>
-                  <strong>${(Number(p.new_price || 0) * (i.qty || 1)).toLocaleString('en-US')}</strong>
-                </div>
-              );
-            })}
-            <div className="st-pay-row">
-              <span>Total due</span>
-              <strong>${total.toLocaleString('en-US')} in {settings.pay_coin}</strong>
-            </div>
-            {settings.pay_address ? (
-              <>
-                <code className="st-addr">{settings.pay_address}</code>
-                {settings.pay_qr ? <img className="st-qr" src={settings.pay_qr} alt="Crypto payment QR code" /> : null}
-              </>
-            ) : null}
-            <p className="st-note" style={{ marginBottom: 0 }}>
-              Send the exact amount to the wallet address above, then enter your transaction hash ID
-              and payment screenshot to confirm your order.
-            </p>
-          </div>
+          {settings.pay_address ? (
+            <>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16 }}>
+                <span className="bs-label">Wallet address</span>
+                <button type="button" onClick={copyAddr} className="bs-btn bs-btn--ghost bs-btn--sm" style={{ padding: '6px 12px' }}>
+                  <Copy size={13} aria-hidden="true" /> {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <code className="bs-addr">{settings.pay_address}</code>
+              {settings.pay_qr ? <img className="bs-qr" src={settings.pay_qr} alt="Crypto payment QR code" /> : null}
+            </>
+          ) : null}
+
+          <p className="bs-note" style={{ margin: 0 }}>
+            <QrCode size={14} style={{ verticalAlign: -2, marginRight: 6 }} aria-hidden="true" />
+            Send the exact amount to the address above, then enter your transaction hash and
+            screenshot to confirm. Funds go directly to our wallet — we never hold client funds.
+          </p>
+        </Card>
+      </div>
+
+      <div style={{ marginTop: 28 }}>
+        <SectionHead
+          title="What happens next?"
+          align="left"
+          sub="Three quick steps from payment to delivery."
+        />
+        <div className="bs-features bs-features--2">
+          {[
+            { icon: Wallet, title: '1 · You pay the exact amount', text: `Send ${usd(total)} in ${settings.pay_coin} to the wallet above and keep your transaction hash.` },
+            { icon: CircleCheck, title: '2 · We verify', text: 'Our team checks the transaction and confirms your order, usually within 2 to 3 hours.' },
+            { icon: Package, title: '3 · You receive delivery', text: 'Licence, EA setup files and installation guidance are sent to your email.' },
+          ].map((s) => (
+            <Card key={s.title} hover>
+              <h3 style={{ margin: '0 0 6px', fontSize: 16.5, fontWeight: 800, color: 'var(--bs-heading)' }}>{s.title}</h3>
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.7, color: 'var(--bs-muted)' }}>{s.text}</p>
+            </Card>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }

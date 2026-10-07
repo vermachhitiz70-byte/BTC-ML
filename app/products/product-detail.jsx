@@ -1,119 +1,93 @@
-import Script from 'next/script';
-import { StoreHeader, StoreFooter } from '../store-chrome';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import {
+  CircleAlert, Clock, PackageCheck, ShieldCheck, Zap, CircleCheck,
+} from 'lucide-react';
+import { PageShell, PageHero, JsonLd } from '../site/chrome';
+import { Btn, Card, Chip, Accordion, Specs, SectionHead, CheckList, RiskNote, Tile } from '../site/ui';
 import { PRODUCT_CONTENT } from './product-content';
+import { getStoreProducts, productImage } from '@/lib/products';
 
-async function getProducts() {
-  try {
-    const { dbEnabled, getDb } = await import('@/lib/turso');
-    const { SEED_PRODUCTS } = await import('@/lib/seed');
-    if (!dbEnabled) return SEED_PRODUCTS;
-    const rs = await getDb().execute(
-      'SELECT slug, name, short_desc, new_price, old_price, image, badge, status, active, sort_order FROM products WHERE active = 1 AND status != \'draft\' ORDER BY sort_order, id'
-    );
-    return rs.rows.map((r) => ({ ...r, active: Number(r.active) }));
-  } catch {
-    return [];
-  }
-}
+export const dynamic = 'force-dynamic';
 
-function productImage(product, fallback) {
-  if (!product) return fallback;
-  const image = product.image || fallback;
-  return image.startsWith('/') ? image : `/assets/images/products/${image}`;
-}
-
-const FALLBACK_IMAGES = {
-  'btc-x-ea-mt5': '/assets/images/products/btcml.png',
-  'galaxy-prop-firm-ea-mt5': '/assets/images/products/currency-bot-coins.png',
-  'ict-silver-bullet-ea-mt4': '/assets/images/products/silver-package.png',
-};
-
-const CheckIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M20 6L9 17l-5-5" />
-  </svg>
-);
-
-export default async function ProductDetail({ slug }) {
-  const content = PRODUCT_CONTENT[slug];
-  if (!content) return null;
-
-  const products = await getProducts();
-  const product = products.find((p) => p.slug === slug) || { slug, name: content.name, status: content.comingSoon ? 'coming_soon' : 'active' };
-  const related = products.filter((p) => p.slug !== slug).slice(0, 2);
-  const price = product.new_price ? Number(product.new_price) : 0;
-  const oldPrice = product.old_price && product.old_price !== product.new_price ? Number(product.old_price) : 0;
+function ProductDetailInner({ product, content, others }) {
   const isSoon = content.comingSoon || product.status === 'coming_soon';
-  const relatedFallback = { 'btc-x-ea-mt5': FALLBACK_IMAGES['btc-x-ea-mt5'], 'galaxy-prop-firm-ea-mt5': FALLBACK_IMAGES['galaxy-prop-firm-ea-mt5'], 'ict-silver-bullet-ea-mt4': FALLBACK_IMAGES['ict-silver-bullet-ea-mt4'] };
+  const price = Number(product.new_price || 0);
+  const oldPrice = Number(product.old_price || 0) > 0 && Number(product.old_price) !== price
+    ? Number(product.old_price) : 0;
+  const related = others || [];
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: content.name,
+    description: content.desc,
+    image: [`https://btcmltai.com${productImage(product.image)}`],
+    brand: { '@type': 'Brand', name: 'BTCMLTAI' },
+    category: 'Trading Software',
+    offers: {
+      '@type': 'Offer',
+      price: price || 0,
+      priceCurrency: 'USD',
+      availability: isSoon ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock',
+      url: `https://btcmltai.com/products/${product.slug}`,
+    },
+  };
 
   return (
-    <div className="st-page">
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="stylesheet" href="/assets/css/fb-store.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
-      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=2" />
-      <StoreHeader active="" />
+    <>
+      <JsonLd data={jsonLd} />
 
-      <div className="st-container">
-        <div className="st-pdp-hero">
-          <div className="st-pdp-media">
-            <img src={productImage(product, relatedFallback[slug])} alt={content.name} />
+      <div className="bs-container">
+        <div className="bs-pdp">
+          <div className="bs-pdp-media">
+            <img src={productImage(product.image)} alt={content.name} />
           </div>
+
           <div>
-            <span className="st-eyebrow">{isSoon ? 'Upcoming Release' : 'Automated Trading'}</span>
-            <h1 className="st-h1">{content.name}</h1>
-            <div className="st-pdp-badges">
-              {product.badge ? <span className={`st-chip ${isSoon ? '' : 'is-gold'}`}>{product.badge}</span> : null}
-              {content.specs.slice(0, 3).map((s) => <span key={s.k} className="st-chip">{s.v}</span>)}
+            <span className="bs-eyebrow">{isSoon ? 'Upcoming release' : 'Automated trading'}</span>
+            <h1 className="bs-pdp-title">{content.name}</h1>
+
+            <div className="bs-pdp-chips">
+              {isSoon
+                ? <Chip tone="slate">Coming soon</Chip>
+                : <Chip tone="green">Available now</Chip>}
+              {content.specs.slice(0, 3).map((s) => (
+                <Chip key={s.k} tone="slate">{s.v}</Chip>
+              ))}
             </div>
-            <p className="st-pdp-desc">{content.desc}</p>
+
+            <p className="bs-pdp-text">{content.desc}</p>
 
             {isSoon ? (
               <>
-                <div className="st-pdp-price-row">
-                  <span className="st-price-soon" style={{ fontSize: '24px' }}>Coming Soon</span>
+                <div className="bs-pdp-pricerow">
+                  <span className="bs-price bs-price--soon" style={{ fontSize: 24 }}>Price announced at launch</span>
                 </div>
-                <p className="st-note">{content.statusNote}</p>
-                <div className="st-buy-row">
-                  <a className="st-btn" href="#chat" data-fb-chat="1">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h14s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
-                    Notify Me at Launch
-                  </a>
+                <div className="bs-alert bs-alert--info" style={{ marginBottom: 20 }}>
+                  <Clock size={17} aria-hidden="true" />
+                  <span>{content.statusNote}</span>
                 </div>
+                <Btn variant="gold" href="/contact">Notify Me at Launch</Btn>
               </>
             ) : (
               <>
-                <div className="st-pdp-price-row">
-                  <span className="st-pdp-price fb-sp-new">${price.toLocaleString('en-US')}</span>
-                  {oldPrice ? <span className="st-pdp-price-old">${oldPrice.toLocaleString('en-US')}</span> : null}
-                  <span className="st-chip">one-time licence</span>
+                <div className="bs-pdp-pricerow">
+                  <span className="bs-pdp-price">{`$${price.toLocaleString('en-US')}`}</span>
+                  {oldPrice ? <span className="bs-price-old">{`$${oldPrice.toLocaleString('en-US')}`}</span> : null}
+                  <Chip tone="gold">One-time licence</Chip>
                 </div>
-                <div className="st-buy-row fb-sp-info">
-                  <div className="st-qty" style={{ flex: '0 0 auto' }}>
-                    <button type="button" data-qty="-1" aria-label="Decrease quantity">−</button>
-                    <input id="fb-sp-qty" type="number" min="1" max="10" defaultValue={1} style={{ width: 44, textAlign: 'center', padding: '8px 4px' }} aria-label="Quantity" />
-                    <button type="button" data-qty="1" aria-label="Increase quantity">+</button>
-                  </div>
-                  <a className="st-btn" href="javascript:void(0)" data-add-cart={slug}>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                    </svg>
-                    Add to Cart
-                  </a>
-                  <a className="st-btn-ghost" data-buy-now={slug}>
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                    Buy Now
-                  </a>
+
+                <div className="bs-pdp-cta">
+                  <Btn variant="gold" href="/cart" data-buy-now={product.slug}>Buy Now</Btn>
+                  <Btn variant="ghost" href="javascript:void(0)" data-add-cart={product.slug}>Add to Cart</Btn>
                 </div>
-                <div className="st-pdp-deliver">
-                  <div><CheckIcon /> Instant digital delivery with setup files</div>
-                  <div><CheckIcon /> Installation guidance included</div>
-                  <div><CheckIcon /> Support response within 2–3 hours</div>
+
+                <div className="bs-deliver">
+                  <div><PackageCheck size={17} aria-hidden="true" /> Instant digital delivery with setup files</div>
+                  <div><Zap size={17} aria-hidden="true" /> Installation &amp; configuration guidance included</div>
+                  <div><Clock size={17} aria-hidden="true" /> Licence delivered within 2–3 hours</div>
+                  <div><ShieldCheck size={17} aria-hidden="true" /> No client funds held — payment goes to our wallet</div>
                 </div>
               </>
             )}
@@ -121,129 +95,162 @@ export default async function ProductDetail({ slug }) {
         </div>
       </div>
 
-      <section className="st-section" style={{ paddingTop: 26 }}>
-        <div className="st-container">
-          <div className="st-section-head">
-            <span className="st-eyebrow is-green">{content.whyTitle}</span>
-          </div>
-          <ul className="st-feature-list">
-            {content.why.map((f) => (
-              <li key={f}><CheckIcon />{f}</li>
-            ))}
-          </ul>
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Why it works"
+            tone="emerald"
+            title={content.whyTitle}
+            sub="Rule-based logic, structured entries and predefined risk controls on every position."
+          />
+          <Card style={{ maxWidth: 760, margin: '0 auto' }}>
+            <CheckList items={content.why} />
+          </Card>
         </div>
       </section>
 
       {content.features ? (
-        <section className="st-section" style={{ background: 'rgba(4, 20, 37, 0.45)' }}>
-          <div className="st-container">
-            <div className="st-section-head">
-              <span className="st-eyebrow">Key Features</span>
-              <h2 className="st-h2">What {content.name} Does</h2>
-            </div>
-            <ul className="st-feature-list">
-              {content.features.map((f) => (
-                <li key={f}><CheckIcon />{f}</li>
+        <section className="bs-section">
+          <div className="bs-container">
+            <SectionHead eyebrow="Key features" title={`What ${content.name} does`} />
+            <div className="bs-features">
+              {content.features.map((f, i) => (
+                <Card key={f} hover>
+                  <Tile icon={CircleCheck} tone={['blue', 'emerald', 'purple'][i % 3]} />
+                  <p style={{ margin: '14px 0 0', fontSize: 14, lineHeight: 1.7, color: 'var(--bs-muted)' }}>{f}</p>
+                </Card>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       ) : null}
 
       {content.usage ? (
-        <section className="st-section">
-          <div className="st-container">
-            <div className="st-section-head">
-              <span className="st-eyebrow is-green">Tool Usage</span>
-              <h2 className="st-h2">Getting Started</h2>
-            </div>
-            <div className="st-usage-grid">
-              {content.usage.map((step, i) => (
-                <div key={step} className="st-usage-card">
-                  <span className="st-usage-num">{i + 1}</span>
-                  <p>{step}</p>
-                </div>
+        <section className="bs-section bs-section--tint">
+          <div className="bs-container">
+            <SectionHead eyebrow="Tool usage" tone="emerald" title="Getting started in four steps" />
+            <div className="bs-steps">
+              {content.usage.map((s, i) => (
+                <Card key={s} hover className={`bs-step${i === 0 ? ' bs-step--gold' : ''}`}>
+                  <div className="bs-step-num">{i + 1}</div>
+                  <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.7, color: 'var(--bs-muted)' }}>{s}</p>
+                </Card>
               ))}
             </div>
           </div>
         </section>
       ) : null}
 
-      <section className="st-section" style={{ background: 'rgba(4, 20, 37, 0.45)' }}>
-        <div className="st-container" style={{ maxWidth: 860 }}>
-          <div className="st-section-head">
-            <span className="st-eyebrow">Specifications</span>
-            <h2 className="st-h2">{content.name} Details</h2>
-          </div>
-          <dl className="st-spec-table">
-            {content.specs.map((s) => (
-              <div className="st-spec-row" key={s.k}>
-                <dt>{s.k}</dt>
-                <dd>{s.v}</dd>
-              </div>
-            ))}
-          </dl>
+      <section className="bs-section">
+        <div className="bs-container bs-container--mid">
+          <SectionHead eyebrow="Specifications" title={`${content.name} details`} />
+          <Specs rows={content.specs} />
         </div>
       </section>
 
-      <section className="st-section">
-        <div className="st-container" style={{ maxWidth: 860 }}>
-          <div className="st-section-head">
-            <span className="st-eyebrow is-green">FAQs</span>
-            <h2 className="st-h2">Frequently Asked Questions</h2>
-          </div>
-          <div className="st-faq">
-            {content.faqs.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <div className="st-faq-a">{f.a}</div>
-              </details>
-            ))}
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container bs-container--mid">
+          <SectionHead eyebrow="FAQs" tone="emerald" title="Frequently asked questions" />
+          <Accordion items={content.faqs} />
+        </div>
+      </section>
+
+      <section className="bs-section">
+        <div className="bs-container">
+          <div className="bs-co">
+            <div>
+              <SectionHead
+                eyebrow="Risk disclosure"
+                align="left"
+                title="Use software responsibly"
+                sub="Every product is educational and rule-based. Review these points before live use."
+              />
+              <div style={{ marginTop: 6 }}>
+                <RiskNote>
+                  <b>Trading involves substantial risk.</b> Past performance never guarantees future
+                  results. Always test on a demo account first and never trade with funds you cannot
+                  afford to lose. BTCMLTAI does not provide brokerage, personalised investment advice
+                  or fund management, and does not accept client trading funds.
+                </RiskNote>
+              </div>
+            </div>
+
+            <Card gold style={{ display: 'grid', gap: 14 }}>
+              <h3 style={{ margin: 0, fontSize: 17, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                Questions before you buy?
+              </h3>
+              <p className="bs-note" style={{ margin: 0 }}>
+                Our support team answers compatibility, licence and setup questions within 2–3 hours.
+              </p>
+              <Btn href="/contact">Talk to Support</Btn>
+              <Btn variant="ghost" href="/faqs">Read the FAQs</Btn>
+            </Card>
           </div>
         </div>
       </section>
 
       {related.length ? (
-        <section className="st-section tight" style={{ background: 'rgba(4, 20, 37, 0.45)' }}>
-          <div className="st-container">
-            <div className="st-section-head">
-              <span className="st-eyebrow">Related Products</span>
-              <h2 className="st-h2">More From BTCMLTAI</h2>
-            </div>
-            <div className="st-related-grid">
-              {related.map((p) => {
-                const soon = p.status === 'coming_soon';
-                const relContent = PRODUCT_CONTENT[p.slug];
+        <section className="bs-section bs-section--tint">
+          <div className="bs-container">
+            <SectionHead eyebrow="Related products" title="More from BTCMLTAI" />
+            <div className="bs-products bs-products--2">
+              {related.map((o) => {
+                const oc = PRODUCT_CONTENT[o.slug];
+                const soon = o.status === 'coming_soon';
                 return (
-                  <div className="st-related-card" key={p.slug}>
-                    <div className="st-thumb">
-                      <img src={productImage(p, relatedFallback[p.slug] || '/assets/images/products/btcml.png')} alt={p.name} loading="lazy" />
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <p className="st-related-name"><a href={`/products/${p.slug}`}>{p.name}</a></p>
-                      <p className="st-related-sub">{soon ? 'Coming soon — in final testing' : (relContent ? relContent.why[0] : 'Rule-based automated trading system.')}</p>
-                      {soon ? (
-                        <a className="st-btn-ghost st-btn-sm" href={`/products/${p.slug}`}>View Details</a>
-                      ) : (
-                        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                          <span className="st-price" style={{ fontSize: '17px' }}>${Number(p.new_price).toLocaleString('en-US')}</span>
-                          <a className="st-btn st-btn-sm" href={`/products/${p.slug}`}>View Details</a>
+                  <Card key={o.slug} hover>
+                    <div style={{ display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
+                      <Link href={`/products/${o.slug}`} className="bs-thumb" style={{ width: 88, height: 88 }} aria-label={o.name}>
+                        <img src={productImage(o.image)} alt={o.name} loading="lazy" />
+                      </Link>
+                      <div style={{ flex: 1, minWidth: 180 }}>
+                        <h3 style={{ margin: '0 0 4px', fontSize: 16.5, fontWeight: 800 }}>
+                          <Link href={`/products/${o.slug}`} style={{ color: 'var(--bs-heading)', textDecoration: 'none' }}>{o.name}</Link>
+                        </h3>
+                        <p style={{ margin: '0 0 10px', fontSize: 13, lineHeight: 1.6, color: 'var(--bs-muted)' }}>
+                          {soon ? 'Coming soon — in final testing' : (oc ? oc.why[0] : '')}
+                        </p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                          {soon
+                            ? <Chip tone="slate">Coming soon</Chip>
+                            : <b style={{ fontSize: 17, color: 'var(--bs-heading)' }}>{`$${Number(o.new_price).toLocaleString('en-US')}`}</b>}
+                          <Btn size="sm" variant={soon ? 'ghost' : 'gold'} href={`/products/${o.slug}`}>View Details</Btn>
                         </div>
-                      )}
+                      </div>
                     </div>
-                  </div>
+                  </Card>
                 );
               })}
             </div>
           </div>
         </section>
       ) : null}
-
-      <StoreFooter />
-
-      <Script src="/assets/js/fb-cart.js?v=2" strategy="afterInteractive" />
-      <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
-      <div id="fb-chat-root" suppressHydrationWarning />
-    </div>
+    </>
   );
+}
+
+export function ProductDetail({ product, content, others }) {
+  return (
+    <PageShell active="/shop">
+      <PageHero
+        crumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Shop', href: '/shop' },
+          { label: content.name },
+        ]}
+      />
+      <ProductDetailInner product={product} content={content} others={others} />
+    </PageShell>
+  );
+}
+
+/* thin server wrapper used by the three route files */
+export default async function ProductDetailRoute({ slug }) {
+  const products = await getStoreProducts();
+  const productRow = products.find((p) => p.slug === slug);
+  const content = PRODUCT_CONTENT[slug];
+  if (!content) notFound();
+  const product = productRow || { slug, name: content.name, status: content.comingSoon ? 'coming_soon' : 'active' };
+  const others = products.filter((p) => p.slug !== slug).slice(0, 2);
+  return <ProductDetail product={product} content={content} others={others} />;
 }

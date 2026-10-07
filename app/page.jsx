@@ -1,92 +1,281 @@
-import Script from 'next/script';
-import BodyClass from './body-class';
-import { BODY } from './body';
+import Link from 'next/link';
+import { PageShell, JsonLd } from './site/chrome';
+import {
+  Btn, Card, Chip, SectionHead, Stats, StepRow, RiskNote, CtaBand, Tile,
+} from './site/ui';
+import {
+  Cpu, ChartBar, BookOpen, Headset, CircleQuestionMark, Wallet, ShieldCheck,
+  CircleAlert, PackageCheck, Clock, Zap, Gauge, Layers, Target,
+} from 'lucide-react';
+import { getStoreProducts, productImage } from '@/lib/products';
+import { POSTS } from '@/lib/site-content';
 
-export const metadata = {
-  title: "BTCMLTAI | MT4 Trading Software & Analysis Tools",
-  description: "BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.",
-  alternates: { canonical: "https://btcmltai.com" },
-  openGraph: {
-    title: "BTCMLTAI | MT4 Trading Software & Analysis Tools",
-    description: "BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.",
-    url: "https://btcmltai.com",
-    siteName: "BTCMLTAI",
-    type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/slider/hero-slide-1.jpg", width: 2061, height: 763, alt: "BTCMLTAI | MT4 Trading Software & Analysis Tools" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BTCMLTAI | MT4 Trading Software & Analysis Tools",
-    description: "BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.",
-    images: ["https://btcmltai.com/assets/images/slider/hero-slide-1.jpg"],
-  },
-};
+export const dynamic = 'force-dynamic';
 
-export default function Page() {
+const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
+
+const SOLUTIONS = [
+  { icon: Cpu, tone: 'blue', title: 'Rule-Based Trading Software', text: 'Expert Advisors that read the market through technical filters and manage positions with predefined risk controls.' },
+  { icon: ChartBar, tone: 'emerald', title: 'Market Analysis Tools', text: 'Indicators and chart-support tools designed for structured analysis, testing and review.' },
+  { icon: BookOpen, tone: 'purple', title: 'Educational Video Guides', text: 'General tutorials on platforms, setup and strategy testing to help you get running correctly.' },
+  { icon: Headset, tone: 'amber', title: 'Installation & Technical Support', text: 'Setup assistance and installation guidance from our team, normally within 2 to 3 hours.' },
+];
+
+const STEPS = [
+  { title: 'Choose a Product', text: 'Select software, an analysis tool, or an educational video guide that matches your requirements.' },
+  { title: 'Review Information', text: 'Check compatibility, licence terms, delivery details, refund conditions, and the risk disclosure.' },
+  { title: 'Complete Checkout', text: 'Confirm the order details and receive digital delivery and installation instructions.' },
+  { title: 'Test Before Live Use', text: 'Install the product, test it on a demo account, and apply your own risk management.' },
+];
+
+const POSITIONING = [
+  { icon: BookOpen, tone: 'blue', title: 'Software & Information', text: 'We provide digital trading software, analysis tools, technical documentation, and general educational content with clearly stated product information. Educational materials are general information only and are not personalised investment recommendations or trade calls.' },
+  { icon: Wallet, tone: 'gold', title: 'No Client Funds', text: 'We do not receive trading capital, deposits, or investment funds from customers.' },
+  { icon: CircleAlert, tone: 'red', title: 'No Guaranteed Returns', text: 'We do not promise profit, fixed income, loss recovery, or any guaranteed trading outcome.' },
+  { icon: Target, tone: 'purple', title: 'Customer Responsibility', text: 'Customers choose their broker, account, settings, leverage, lot size, and risk controls independently.' },
+];
+
+export default async function HomePage() {
+  const products = await getStoreProducts();
+  const featured = products.slice(0, 3);
+  const lead = products[0];
+
   return (
-    <>
-      
-      
-      
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="/assets/css/font-awesome.css" />
-      <link rel="stylesheet" href="/assets/css/fontawesome-stars.css" />
-      <link rel="stylesheet" href="/assets/css/ion-fonts.css" />
-      <link rel="stylesheet" href="/assets/css/slick.css" />
-      <link rel="stylesheet" href="/assets/css/animate.css" />
-      <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-      <link rel="stylesheet" href="/assets/css/venobox.css" />
-      <link rel="stylesheet" href="/assets/css/nice-select.css" />
-      <link rel="stylesheet" href="/assets/css/timecircles.css" />
-      <link rel="stylesheet" href="/assets/css/style.css" />
-      <link rel="stylesheet" href="/assets/css/styletwo.css" />
-      <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #0a2c46;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #0e3a5c 0%, #0a2c46 52%, #071f38 100%) !important;\n            background-color: #0a2c46 !important;\n        }\n    " }} />
-      <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
-      <BodyClass cls="template-color-1 forexbaazar-site" />
-      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <link rel="stylesheet" href="/assets/css/fb-premium.css" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
-      <link rel="stylesheet" href="/assets/css/fb-chatbot.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-cart.css?v=1" />
-      <Script src="/assets/js/fb-cart.js?v=1" strategy="afterInteractive" />
-      <Script src="/assets/js/fb-chatbot.js?v=3" strategy="afterInteractive" />
-      <div id="fb-chat-root" suppressHydrationWarning />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
-      <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
-      <Script src="/assets/js/legacy-home-v9.js" strategy="afterInteractive" />
-    </>
+    <PageShell active="/">
+      {/* ---------------- HERO ---------------- */}
+      <section className="bs-hero">
+        <div className="bs-container bs-hero-inner">
+          <div>
+            <span className="bs-eyebrow bs-dark-eyebrow">Dubai, UAE · Trading Software · Analysis Tools</span>
+            <h1 className="bs-hero-title">
+              Dubai-Based Trading Software,<br />
+              Analysis Tools &amp; <em>Video Guides</em>
+            </h1>
+            <p className="bs-hero-text">
+              We provide digital trading software, market-analysis tools, and educational video
+              guides. Explore rule-based trading software, market-analysis tools, and educational
+              video guides designed for strategy testing, chart analysis, platform use, and
+              responsible risk management.
+            </p>
+            <div className="bs-hero-actions">
+              <Btn variant="gold" size="lg" href="/shop">Explore Software</Btn>
+              <Btn size="lg" variant="onDark" href="/terms-condition">View Risk Disclosure</Btn>
+            </div>
+            <div className="bs-hero-stats">
+              <div className="bs-hero-stat"><b>MT4 &amp; MT5</b><span>Supported platforms</span></div>
+              <div className="bs-hero-stat"><b>2–3 hours</b><span>Typical support reply</span></div>
+              <div className="bs-hero-stat"><b>Instant</b><span>Digital delivery</span></div>
+            </div>
+          </div>
+
+          <div className="bs-hero-art">
+            <img
+              src={lead ? productImage(lead.image) : '/assets/images/products/btcml.jpg'}
+              alt={lead ? lead.name : 'BTCMLTAI software'}
+              width={520}
+              height={520}
+            />
+            <span className="bs-hero-badge">
+              <PackageCheck size={15} aria-hidden="true" /> Instant digital delivery · installation guidance included
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- RISK STRIP ---------------- */}
+      <section className="bs-section bs-section--tight">
+        <div className="bs-container">
+          <RiskNote>
+            <b>Risk Warning:</b> Trading involves a high risk of loss. Our products are digital
+            software, analysis tools, and general educational materials. They are not personalised
+            investment recommendations, brokerage, portfolio-management, or investment services and
+            do not guarantee any financial result.
+          </RiskNote>
+        </div>
+      </section>
+
+      {/* ---------------- SOLUTIONS ---------------- */}
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Trading software solutions"
+            title="Explore Trading Software and Analysis Tools"
+            sub="Review product features, compatibility, licence terms, pricing, and risk information before purchase."
+          />
+          <div className="bs-features">
+            {SOLUTIONS.map((s) => (
+              <Card key={s.title} hover className="bs-feature bs-reveal">
+                <Tile icon={s.icon} tone={s.tone} size="lg" />
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- FEATURED PRODUCTS ---------------- */}
+      {featured.length ? (
+        <section className="bs-section bs-section--tint">
+          <div className="bs-container">
+            <SectionHead
+              eyebrow="Featured trading software"
+              tone="emerald"
+              title="Our Products"
+              sub="Instant digital delivery, single-account licence, and setup guidance with every purchase."
+            />
+            <div className="bs-products">
+              {featured.map((p) => {
+                const soon = p.status === 'coming_soon';
+                return (
+                  <Card key={p.slug} hover className="bs-pcard bs-reveal" pad={false}>
+                    <div className="bs-pcard-media">
+                      <span className={`bs-badge ${soon ? 'bs-badge--soon' : 'bs-badge--live'}`}>
+                        {soon ? 'Coming soon' : 'Available'}
+                      </span>
+                      <Link href={`/products/${p.slug}`} aria-label={p.name} style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={productImage(p.image)} alt={p.name} loading="lazy" />
+                      </Link>
+                    </div>
+                    <div className="bs-pcard-body">
+                      <h3 className="bs-pcard-name"><Link href={`/products/${p.slug}`}>{p.name}</Link></h3>
+                      <p className="bs-pcard-desc">
+                        {p.short_desc || 'Rule-based automated trading system with structured risk controls and instant digital delivery.'}
+                      </p>
+                      <div className="bs-pcard-foot">
+                        {soon ? (
+                          <span className="bs-price bs-price--soon">Coming soon</span>
+                        ) : (
+                          <span className="bs-price bs-price--gold">{usd(p.new_price)}<small>USD · one-time</small></span>
+                        )}
+                        {soon ? (
+                          <Btn size="sm" variant="ghost" href={`/products/${p.slug}`}>Notify Me</Btn>
+                        ) : (
+                          <Btn size="sm" variant="gold" href="javascript:void(0)" data-add-cart={p.slug}>Add to Cart</Btn>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
+              <Btn variant="ghost" href="/shop">View all software</Btn>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ---------------- HOW TO BUY ---------------- */}
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Transparent process"
+            title="How to Purchase and Use Our Software"
+            sub="Review the product information, understand the risks, complete checkout, and test the software before live use."
+          />
+          <StepRow items={STEPS} />
+        </div>
+      </section>
+
+      {/* ---------------- BLOG ---------------- */}
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Educational resources"
+            tone="emerald"
+            title="Latest Articles and Guides"
+            sub="Read software guides, platform tutorials, and general market education content."
+          />
+          <div className="bs-products">
+            {POSTS.slice(0, 3).map((post) => (
+              <Card key={post.slug} hover className="bs-postcard bs-reveal" pad={false}>
+                <div className="bs-postcard-media">
+                  <img src={post.image} alt="" loading="lazy" />
+                </div>
+                <div className="bs-postcard-body">
+                  <div className="bs-postmeta">
+                    <span>By BTCMLTAI</span><span>/</span><span>{post.date}</span>
+                  </div>
+                  <h3><Link href={`/blogs/${post.slug}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                  <Btn size="sm" variant="ghost" href={`/blogs/${post.slug}`}>Read More</Btn>
+                </div>
+              </Card>
+            ))}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 30 }}>
+            <Btn variant="ghost" href="/blog">All articles &amp; guides</Btn>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- POSITIONING ---------------- */}
+      <section className="bs-section">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Clear business positioning"
+            title="Digital Software Provider — Not an Investment Service"
+            sub="We provide digital software products, analysis tools, technical support, and general educational resources to customers in supported markets. We do not manage customer trading accounts or client funds. Trading decisions and account risk remain under the customer’s control."
+          />
+          <div className="bs-features bs-features--2">
+            {POSITIONING.map((p) => (
+              <Card key={p.title} hover className="bs-feature bs-reveal">
+                <Tile icon={p.icon} tone={p.tone} />
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- TRUST STRIP ---------------- */}
+      <section className="bs-section bs-section--tight bs-section--tint">
+        <div className="bs-container">
+          <Stats
+            items={[
+              { icon: ShieldCheck, tone: 'emerald', title: 'No client funds', text: 'Payments go straight to our wallet. We never hold or trade client money.' },
+              { icon: Clock, tone: 'blue', title: '2–3 hour replies', text: 'Our support team answers compatibility, delivery and setup questions.' },
+              { icon: Zap, tone: 'gold', title: 'Instant delivery', text: 'Files, licence details and setup notes sent after verification.' },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* ---------------- CTA ---------------- */}
+      <section className="bs-section">
+        <div className="bs-container">
+          <CtaBand
+            title="Ready to explore our software?"
+            text="Every product page lists platform compatibility, timeframes, licence terms and delivery details so you can decide with full information."
+          >
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Btn variant="gold" href="/shop">Browse Software</Btn>
+              <Btn variant="onDark" href="/contact">Contact Support</Btn>
+            </div>
+          </CtaBand>
+
+          <div style={{ marginTop: 26 }}>
+            <RiskNote>
+              <b>Risk disclaimer.</b> Forex, CFD, leveraged, algorithmic and automated trading
+              involve a high risk of financial loss. We provide digital software products, technical
+              setup assistance and general educational information only. We do not provide
+              brokerage, personalised investment advisory, portfolio management, fund management or
+              client-account management services. We do not accept client trading funds or guarantee
+              profit, fixed returns, income, loss recovery or any specific trading result.
+            </RiskNote>
+          </div>
+        </div>
+      </section>
+
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'BTCMLTAI | Trading Software, Analysis Tools & Video Guides',
+        url: 'https://btcmltai.com/',
+        inLanguage: 'en',
+      }} />
+    </PageShell>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

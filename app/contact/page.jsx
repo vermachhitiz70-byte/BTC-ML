@@ -1,82 +1,133 @@
-import Script from 'next/script';
-import BodyClass from '../body-class';
-import { BODY } from './body';
+import { PageShell, PageHero, SiteJsonLd } from '../site/chrome';
+import { Btn, Card, SectionHead, Tile } from '../site/ui';
+import {
+  Headset, Clock, Wallet, CircleAlert, MessageCircle, PackageCheck, Mail,
+} from 'lucide-react';
+import ContactForm from './form';
 
 export const metadata = {
-  title: "Contact BTCMLTAI | Software Support and Order Help",
-  description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-  alternates: { canonical: "https://btcmltai.com/contact" },
-  openGraph: {
-    title: "Contact BTCMLTAI | Software Support and Order Help",
-    description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-    url: "https://btcmltai.com/contact",
-    siteName: "BTCMLTAI",
-    type: "website",
-    images: [{ url: "https://btcmltai.com/assets/images/btcmlai-logo.png", width: 450, height: 450, alt: "Contact BTCMLTAI | Software Support and Order Help" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact BTCMLTAI | Software Support and Order Help",
-    description: "Contact BTCMLTAI, operated by , UAE, for software access, order assistance, account support, installation guidance, and general product questions.",
-    images: ["https://btcmltai.com/assets/images/btcmlai-logo.png"],
-  },
+  title: 'Contact Us | BTCMLTAI Support',
+  description:
+    'Contact the BTCMLTAI support team for product compatibility, order and payment verification, licence and delivery, installation help or refund requests. Replies within 2 to 3 hours.',
+  alternates: { canonical: 'https://btcmltai.com/contact' },
 };
 
-export default function Page() {
+const CHANNELS = [
+  {
+    icon: MessageCircle,
+    tone: 'blue',
+    title: 'Live chat',
+    text: 'The fastest option. Open the chat bubble on any page and share your question — you will get a reply within 2 to 3 hours.',
+  },
+  {
+    icon: Mail,
+    tone: 'emerald',
+    title: 'Contact form',
+    text: 'Send full details below. Every submission reaches our support inbox directly, and we reply within 2 to 3 hours.',
+  },
+  {
+    icon: PackageCheck,
+    tone: 'gold',
+    title: 'Order & delivery help',
+    text: 'Include your order code and the email used at checkout so we can verify and re-deliver your files quickly.',
+  },
+  {
+    icon: Wallet,
+    tone: 'purple',
+    title: 'Payment questions',
+    text: 'For payment verification, include your transaction hash and a screenshot of the transfer.',
+  },
+];
+
+export default function ContactPage() {
   return (
-    <>
-      
-      
-      
-      <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
-      <link rel="shortcut icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="/assets/css/font-awesome.css" />
-      <link rel="stylesheet" href="/assets/css/fontawesome-stars.css" />
-      <link rel="stylesheet" href="/assets/css/ion-fonts.css" />
-      <link rel="stylesheet" href="/assets/css/slick.css" />
-      <link rel="stylesheet" href="/assets/css/animate.css" />
-      <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
-      <link rel="stylesheet" href="/assets/css/venobox.css" />
-      <link rel="stylesheet" href="/assets/css/nice-select.css" />
-      <link rel="stylesheet" href="/assets/css/timecircles.css" />
-      <link rel="stylesheet" href="/assets/css/style.css" />
-      <link rel="stylesheet" href="/assets/css/styletwo.css" />
-      <style dangerouslySetInnerHTML={{ __html: "\n        html,\n        body {\n            background: #f6eddc !important;\n            background-color: #f6eddc !important;\n            color: #0a2c46;\n        }\n\n        .wrapper,\n        .main-wrapper,\n        .page-content,\n        .site-content,\n        .main-content,\n        main,\n        #main,\n        .content {\n            background-color: transparent;\n        }\n\n        #preloader,\n        .preloader,\n        .page-loader,\n        .loader,\n        .loading-overlay {\n            background:\n                linear-gradient(135deg, #0e3a5c 0%, #0a2c46 52%, #071f38 100%) !important;\n            background-color: #0a2c46 !important;\n        }\n    " }} />
-      <link rel="stylesheet" href="/assets/css/theme-teal.css?v=2" />
-      <link rel="stylesheet" href="/assets/css/fb-strip-float-v28.css" />
-      <link rel="stylesheet" href="/assets/css/fb-contact.css?v=2" />
-      <BodyClass cls="template-color-1" />
-      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: BODY }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"@id\":\"https://btcmltai.com#organization\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"assets/images/btcmlai-logo.png\"},\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"contactPoint\":{\"@type\":\"ContactPoint\",\"contactType\":\"customer support\",\"availableLanguage\":[\"English\",\"Hindi\"]}}" }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"@id\":\"https://btcmltai.com#website\",\"name\":\"BTCMLTAI\",\"url\":\"https://btcmltai.com\",\"description\":\"BTCMLTAI provides rule-based MT4 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.\",\"publisher\":{\"@id\":\"https://btcmltai.com#organization\"},\"inLanguage\":\"en\"}" }} />
-      <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
-      <Script src="/assets/js/legacy-contact.js" strategy="afterInteractive" />
-    </>
+    <PageShell active="/contact">
+      <PageHero
+        eyebrow="We reply within 2–3 hours"
+        title="Contact our support team"
+        text="Questions about compatibility, orders, delivery, installation or refunds — tell us what you need and we will help."
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+      />
+
+      <section className="bs-section">
+        <div className="bs-container">
+          <div className="bs-co">
+            <Card>
+              <div className="bs-cart-head">
+                <h2>Send your message</h2>
+              </div>
+              <p className="bs-note" style={{ marginTop: -6, marginBottom: 20 }}>
+                Complete the form below and the support team will review your request.
+              </p>
+              <ContactForm />
+            </Card>
+
+            <div style={{ display: 'grid', gap: 18 }}>
+              <Card gold>
+                <Tile icon={Headset} tone="gold" size="lg" />
+                <h3 style={{ margin: '16px 0 8px', fontSize: 18, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                  Prefer live chat?
+                </h3>
+                <p className="bs-note" style={{ margin: '0 0 16px' }}>
+                  Use the chat bubble in the bottom corner of any page. It is the quickest way to
+                  reach us, and it keeps the whole conversation in one place.
+                </p>
+                <Btn variant="gold" href="javascript:void(0)" data-fb-chat="1">
+                  <MessageCircle size={16} aria-hidden="true" /> Open live chat
+                </Btn>
+              </Card>
+
+              <Card>
+                <Tile icon={Clock} tone="blue" />
+                <h3 style={{ margin: '14px 0 6px', fontSize: 16.5, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                  Support hours
+                </h3>
+                <p className="bs-note" style={{ margin: 0 }}>
+                  Messages are reviewed continuously. Typical response time is 2 to 3 hours, and
+                  order verification follows the same window.
+                </p>
+              </Card>
+
+              <Card>
+                <Tile icon={CircleAlert} tone="red" />
+                <h3 style={{ margin: '14px 0 6px', fontSize: 16.5, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                  Before you write
+                </h3>
+                <p className="bs-note" style={{ margin: '0 0 12px' }}>
+                  Many questions are answered instantly on these pages:
+                </p>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <Btn size="sm" variant="outline" href="/faqs">Read FAQs</Btn>
+                  <Btn size="sm" variant="outline" href="/shipping-policy">Delivery policy</Btn>
+                  <Btn size="sm" variant="outline" href="/refund-policy">Refund policy</Btn>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bs-section bs-section--tint">
+        <div className="bs-container">
+          <SectionHead
+            eyebrow="Ways to reach us"
+            tone="emerald"
+            title="Choose whatever suits you"
+            sub="All channels reach the same support team."
+          />
+          <div className="bs-features bs-features--2">
+            {CHANNELS.map((c) => (
+              <Card key={c.title} hover className="bs-feature">
+                <Tile icon={c.icon} tone={c.tone} size="lg" />
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SiteJsonLd />
+    </PageShell>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

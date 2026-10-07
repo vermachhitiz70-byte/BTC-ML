@@ -1,13 +1,17 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
+import { CircleAlert, Eye, EyeOff, UserPlus } from 'lucide-react';
+import { AuthShell, AuthHead, DEFAULT_FEATS } from '../site/auth';
 
 export default function SignupForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [f, setF] = useState({ name: '', email: '', phone: '', password: '' });
+  const [show, setShow] = useState(false);
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
+
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
 
   async function submit(e) {
     e.preventDefault();
@@ -17,38 +21,74 @@ export default function SignupForm() {
       const r = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify(f),
       });
       const j = await r.json();
-      if (!r.ok) throw new Error(j.error || 'Signup failed.');
-      let next = '/account';
-      try {
-        const q = new URLSearchParams(window.location.search).get('next');
-        if (q && q.startsWith('/') && !q.startsWith('//')) next = q;
-      } catch { /* ignore */ }
-      window.location.href = next;
-    } catch (e) {
-      setErr(e.message);
-    } finally {
+      if (!r.ok) throw new Error(j.error || 'Could not create your account.');
+      window.location.href = '/login?next=%2Faccount';
+    } catch (e2) {
+      setErr(e2.message);
       setBusy(false);
     }
   }
 
   return (
-    <div className="fb-auth-wrap">
-      <div className="fb-auth-card">
-        <span className="fb-auth-kicker">New customer</span>
-        <h1>Create Account</h1>
-        <p className="fb-auth-sub">Register to track orders and check out faster.</p>
-        <form onSubmit={submit}>
-          <label>Full name<input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" autoComplete="name" maxLength={60} /></label>
-          <label>Email address<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email address" autoComplete="email" /></label>
-          <label>Password (min 6 characters)<input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" autoComplete="new-password" /></label>
-          {err ? <div className="fb-auth-err">{err}</div> : null}
-          <button type="submit" disabled={busy}>{busy ? 'Please wait…' : 'Register'}</button>
-        </form>
-        <p className="fb-auth-alt">Already registered? <a href="/login">Log in</a></p>
-      </div>
-    </div>
+    <AuthShell
+      feats={DEFAULT_FEATS}
+      chip="Free customer account"
+      sideTitle="Create your account"
+      sideText="Track orders, licences and downloads"
+      head={<AuthHead icon={UserPlus}>Customer Signup</AuthHead>}
+      title="Get started"
+      sub="One account for every order, licence and installation guide."
+      alt={<>Already registered? <Link href="/login">Log in instead</Link></>}
+    >
+      <form onSubmit={submit} noValidate>
+        <div className="bs-field">
+          <label className="bs-label" htmlFor="su-name">Full name</label>
+          <input id="su-name" className="bs-input" value={f.name} onChange={set('name')} placeholder="Your full name" autoComplete="name" required />
+        </div>
+
+        <div className="bs-field">
+          <label className="bs-label" htmlFor="su-email">Email address</label>
+          <input id="su-email" className="bs-input" type="email" value={f.email} onChange={set('email')} placeholder="you@example.com" autoComplete="email" required />
+        </div>
+
+        <div className="bs-field">
+          <label className="bs-label" htmlFor="su-phone">Phone number</label>
+          <input id="su-phone" className="bs-input" type="tel" value={f.phone} onChange={set('phone')} placeholder="+91 98765 43210" autoComplete="tel" required />
+        </div>
+
+        <div className="bs-field">
+          <label className="bs-label" htmlFor="su-password">Password</label>
+          <div className="bs-pw">
+            <input
+              id="su-password"
+              className="bs-input"
+              type={show ? 'text' : 'password'}
+              value={f.password}
+              onChange={set('password')}
+              placeholder="Create a password"
+              autoComplete="new-password"
+              required
+            />
+            <button type="button" className="bs-eye" onClick={() => setShow((v) => !v)} aria-label={show ? 'Hide password' : 'Show password'}>
+              {show ? <EyeOff size={19} /> : <Eye size={19} />}
+            </button>
+          </div>
+        </div>
+
+        {err ? (
+          <div className="bs-alert bs-alert--error" role="alert">
+            <CircleAlert size={17} aria-hidden="true" />
+            <span>{err}</span>
+          </div>
+        ) : null}
+
+        <button type="submit" className="bs-btn bs-btn--gold bs-btn--block" disabled={busy}>
+          {busy ? 'Creating your account…' : 'Create Account'}
+        </button>
+      </form>
+    </AuthShell>
   );
 }

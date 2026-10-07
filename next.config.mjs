@@ -4,6 +4,7 @@ export default {
     return [
       { source: '/premium', destination: '/shop', permanent: true },
       { source: '/premium/:path*', destination: '/shop', permanent: true },
+      { source: '/register', destination: '/signup', permanent: true },
     ];
   },
 };
