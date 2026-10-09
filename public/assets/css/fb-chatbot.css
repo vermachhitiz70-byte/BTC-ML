@@ -7,8 +7,8 @@
   bottom: 16px !important;
   bottom: max(16px, env(safe-area-inset-bottom, 0px)) !important;
   z-index: 10000 !important;
-  width: 60px !important;
-  height: 60px !important;
+  width: 64px !important;
+  height: 64px !important;
   border-radius: 50% !important;
   border: 1.5px solid rgba(245, 197, 66, .6) !important;
   cursor: pointer !important;
@@ -16,17 +16,35 @@
   align-items: center !important;
   justify-content: center !important;
   background: linear-gradient(140deg, #0e3a5c 0%, #07293f 55%, #3a0d1c 140%) !important;
-  box-shadow: 0 16px 38px rgba(2, 8, 16, .5), inset 0 1px 0 rgba(255, 255, 255, .15) !important;
-  transition: transform .22s ease, box-shadow .22s ease !important;
+  box-shadow:
+    0 6px 0 #07293f,
+    0 14px 28px rgba(2, 8, 16, .5),
+    inset 0 1px 0 rgba(255, 255, 255, .15),
+    inset 0 -2px 4px rgba(0, 0, 0, .35) !important;
+  transition: transform .18s ease, box-shadow .18s ease !important;
   padding: 0 !important;
 }
 #fb-chat-btn:hover {
-  transform: scale(1.08) !important;
-  box-shadow: 0 18px 44px rgba(2, 8, 16, .55), 0 0 0 6px rgba(245, 197, 66, .14) !important;
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 8px 0 #07293f,
+    0 20px 36px rgba(2, 8, 16, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    inset 0 -2px 4px rgba(0, 0, 0, .4) !important;
+}
+#fb-chat-btn:active {
+  transform: translateY(5px) !important;
+  box-shadow:
+    0 0 0 #07293f,
+    0 6px 12px rgba(2, 8, 16, .4),
+    inset 0 1px 0 rgba(255, 255, 255, .12) !important;
+}
+#fb-chat-btn.fb-chat-open {
+  background: linear-gradient(140deg, #3a0d1c 0%, #07293f 55%, #0e3a5c 140%) !important;
 }
 #fb-chat-btn svg {
-  width: 30px !important;
-  height: 30px !important;
+  width: 32px !important;
+  height: 32px !important;
   fill: none !important;
   stroke: #ffe27a !important;
   stroke-width: 1.8 !important;
@@ -35,13 +53,14 @@
 }
 #fb-chat-btn .fb-chat-dot {
   position: absolute !important;
-  top: 2px !important;
-  right: 2px !important;
-  width: 14px !important;
-  height: 14px !important;
+  top: 6px !important;
+  right: 6px !important;
+  width: 16px !important;
+  height: 16px !important;
   border-radius: 50% !important;
   background: #22c55e !important;
   border: 2.5px solid #07293f !important;
+  box-shadow: 0 0 12px rgba(34, 197, 94, .8) !important;
 }
 #fb-chat-btn.fb-chat-open svg.fb-ic-chat { display: none !important; }
 #fb-chat-btn svg.fb-ic-close { display: none !important; }
@@ -129,6 +148,19 @@
 }
 .fb-online-dot{display:inline-block!important;width:8px!important;height:8px!important;border-radius:50%!important;background:#22c55e!important;margin-right:5px!important}
 .fb-chat-reply{display:flex!important;gap:8px!important;padding:10px 14px 16px!important;background:#fffdf8!important}
+.fb-chat-dismiss {
+  align-self: flex-start;
+  background: rgba(10, 44, 70, 0.12);
+  border: 0;
+  border-radius: 999px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0e3a5c;
+  margin-top: 6px;
+}
+.fb-chat-dismiss:hover { background: rgba(10, 44, 70, 0.2); }
 .fb-chat-reply input{flex:1!important;height:44px!important;padding:0 14px!important;border-radius:12px!important;border:1px solid rgba(100,26,49,.25)!important;font-size:14px!important;box-sizing:border-box!important;outline:none!important}
 .fb-chat-reply button{flex:0 0 44px!important;width:44px!important;height:44px!important;border-radius:50%!important;border:0!important;background:linear-gradient(135deg,#7b223d,#45101f)!important;color:#f6e7c6!important;font-size:17px!important;cursor:pointer!important}
 .fb-chat-form textarea{width:100%!important;min-height:56px!important;padding:10px 16px!important;border-radius:12px!important;border:1px solid rgba(100,26,49,.25)!important;background:#fff!important;font-size:14px!important;box-sizing:border-box!important;outline:none!important;resize:vertical!important;font-family:inherit!important}
@@ -244,5 +276,5 @@
   }
 }
 
-/* v2 — multi-line structured inquiry bubbles */
+/* v2 ï¿½ multi-line structured inquiry bubbles */
 .fb-chat-msg { white-space: pre-line !important; }

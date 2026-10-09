@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'BTCMLTAI | MT4 Trading Software & Analysis Tools',
+  title: 'BTCMLTAI | MT5 Trading Software & Analysis Tools',
   description:
-    'BTCMLTAI provides rule-based MT4 trading software, market-analysis tools and educational video guides.',
+    'BTCMLTAI provides rule-based MT5 trading software, market-analysis tools and educational video guides.',
 };
 
 export const viewport = {
@@ -12,7 +12,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="template-color-1">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

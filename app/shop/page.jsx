@@ -89,7 +89,7 @@ export default async function ShopPage() {
           />
           <div className="bs-features">
             {[
-              { icon: Cpu, title: 'Platform', text: 'MetaTrader 5 (MT5) — build 3300 or newer. MT4 supported products are noted on each page.' },
+              { icon: Cpu, title: 'Platform', text: 'MetaTrader 5 (MT5) — build 3300 or newer.' },
               { icon: Gauge, title: 'Account type', text: 'Hedging enabled, leverage 1:100 or higher, and enough margin for your lot settings.' },
               { icon: Zap, title: 'VPS', text: 'A low-latency VPS is recommended so the system runs 24/7 without interruptions.' },
               { icon: Layers, title: 'Instruments', text: 'BTCUSD, XAUUSD and major Forex pairs depending on the product you choose.' },

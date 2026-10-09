@@ -83,7 +83,7 @@ export const PRODUCT_CONTENT = {
       { k: 'Delivery', v: 'Instant digital delivery + installation guidance' },
     ],
   },
-  'ict-silver-bullet-ea-mt4': {
+  'ict-silver-bullet-ea-MT5': {
     name: 'Silver',
     comingSoon: true,
     desc: 'Silver is the upcoming release from BTCMLTAI and is currently in final testing. It is planned as a focused Expert Advisor with a disciplined, low-frequency trading style, structured entries, and predefined risk controls on every position.',
@@ -109,4 +109,5 @@ export const PRODUCT_CONTENT = {
   },
 };
 
-export const PRODUCT_ORDER = ['btc-x-ea-mt5', 'galaxy-prop-firm-ea-mt5', 'ict-silver-bullet-ea-mt4'];
+export const PRODUCT_ORDER = ['btc-x-ea-mt5', 'galaxy-prop-firm-ea-mt5', 'ict-silver-bullet-ea-MT5'];
+

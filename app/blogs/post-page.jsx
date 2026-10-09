@@ -127,8 +127,8 @@ const TITLES = {
     description: 'BTC MLT AI is an automated Expert Advisor for BTCUSD on MT5, built around trend and volatility filters with structured risk controls.',
   },
   'btc-x-ea-mt5-installation-setup-guide': {
-    title: 'How to Install BTCMLTAI Software on MT4 & MT5 (Demo First) | BTCMLTAI',
-    description: 'Step-by-step: how to install BTCMLTAI software on MetaTrader 4 and 5, attach it to a chart, choose starting settings, and validate on demo first.',
+    title: 'How to Install BTCMLTAI Software on MT5 (Demo First) | BTCMLTAI',
+    description: 'Step-by-step: how to install BTCMLTAI software on MetaTrader 5, attach it to a chart, choose starting settings, and validate on demo first.',
   },
   'btc-x-ea-mt5-risk-management-guide': {
     title: 'Currency Bot Coins: Multi-Currency Prop-Firm Trading Guide | BTCMLTAI',

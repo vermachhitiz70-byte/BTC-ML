@@ -12,6 +12,26 @@
     '<svg class="fb-ic-close" viewBox="0 0 24 24" aria-hidden="true">' +
     '<path d="M6 6l12 12M18 6L6 18"/></svg>';
 
+  /* business hours helper */
+  function nowInDubai() {
+    try {
+      return new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' }));
+    } catch (e) {
+      return new Date();
+    }
+  }
+  function isBusinessHours() {
+    const d = nowInDubai();
+    const day = d.getDay(); // 0=Sun
+    const hours = d.getHours() + d.getMinutes() / 60;
+    return day >= 1 && day <= 5 && hours >= 10 && hours < 17;
+  }
+  function businessHoursText() {
+    return isBusinessHours()
+      ? '<span class="fb-online-dot"></span> Support is online — chat now'
+      : 'Support is offline (Mon–Fri 10:00am – 5:00pm). We reply within 2–3 hours.';
+  }
+
   function el(tag, cls, html) {
     var d = document.createElement(tag);
     if (cls) d.className = cls;
@@ -47,7 +67,7 @@
       '<div class="fb-chat-head">' +
         '<span class="fb-chat-avatar">B</span>' +
         '<div class="fb-chat-headtext"><strong>BTCMLTAI Support</strong>' +
-        '<span id="fb-chat-status">Typically replies within 2 to 3 hours</span></div>' +
+        '<span id="fb-chat-status">' + businessHoursText() + '</span></div>' +
       '</div>' +
       '<div class="fb-chat-body" id="fb-chat-body"></div>' +
       '<div class="fb-chat-form" id="fb-chat-form">' +
@@ -88,7 +108,7 @@
       online = on;
       statusEl.innerHTML = on
         ? '<span class="fb-online-dot"></span> Admin is online — chat now'
-        : 'Admin is offline. Please wait and try after some time.';
+        : businessHoursText();
     }
     function fail(msg, input) {
       err.textContent = msg;
@@ -196,12 +216,41 @@
       if (open) {
         if (convoId) { showReply(); startPoll(); }
         else if (body.children.length === 0) {
-          say('Hi, how can I help you today?', 'bot');
+          say('Hi! Welcome to BTCMLTAI Support.', 'bot');
+          say('Our team is available Mon–Fri 10:00am – 5:00pm (Dubai Time). We reply within 2–3 hours.', 'bot');
           say('Please share your name, email, phone number and query below.', 'bot');
         }
         scrollDown();
       }
     });
+
+    /* auto-open after 2 seconds with welcome message */
+    var autoOpenDone = store('btcmlai_chat_auto_opened');
+    if (!autoOpenDone) {
+      var autoTimer = setTimeout(function () {
+        if (panel.classList.contains('fb-chat-show')) return;
+        panel.classList.add('fb-chat-show');
+        btn.classList.add('fb-chat-open');
+        panel.setAttribute('aria-hidden', 'false');
+        if (body.children.length === 0) {
+          say('Hi! Welcome to BTCMLTAI Support.', 'bot');
+          say('Our team is available Mon–Fri 10:00am – 5:00pm (Dubai Time). We reply within 2–3 hours.', 'bot');
+          say('Please share your name, email, phone number and query below.', 'bot');
+          var dismiss = el('button', 'fb-chat-dismiss', '× Don\'t show again');
+          dismiss.type = 'button';
+          dismiss.title = 'Dismiss welcome';
+          dismiss.addEventListener('click', function () {
+            store('btcmlai_chat_auto_opened', true);
+            panel.classList.remove('fb-chat-show');
+            btn.classList.remove('fb-chat-open');
+            panel.setAttribute('aria-hidden', 'true');
+          });
+          body.appendChild(dismiss);
+        }
+        scrollDown();
+        store('btcmlai_chat_auto_opened', true);
+      }, 2000);
+    }
     panel.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         panel.classList.remove('fb-chat-show');

@@ -5,8 +5,9 @@ import {
 } from './site/ui';
 import {
   Cpu, ChartBar, BookOpen, Headset, CircleQuestionMark, Wallet, ShieldCheck,
-  CircleAlert, PackageCheck, Clock, Zap, Gauge, Layers, Target,
+  CircleAlert, Clock, Zap, Gauge, Layers, Target,
 } from 'lucide-react';
+import { TiltImage } from './site/motion';
 import { getStoreProducts, productImage } from '@/lib/products';
 import { POSTS } from '@/lib/site-content';
 
@@ -38,7 +39,6 @@ const POSITIONING = [
 export default async function HomePage() {
   const products = await getStoreProducts();
   const featured = products.slice(0, 3);
-  const lead = products[0];
 
   return (
     <PageShell active="/">
@@ -62,22 +62,17 @@ export default async function HomePage() {
               <Btn size="lg" variant="onDark" href="/terms-condition">View Risk Disclosure</Btn>
             </div>
             <div className="bs-hero-stats">
-              <div className="bs-hero-stat"><b>MT4 &amp; MT5</b><span>Supported platforms</span></div>
+              <div className="bs-hero-stat"><b>MT5</b><span>Supported platform</span></div>
               <div className="bs-hero-stat"><b>2–3 hours</b><span>Typical support reply</span></div>
               <div className="bs-hero-stat"><b>Instant</b><span>Digital delivery</span></div>
             </div>
           </div>
 
-          <div className="bs-hero-art">
-            <img
-              src={lead ? productImage(lead.image) : '/assets/images/products/btcml.jpg'}
-              alt={lead ? lead.name : 'BTCMLTAI software'}
-              width={520}
-              height={520}
+          <div className="bs-hero-art bs-hero-art--bare">
+            <TiltImage
+              src="/assets/images/hero-btcmlt-ai-2.png"
+              alt="BTCMLT AI 2.0 — AI powered MT5 trading system"
             />
-            <span className="bs-hero-badge">
-              <PackageCheck size={15} aria-hidden="true" /> Instant digital delivery · installation guidance included
-            </span>
           </div>
         </div>
       </section>
@@ -94,7 +89,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- SOLUTIONS ---------------- */}
+      {/* ---------------- SOLUTIONS — BENEFITS WHEEL ---------------- */}
       <section className="bs-section">
         <div className="bs-container">
           <SectionHead
@@ -102,13 +97,32 @@ export default async function HomePage() {
             title="Explore Trading Software and Analysis Tools"
             sub="Review product features, compatibility, licence terms, pricing, and risk information before purchase."
           />
-          <div className="bs-features">
-            {SOLUTIONS.map((s) => (
-              <Card key={s.title} hover className="bs-feature bs-reveal">
-                <Tile icon={s.icon} tone={s.tone} size="lg" />
+          <div className="bs-wheel">
+            <div className="bs-wheel-core" aria-hidden="true">
+              <span className="bs-wheel-disc" />
+              <span className="bs-wheel-node bs-wheel-node--blue" />
+              <span className="bs-wheel-node bs-wheel-node--emerald" />
+              <span className="bs-wheel-node bs-wheel-node--purple" />
+              <span className="bs-wheel-node bs-wheel-node--amber" />
+              <span className="bs-wheel-hub">
+                <img src="/assets/images/btcmlai-logo.png" alt="" width={38} height={38} />
+                <b>BTCMLTAI</b>
+                <span>Trading Software</span>
+              </span>
+            </div>
+            <i className="bs-wheel-arm bs-wheel-arm--1" aria-hidden="true" />
+            <i className="bs-wheel-arm bs-wheel-arm--2" aria-hidden="true" />
+            <i className="bs-wheel-arm bs-wheel-arm--3" aria-hidden="true" />
+            <i className="bs-wheel-arm bs-wheel-arm--4" aria-hidden="true" />
+            {SOLUTIONS.map((s, i) => (
+              <article key={s.title} className={`bs-benefit bs-benefit--${i + 1} bs-reveal`}>
+                <div className="bs-benefit-top">
+                  <Tile icon={s.icon} tone={s.tone} size="lg" />
+                  <span className="bs-benefit-num">{String(i + 1).padStart(2, '0')}</span>
+                </div>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
-              </Card>
+              </article>
             ))}
           </div>
         </div>

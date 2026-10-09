@@ -1,7 +1,108 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { useEffect, useState, useMemo } from 'react';
+import { ChevronRight, TrendingUp, TrendingDown } from 'lucide-react';
+import Script from 'next/script';
+
+/* ---------- live market ticker (TradingView tape widget) — full bar ---------- */
+export function LiveMarketTicker() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 800);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <>
+      <div className="bs-market-ticker-wrap" aria-label="Market watch">
+        <div className="bs-market-ticker-label">
+          <span className="bs-market-pulse" aria-hidden="true"></span>
+          <span>MARKET WATCH</span>
+        </div>
+        <div className="bs-market-ticker-widget">
+          {ready ? (
+            <tv-ticker-tape
+              id="bsLiveMarketTicker"
+              symbols="BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,OANDA:XAUUSD,NASDAQ:AAPL,NASDAQ:NVDA,NASDAQ:TSLA,NASDAQ:MSFT,FOREXCOM:SPXUSD"
+              item-size="compact"
+              theme="dark"
+              transparent
+            >
+              <div className="bs-market-loading">Loading market data…</div>
+            </tv-ticker-tape>
+          ) : (
+            <div className="bs-market-loading">Loading market data…</div>
+          )}
+          <div className="bs-market-click-guard" aria-hidden="true"></div>
+        </div>
+      </div>
+      <Script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js" />
+    </>
+  );
+}
+
+/* ---------- live price ticker (scrolling marquee) ---------- */
+export function LiveTicker() {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchPrices() {
+      try {
+        const res = await fetch('/api/ticker', { cache: 'no-store' });
+        if (!res.ok) throw new Error('ticker fetch failed');
+        const data = await res.json();
+        if (!cancelled) {
+          setItems(data.items || []);
+          setLoading(false);
+        }
+      } catch (e) {
+        console.error('[LiveTicker] fetch error:', e);
+        if (!cancelled) setLoading(false);
+      }
+    }
+    fetchPrices();
+    const interval = setInterval(fetchPrices, 60000);
+    return () => { cancelled = true; clearInterval(interval); };
+  }, []);
+
+  /* duplicate list for seamless loop */
+  const trackItems = useMemo(() => [...items, ...items], [items]);
+
+  if (loading || !items.length) return null;
+
+  return (
+    <div className="bs-ticker" aria-live="polite" aria-label="Live market prices">
+      <div className="bs-ticker-track">
+        {trackItems.map((it, idx) => (
+          <span key={`${it.symbol}-${idx}`} className="bs-ticker-item">
+            <span className="bs-ticker-symbol">{it.symbol}</span>
+            <span className={`bs-ticker-price ${it.up ? 'up' : 'down'}`}>
+              {it.price ? formatPrice(it.symbol, it.price) : '—'}
+            </span>
+            {it.change !== 0 && (
+              <span className={`bs-ticker-change ${it.up ? 'up' : 'down'}`}>
+                {it.up ? <TrendingUp size={11} /> : <TrendingDown size={11} />}
+                {Math.abs(it.change).toFixed(2)}%
+              </span>
+            )}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function formatPrice(symbol, price) {
+  if (symbol === 'BTC') return `$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (symbol === 'ETH') return `$${price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  /* forex pairs */
+  if (price >= 100) return price.toFixed(2);      // USDJPY ~150
+  if (price >= 1) return price.toFixed(4);        // EURUSD, GBPUSD, etc.
+  return price.toFixed(5);
+}
 
 /* ---------- floating particle field (admin's #particles-bg, client-built) ---------- */
 export function ParticleField({ count = 18 }) {
@@ -36,15 +137,21 @@ export function ParticleField({ count = 18 }) {
   );
 }
 
-/* ---------- reveal-on-scroll for .bs-reveal children ---------- */
+/* ---------- reveal-on-scroll for .bs-reveal children ----------
+   Safety: a fallback timer reveals everything even if
+   IntersectionObserver never fires, so content can never stay hidden. */
 export function RevealOnScroll() {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll('.bs-reveal'));
     if (!els.length) return;
+
+    const revealAll = () => els.forEach((el) => el.classList.add('is-in'));
+
     if (typeof IntersectionObserver === 'undefined') {
-      els.forEach((el) => el.classList.add('is-in'));
+      revealAll();
       return;
     }
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
@@ -57,7 +164,13 @@ export function RevealOnScroll() {
       { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
     );
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const fallback = setTimeout(revealAll, 1500);
+
+    return () => {
+      clearTimeout(fallback);
+      io.disconnect();
+    };
   });
   return null;
 }
@@ -178,4 +291,51 @@ export function CartBadge() {
     };
   }, []);
   return null;
+}
+
+/* ============================================================
+   TILT IMAGE — 3D mouse tilt for the hero art.
+   Gold aura follows the cutout shape, flare + pedestal glow
+   behind it, cursor-tracked glare on top.
+   ============================================================ */
+export function TiltImage({ src, alt, width = 520, height = 520 }) {
+  const [t, setT] = useState({ rx: 0, ry: 0, gx: 50, gy: 50, live: false });
+  const reduceMotion =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function onMove(e) {
+    if (reduceMotion) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    setT({ rx: (0.5 - py) * 14, ry: (px - 0.5) * 18, gx: px * 100, gy: py * 100, live: true });
+  }
+  function onLeave() {
+    setT({ rx: 0, ry: 0, gx: 50, gy: 50, live: false });
+  }
+
+  return (
+    <div className="bs-hero-stage" onMouseMove={onMove} onMouseLeave={onLeave}>
+      <div className="bs-hero-flare" aria-hidden="true" />
+      <div className="bs-hero-ring" aria-hidden="true" />
+      <div className="bs-hero-float">
+        <div
+          className={`bs-tilt${t.live ? ' is-live' : ''}`}
+          style={{ transform: `rotateX(${t.rx}deg) rotateY(${t.ry}deg)` }}
+        >
+          <img src={src} alt={alt} width={width} height={height} />
+          <span
+            className={`bs-tilt-glare${t.live ? ' is-on' : ''}`}
+            aria-hidden="true"
+            style={{
+              background: `radial-gradient(circle at ${t.gx}% ${t.gy}%, rgba(255, 226, 122, 0.30), transparent 55%)`,
+            }}
+          />
+        </div>
+      </div>
+      <div className="bs-hero-pedestal" aria-hidden="true" />
+    </div>
+  );
 }

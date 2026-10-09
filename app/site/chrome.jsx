@@ -2,9 +2,9 @@ import Script from 'next/script';
 import Link from 'next/link';
 import {
   House, Info, ShoppingBag, BookOpen, CircleQuestionMark, Headset, GalleryHorizontalEnd,
-  ShieldCheck, Zap, Clock, Wallet,
+  ShieldCheck, Zap, Clock, Wallet, MessageSquare,
 } from 'lucide-react';
-import { ParticleField, RevealOnScroll, BackToTop, MobileNav, CartBadge } from './motion';
+import { ParticleField, RevealOnScroll, BackToTop, MobileNav, CartBadge, LiveMarketTicker } from './motion';
 
 /* re-exported so page files can pull the whole page kit from one place */
 export { PageHero, Breadcrumb } from './ui';
@@ -37,7 +37,7 @@ const ORG_ID = 'https://btcmltai.com/#organization';
 const SITE_ID = 'https://btcmltai.com/#website';
 
 const ORG_DESCRIPTION =
-  'BTCMLTAI provides rule-based MT4/MT5 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.';
+  'BTCMLTAI provides rule-based MT5 trading software, market-analysis tools, general educational video guides, digital delivery, installation guidance, and customer support. Review compatibility, licence terms, product information, and risk disclosures before purchase.';
 
 export function SiteJsonLd() {
   return (
@@ -87,21 +87,12 @@ export function SiteScripts({ cart = true, chat = true }) {
   );
 }
 
-/* ---------- top utility bar ---------- */
+/* ---------- top bar: full-width live market watch ---------- */
 export function TopBar() {
   return (
     <div className="bs-topbar">
       <div className="bs-topbar-inner">
-        <ul className="bs-topbar-list">
-          <li><span><span className="bs-topbar-dot" />Support replies within 2–3 hours</span></li>
-          <li className="bs-topbar-list--hide">Digital delivery &middot; MT4 &amp; MT5</li>
-        </ul>
-        <ul className="bs-topbar-list bs-topbar-list--hide">
-          <li><a href="/faqs">FAQs</a></li>
-          <li><a href="/shipping-policy">Delivery</a></li>
-          <li><a href="/terms-condition">Terms</a></li>
-          <li><span className="bs-topbar-gold">No client funds &middot; No guaranteed returns</span></li>
-        </ul>
+        <LiveMarketTicker />
       </div>
     </div>
   );
@@ -137,6 +128,7 @@ export function SiteHeader({ active = '' }) {
         </nav>
 
         <div className="bs-header-actions">
+          <Link href="/contact" className="bs-nav-link" data-fb-chat>Live Chat</Link>
           <Link href="/account" className="bs-nav-link" aria-label="My account">Account</Link>
           <Link href="/cart" className="bs-cart-pill" aria-label="Cart">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -242,7 +234,7 @@ export function PageShell({ active = '', cart = true, chat = true, children }) {
     <div className="bs-page">
       <link rel="icon" href="/assets/images/btcmlai-logo.png" type="image/png" />
       <link rel="apple-touch-icon" href="/assets/images/btcmlai-logo.png" />
-      <link rel="stylesheet" href="/assets/css/btc-site.css?v=1" />
+      <link rel="stylesheet" href="/assets/css/btc-site.css?v=3" />
       <ParticleField />
       <TopBar />
       <SiteHeader active={active} />
