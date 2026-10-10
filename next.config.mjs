@@ -7,6 +7,8 @@ export default {
       { source: '/register', destination: '/signup', permanent: true },
       { source: '/products/btc-x-ea-mt5', destination: '/products/btc-mlt-ai', permanent: true },
       { source: '/products/galaxy-prop-firm-ea-mt5', destination: '/products/currency', permanent: true },
+      { source: '/checkout/btc-x-ea-mt5', destination: '/checkout/btc-mlt-ai', permanent: true },
+      { source: '/checkout/galaxy-prop-firm-ea-mt5', destination: '/checkout/currency', permanent: true },
     ];
   },
 };
