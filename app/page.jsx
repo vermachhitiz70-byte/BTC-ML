@@ -77,18 +77,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- RISK STRIP ---------------- */}
-      <section className="bs-section bs-section--tight">
-        <div className="bs-container">
-          <RiskNote>
-            <b>Risk Warning:</b> Trading involves a high risk of loss. Our products are digital
-            software, analysis tools, and general educational materials. They are not personalised
-            investment recommendations, brokerage, portfolio-management, or investment services and
-            do not guarantee any financial result.
-          </RiskNote>
-        </div>
-      </section>
-
       {/* ---------------- SOLUTIONS — 4 PRODUCT BENEFITS ---------------- */}
       <section className="bs-section bs-section--tint">
         <div className="bs-container">
