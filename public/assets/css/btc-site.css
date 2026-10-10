@@ -1156,6 +1156,46 @@ a { color: inherit; }
   .bs-hex-box::before { top: -13px; left: 50%; right: auto; transform: translateX(-50%); }
 }
 
+/* ============================================================
+   FEATURE TIMELINE — alternating boxes on a dashed spine
+   ============================================================ */
+.bs-tl { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1200px; margin: 0 auto; }
+.bs-tl::before { content: ""; position: absolute; top: 205px; left: 46px; right: 46px; border-top: 2px dashed #b9c4d0; }
+.bs-tl-item { position: relative; display: flex; flex-direction: column; align-items: center; }
+.bs-tl-item--1 { --tc: #0f3d5e; }
+.bs-tl-item--2 { --tc: #1b9bd7; }
+.bs-tl-item--3 { --tc: #22b8cf; }
+.bs-tl-item--4 { --tc: #f5b800; }
+.bs-tl-item--5 { --tc: #e2574c; }
+.bs-tl-item--6 { --tc: #c2185b; }
+.bs-tl-slot { min-height: 132px; display: flex; width: 100%; justify-content: center; }
+.bs-tl-slot--top { align-items: flex-end; padding-bottom: 2px; }
+.bs-tl-slot--bot { align-items: flex-start; padding-top: 2px; }
+.bs-tl-box { display: block; background: #eef1f5; border-radius: 8px; padding: 12px 14px; font-size: 13px; line-height: 1.6; color: #42546b; text-align: center; max-width: 210px; }
+.bs-tl-link { position: relative; width: 2px; height: 18px; background: #c3ccd5; flex: none; }
+.bs-tl-link::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 11px; height: 11px; border-radius: 50%; background: var(--tc); border: 2px solid #fff; box-shadow: 0 2px 6px rgba(15, 44, 77, 0.25); }
+.bs-tl-ball {
+  position: relative;
+  z-index: 1;
+  width: 110px;
+  height: 110px;
+  flex: none;
+  border-radius: 50%;
+  color: #fff;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), transparent 55%), var(--tc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9), 0 14px 28px rgba(15, 44, 77, 0.22), inset 0 -8px 16px rgba(0, 0, 0, 0.22);
+}
+@media (max-width: 1024px) {
+  .bs-tl { grid-template-columns: repeat(3, 1fr); gap: 30px 12px; }
+  .bs-tl::before { display: none; }
+}
+@media (max-width: 640px) {
+  .bs-tl { grid-template-columns: 1fr; max-width: 360px; gap: 26px; }
+}
+
 .bs-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
 .bs-checklist li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--bs-ink); }
 .bs-checklist svg { flex: 0 0 auto; margin-top: 2px; color: var(--bs-emerald-deep); }

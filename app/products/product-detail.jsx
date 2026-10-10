@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   CircleAlert, Clock, PackageCheck, ShieldCheck, Zap, CircleCheck,
+  SlidersHorizontal, Scale, Layers, Lock, Ban,
 } from 'lucide-react';
 import { PageShell, PageHero, JsonLd } from '../site/chrome';
 import { Btn, Card, Chip, Accordion, Specs, SectionHead, CheckList, RiskNote, Tile } from '../site/ui';
@@ -113,14 +114,35 @@ function ProductDetailInner({ product, content, others }) {
         <section className="bs-section">
           <div className="bs-container">
             <SectionHead eyebrow="Key features" title={`What ${content.name} does`} />
-            <div className="bs-features">
-              {content.features.map((f, i) => (
-                <Card key={f} hover>
-                  <Tile icon={CircleCheck} tone={['blue', 'emerald', 'purple'][i % 3]} />
-                  <p style={{ margin: '14px 0 0', fontSize: 14, lineHeight: 1.7, color: 'var(--bs-muted)' }}>{f}</p>
-                </Card>
-              ))}
-            </div>
+            {content.features.length <= 6 ? (
+              <div className="bs-tl">
+                {content.features.map((f, i) => {
+                  const Icon = [SlidersHorizontal, Scale, Layers, Lock, Ban, Clock][i % 6];
+                  return (
+                    <div key={f.slice(0, 24)} className={`bs-tl-item bs-tl-item--${(i % 6) + 1} bs-reveal`}>
+                      <div className="bs-tl-slot bs-tl-slot--top">
+                        {i % 2 === 0 ? <span className="bs-tl-box">{f}</span> : null}
+                      </div>
+                      <span className="bs-tl-link" aria-hidden="true" />
+                      <span className="bs-tl-ball"><Icon size={40} strokeWidth={1.5} /></span>
+                      <span className="bs-tl-link" aria-hidden="true" />
+                      <div className="bs-tl-slot bs-tl-slot--bot">
+                        {i % 2 === 1 ? <span className="bs-tl-box">{f}</span> : null}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="bs-features">
+                {content.features.map((f, i) => (
+                  <Card key={f} hover>
+                    <Tile icon={CircleCheck} tone={['blue', 'emerald', 'purple'][i % 3]} />
+                    <p style={{ margin: '14px 0 0', fontSize: 14, lineHeight: 1.7, color: 'var(--bs-muted)' }}>{f}</p>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       ) : null}
