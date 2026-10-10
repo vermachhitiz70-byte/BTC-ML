@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PageShell, PageHero, JsonLd } from '../site/chrome';
-import { Btn, Card, SectionHead, Stats, RiskNote, Tile } from '../site/ui';
+import { Btn, Card, SectionHead, Stats, RiskNote } from '../site/ui';
 import { CircleQuestionMark, Cpu, Gauge, Layers, ShieldCheck, Wallet, Zap } from 'lucide-react';
 import { getStoreProducts, productImage } from '@/lib/products';
 
@@ -87,19 +87,31 @@ export default async function ShopPage() {
             title="Review product requirements"
             sub="Make sure your setup meets these requirements for optimal performance."
           />
-          <div className="bs-features">
+          <div className="bs-hex">
             {[
               { icon: Cpu, title: 'Platform', text: 'MetaTrader 5 (MT5) — build 3300 or newer.' },
               { icon: Gauge, title: 'Account type', text: 'Hedging enabled, leverage 1:100 or higher, and enough margin for your lot settings.' },
               { icon: Zap, title: 'VPS', text: 'A low-latency VPS is recommended so the system runs 24/7 without interruptions.' },
               { icon: Layers, title: 'Instruments', text: 'BTCUSD, XAUUSD and major Forex pairs depending on the product you choose.' },
-            ].map((f) => (
-              <Card key={f.title} hover className="bs-feature">
-                <Tile icon={f.icon} tone="blue" size="lg" />
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
-              </Card>
-            ))}
+            ].map((f, i) => {
+              const Icon = f.icon;
+              const left = i % 2 === 1;
+              const banner = (
+                <div className={`bs-hex-box bs-hex-box--${left ? 'l' : 'r'}`}>
+                  <b>{f.title}</b>
+                  <p>{f.text}</p>
+                </div>
+              );
+              return (
+                <div key={f.title} className={`bs-hex-row bs-hex-row--${i + 1} bs-reveal`}>
+                  <div className="bs-hex-cell">{left ? banner : null}</div>
+                  <div className="bs-hex-cell bs-hex-cell--mid">
+                    <span className="bs-hex-node"><Icon size={38} strokeWidth={1.6} /></span>
+                  </div>
+                  <div className="bs-hex-cell">{left ? null : banner}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
