@@ -6,9 +6,11 @@ const TABLES = {
   testimonials: ['name', 'text', 'rating', 'active'],
   faqs: ['question', 'answer', 'sort_order', 'active'],
   policies: ['slug', 'title', 'body'],
+  notices: ['image', 'title', 'description', 'link_label', 'link_url', 'sort_order', 'active'],
 };
 
 function numFields(t) {
+  if (t === 'notices') return ['sort_order', 'active'];
   return t === 'slides' ? ['sort_order', 'active'] : t === 'testimonials' ? ['rating', 'active'] : t === 'faqs' ? ['sort_order', 'active'] : [];
 }
 

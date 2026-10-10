@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { Button, Input, Textarea, Select, Label, Card, Modal, Chip } from './ui';
 import { ImageInput } from './ImageInput';
 import { RichTextEditor } from './RichTextEditor';
-import { Plus, Search, Trash, Pencil, X, CheckCheck, Image as IconImage, Info, Copy, Download } from 'lucide-react';
+import { Plus, Search, Trash, Pencil, X, CheckCheck, Image as IconImage, Info, Copy, Download, Eye, EyeOff } from 'lucide-react';
 
 export function formatDate(v) {
   if (!v) return '—';
@@ -266,6 +266,179 @@ export function ProductsManager({ fields }) {
       <Modal open={open} onClose={() => setOpen(false)} title={editing?.id ? 'Edit Product' : 'New Product'} wide>
         {editing && (
           <ProductForm fields={fields} editing={editing} setEditing={setEditing}
+            onSubmit={submit} saving={save.isPending} onClose={() => setOpen(false)} />
+        )}
+      </Modal>
+    </div>
+  );
+}
+
+/* ================= NOTICES ================= */
+const NOTICE_FIELDS = [
+  { name: 'image', label: 'Image', type: 'image', placeholder: '/assets/images/notices/….png or full URL' },
+  { name: 'title', label: 'Title', required: true, placeholder: 'Silver — Coming Soon' },
+  { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Short notice text shown under the title' },
+  { name: 'link_label', label: 'Link Label', placeholder: 'View Product' },
+  { name: 'link_url', label: 'Link URL', placeholder: '/products/btc-mlt-ai' },
+  { name: 'sort_order', label: 'Sort Order', type: 'number', placeholder: '0' },
+  { name: 'active', label: 'Active', type: 'checkbox' },
+];
+
+export function NoticesManager() {
+  const qc = useQueryClient();
+  const [editing, setEditing] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [deleteId, setDeleteId] = useState(null);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['admin-notices'],
+    queryFn: async () => {
+      const res = await fetch('/api/admin/content/notices', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load notices');
+      const json = await res.json();
+      return json.rows || [];
+    },
+  });
+
+  const save = useMutation({
+    mutationFn: async (form) => {
+      const { id, ...payload } = form;
+      payload.sort_order = Number(payload.sort_order) || 0;
+      payload.active = Number(payload.active) || 0;
+      const method = id ? 'PATCH' : 'POST';
+      const res = await fetch('/api/admin/content/notices', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(id ? { id, ...payload } : payload),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.error || 'Save failed');
+      }
+    },
+    onSuccess: () => { toast.success('Notice saved'); qc.invalidateQueries({ queryKey: ['admin-notices'] }); setOpen(false); },
+    onError: (e) => toast.error(String(e.message || e)),
+  });
+
+  const remove = useMutation({
+    mutationFn: async (id) => {
+      const res = await fetch(`/api/admin/content/notices?id=${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+    },
+    onSuccess: () => { toast.success('Notice deleted'); qc.invalidateQueries({ queryKey: ['admin-notices'] }); setDeleteId(null); },
+    onError: (e) => toast.error(String(e.message || e)),
+  });
+
+  const toggleActive = useMutation({
+    mutationFn: async (n) => {
+      const res = await fetch('/api/admin/content/notices', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: n.id, active: n.active ? 0 : 1 }),
+      });
+      if (!res.ok) throw new Error('Update failed');
+    },
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ['admin-notices'] }); },
+    onError: (e) => toast.error(String(e.message || e)),
+  });
+
+  const items = (data || []).filter((p) => matchesSearch(p, search));
+
+  function blank() {
+    const init = {};
+    for (const f of NOTICE_FIELDS) init[f.name] = f.type === 'checkbox' ? 0 : '';
+    return init;
+  }
+
+  function submit(e) {
+    e.preventDefault();
+    if (editing) save.mutate(editing);
+  }
+
+  return (
+    <div>
+      <div className="adm-pagehead">
+        <div>
+          <h2>Notice Board</h2>
+          <p>{(data || []).length} notice{(data || []).length !== 1 ? 's' : ''} — first 3 active show in the hero slider</p>
+        </div>
+        <Button onClick={() => { setEditing(blank()); setOpen(true); }}>
+          <Plus size={16} /> Add Notice
+        </Button>
+      </div>
+
+      {(data || []).length > 3 && <SearchBox value={search} onChange={setSearch} />}
+
+      <Card className="adm-table-card">
+        {isLoading ? (
+          <div className="adm-table-empty">Loading notices…</div>
+        ) : (
+          <div className="adm-table-wrap">
+            <table className="adm-table">
+              <thead>
+                <tr>
+                  <th style={{ width: 72 }}>Image</th>
+                  <th>Notice</th>
+                  <th>Link</th>
+                  <th>Order</th>
+                  <th>Status</th>
+                  <th className="adm-th-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((n) => (
+                  <tr key={n.id}>
+                    <td>
+                      {n.image ? (
+                        <img src={n.image} alt="" className="adm-thumb" onError={(e) => { e.target.style.display = 'none'; }} />
+                      ) : (
+                        <span className="adm-thumb adm-thumb--empty"><IconImage size={20} /></span>
+                      )}
+                    </td>
+                    <td>
+                      <div className="adm-cell-main">{n.title}</div>
+                      <div className="adm-cell-sub">{String(n.description || '').slice(0, 80)}</div>
+                    </td>
+                    <td>
+                      <div className="adm-cell-main">{n.link_label || '—'}</div>
+                      <div className="adm-cell-sub">{n.link_url || ''}</div>
+                    </td>
+                    <td>{n.sort_order ?? 0}</td>
+                    <td><StatusChip value={n.active ? 'active' : 'draft'} /></td>
+                    <td className="adm-td-right">
+                      <div className="adm-row-actions">
+                        <button type="button" className="adm-iconbtn" title={n.active ? 'Hide notice' : 'Show notice'}
+                          onClick={() => toggleActive.mutate(n)}>
+                          {Number(n.active) ? <Eye size={16} /> : <EyeOff size={16} />}
+                        </button>
+                        <button type="button" className="adm-iconbtn" title="Edit notice"
+                          onClick={() => { setEditing({ ...n }); setOpen(true); }}>
+                          <Pencil size={16} />
+                        </button>
+                        <button type="button" className="adm-iconbtn adm-iconbtn--danger" title="Delete notice"
+                          onClick={() => setDeleteId(n.id)}>
+                          <Trash size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {items.length === 0 && (
+                  <tr><td colSpan={6} className="adm-table-empty">{search ? 'No notices match your search.' : 'No notices yet.'}</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Card>
+
+      <DeleteConfirm id={deleteId} onClose={() => setDeleteId(null)} busy={remove.isPending}
+        what="this notice" onConfirm={(id) => remove.mutate(id)} />
+
+      <Modal open={open} onClose={() => setOpen(false)} title={editing?.id ? 'Edit Notice' : 'New Notice'} wide>
+        {editing && (
+          <ProductForm fields={NOTICE_FIELDS} editing={editing} setEditing={setEditing}
             onSubmit={submit} saving={save.isPending} onClose={() => setOpen(false)} />
         )}
       </Modal>

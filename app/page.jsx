@@ -7,8 +7,9 @@ import {
   Cpu, ChartBar, BookOpen, Headset, CircleQuestionMark, Wallet, ShieldCheck,
   CircleAlert, Clock, Zap, Gauge, Layers, Target,
 } from 'lucide-react';
-import { TiltImage } from './site/motion';
+import { TiltImage, NoticeBoard } from './site/motion';
 import { getStoreProducts, productImage } from '@/lib/products';
+import { getNotices } from '@/lib/notices';
 import { POSTS } from '@/lib/site-content';
 
 export const dynamic = 'force-dynamic';
@@ -39,6 +40,7 @@ const POSITIONING = [
 export default async function HomePage() {
   const products = await getStoreProducts();
   const featured = products.slice(0, 3);
+  const notices = await getNotices(3);
 
   return (
     <PageShell active="/">
@@ -75,6 +77,7 @@ export default async function HomePage() {
             />
           </div>
         </div>
+        <NoticeBoard items={notices} />
       </section>
 
       {/* ---------------- SOLUTIONS — 4 PRODUCT BENEFITS ---------------- */}

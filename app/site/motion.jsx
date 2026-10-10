@@ -339,3 +339,75 @@ export function TiltImage({ src, alt, width = 520, height = 520 }) {
     </div>
   );
 }
+
+/* ---------- hero notice board (admin-driven slider, memory-only dismiss) ---------- */
+let noticeDismissed = false;
+
+export function NoticeBoard({ items }) {
+  const list = Array.isArray(items) ? items : [];
+  const count = list.length;
+  const [index, setIndex] = useState(0);
+  const [gone, setGone] = useState(noticeDismissed);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (!count || gone || paused) return;
+    const t = setInterval(() => setIndex((i) => (i + 1) % count), 5000);
+    return () => clearInterval(t);
+  }, [count, gone, paused]);
+
+  if (!count || gone) return null;
+  const n = list[index % count];
+  const go = (d) => setIndex((i) => (i + d + count) % count);
+  const dismiss = () => { noticeDismissed = true; setGone(true); };
+
+  return (
+    <div
+      className="bs-notice"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      role="region"
+      aria-label="Latest notices"
+    >
+      <button type="button" className="bs-notice-x" aria-label="Dismiss notices" onClick={dismiss}>
+        ×
+      </button>
+      {n.image ? (
+        <div className="bs-notice-media" key={'m' + n.id}>
+          <img src={n.image} alt="" loading="lazy" />
+        </div>
+      ) : null}
+      <div className="bs-notice-body" key={'b' + n.id}>
+        <div className="bs-notice-titlerow">
+          <h3>{n.title}</h3>
+          {n.link_url ? (
+            <a className="bs-notice-ext" href={n.link_url} aria-label={n.link_label || n.title}>↗</a>
+          ) : null}
+        </div>
+        {n.description ? <p>{n.description}</p> : null}
+        {n.link_url && n.link_label ? (
+          <a className="bs-notice-cta" href={n.link_url}>{n.link_label}</a>
+        ) : null}
+        <div className="bs-notice-foot">
+          <div className="bs-notice-dots" role="tablist" aria-label="Choose notice">
+            {list.map((it, i) => (
+              <button
+                key={it.id}
+                type="button"
+                role="tab"
+                aria-selected={i === index % count}
+                aria-label={'Notice ' + (i + 1)}
+                className={i === index % count ? 'is-on' : ''}
+                onClick={() => setIndex(i)}
+              />
+            ))}
+          </div>
+          <div className="bs-notice-nav">
+            <button type="button" aria-label="Previous notice" onClick={() => go(-1)}>‹</button>
+            <button type="button" aria-label="Next notice" onClick={() => go(1)}>›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

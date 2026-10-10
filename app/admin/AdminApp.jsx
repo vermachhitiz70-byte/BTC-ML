@@ -6,11 +6,11 @@ import { toast } from 'sonner';
 import {
   LayoutDashboard, Package, ShoppingBag, MessageSquare, Users, Mail,
   Settings, ChevronLeft, ChevronRight, Database, ExternalLink,
-  LogOut, Eye, EyeOff, Search, CheckCircle
+  LogOut, Eye, EyeOff, Search, CheckCircle, Megaphone
 } from 'lucide-react';
 import { Button, Select, Input, Label } from './ui';
 import { Overview } from './Overview';
-import { ProductsManager, OrdersManager, LeadsManager } from './ResourceManager';
+import { ProductsManager, OrdersManager, LeadsManager, NoticesManager } from './ResourceManager';
 import { SettingsPanel } from './Settings';
 import { ChatPanel } from './ChatPanel';
 import { MessagesManager } from './MessagesPanel';
@@ -39,6 +39,7 @@ const NAV = [
   { id: 'leads', label: 'Leads', icon: Users, tile: 'adm-nav-tile--purple', sub: 'Contact & chatbot enquiries' },
   { id: 'messages', label: 'Messages', icon: Mail, tile: 'adm-nav-tile--gold', sub: 'Contact form submissions' },
   { id: 'chat', label: 'Live Chat', icon: MessageSquare, tile: 'adm-nav-tile--pink', sub: 'Reply to visitors in real time' },
+  { id: 'notices', label: 'Notices', icon: Megaphone, tile: 'adm-nav-tile--gold', sub: 'Hero notice board slider' },
   { id: 'settings', label: 'Settings', icon: Settings, tile: 'adm-nav-tile--slate', sub: 'Payments, password & site config' },
 ];
 
@@ -303,6 +304,7 @@ function AdminContent() {
 {tab === 'leads' && <LeadsManager />}
       {tab === 'messages' && <MessagesManager />}
       {tab === 'chat' && <ChatPanel />}
+          {tab === 'notices' && <NoticesManager />}
           {tab === 'settings' && <SettingsPanel />}
         </main>
       </div>
