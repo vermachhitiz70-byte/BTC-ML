@@ -966,16 +966,17 @@ a { color: inherit; }
   position: relative;
   border-radius: 6px;
   background: var(--ben-bg);
+  border: 1px solid rgba(245, 197, 66, 0.28);
   padding: 80px 22px 28px;
   text-align: center;
-  box-shadow: 0 14px 30px rgba(15, 44, 77, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 18px 38px rgba(4, 12, 24, 0.30);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
-.bs-ben4-card--1 { --ben-bg: #42a1eb; --ben-ring: #b5d7f4; --ben-disc: #2f8fdd; }
-.bs-ben4-card--2 { --ben-bg: #2087dd; --ben-ring: #a6cdef; --ben-disc: #1b76c5; }
-.bs-ben4-card--3 { --ben-bg: #1560ad; --ben-ring: #8fb4dd; --ben-disc: #124f8f; }
-.bs-ben4-card--4 { --ben-bg: #0d3a64; --ben-ring: #7fa5c8; --ben-disc: #0a2f53; }
-.bs-ben4-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15, 44, 77, 0.18); }
+.bs-ben4-card--1 { --ben-bg: linear-gradient(180deg, #1b4a78, #12365c); --ben-ring: linear-gradient(180deg, #ffe27a, #e8b62a); --ben-disc: radial-gradient(circle at 35% 28%, #2f6396, #12365c 72%); }
+.bs-ben4-card--2 { --ben-bg: linear-gradient(180deg, #163e66, #0f2c4d); --ben-ring: linear-gradient(180deg, #ffe27a, #e8b62a); --ben-disc: radial-gradient(circle at 35% 28%, #2a5788, #0f2c4d 72%); }
+.bs-ben4-card--3 { --ben-bg: linear-gradient(180deg, #122f4f, #0b2140); --ben-ring: linear-gradient(180deg, #ffe27a, #e8b62a); --ben-disc: radial-gradient(circle at 35% 28%, #244a75, #0b2140 72%); }
+.bs-ben4-card--4 { --ben-bg: linear-gradient(180deg, #0d2540, #081a30); --ben-ring: linear-gradient(180deg, #ffe27a, #e8b62a); --ben-disc: radial-gradient(circle at 35% 28%, #1e3f63, #081a30 72%); }
+.bs-ben4-card:hover { transform: translateY(-4px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 24px 48px rgba(4, 12, 24, 0.38); }
 
 /* circle badge overlapping the card top edge */
 .bs-ben4-badge {
@@ -990,6 +991,7 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 12px 26px rgba(4, 12, 24, 0.35), inset 0 2px 3px rgba(255, 255, 255, 0.55), inset 0 -4px 8px rgba(120, 80, 0, 0.30);
 }
 .bs-ben4-badge::before {
   content: "";
@@ -998,9 +1000,11 @@ a { color: inherit; }
   left: 50%;
   transform: translateX(-50%);
   border: 8px solid transparent;
-  border-bottom: 11px solid var(--ben-ring);
+  border-bottom: 11px solid #f0c64c;
 }
 .bs-ben4-disc {
+  position: relative;
+  overflow: hidden;
   width: 108px;
   height: 108px;
   border-radius: 50%;
@@ -1009,14 +1013,28 @@ a { color: inherit; }
   align-items: center;
   justify-content: center;
   padding: 10px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.35), inset 0 -6px 12px rgba(0, 0, 0, 0.35), 0 6px 14px rgba(0, 0, 0, 0.30);
+}
+.bs-ben4-disc::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 18px;
+  right: 18px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35), transparent 70%);
+  pointer-events: none;
 }
 .bs-ben4-disc b {
+  position: relative;
   color: #fff;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
   line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
-.bs-ben4-card p { margin: 0; font-size: 13.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.95); }
+.bs-ben4-card p { margin: 0; font-size: 14px; line-height: 1.65; color: #ffffff; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); }
 
 /* responsive — 2 columns on tablet, 1 column on mobile */
 @media (max-width: 1080px) {
