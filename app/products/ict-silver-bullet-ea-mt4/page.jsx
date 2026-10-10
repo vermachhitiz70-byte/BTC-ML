@@ -5,7 +5,7 @@ export const revalidate = 600;
 export const metadata = {
   title: 'Silver | Coming Soon | BTCMLTAI',
   description: 'Silver is coming soon from BTCMLTAI — a disciplined, low-frequency Expert Advisor in final testing. Join the early list for launch updates.',
-  alternates: { canonical: 'https://btcmltai.com/products/ict-silver-bullet-ea-MT5' },
+  alternates: { canonical: 'https://btcmltai.com/products/ict-silver-bullet-ea-mt4' },
   openGraph: {
     title: 'Silver | Coming Soon | BTCMLTAI',
     description: 'Silver is coming soon from BTCMLTAI — a disciplined, low-frequency Expert Advisor in final testing.',
