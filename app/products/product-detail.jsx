@@ -9,7 +9,7 @@ import { Btn, Card, Chip, Accordion, Specs, SectionHead, CheckList, RiskNote, Ti
 import { PRODUCT_CONTENT } from './product-content';
 import { getStoreProducts, productImage } from '@/lib/products';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 600;
 
 function ProductDetailInner({ product, content, others }) {
   const isSoon = content.comingSoon || product.status === 'coming_soon';

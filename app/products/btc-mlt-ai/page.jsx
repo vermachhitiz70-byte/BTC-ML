@@ -1,6 +1,6 @@
 import ProductDetailRoute from '../product-detail';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 600;
 
 export const metadata = {
   title: 'BTC MLT AI | Automated BTCUSD Trading Software | BTCMLTAI',

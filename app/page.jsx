@@ -12,7 +12,7 @@ import { getStoreProducts, productImage } from '@/lib/products';
 import { getNotices } from '@/lib/notices';
 import { POSTS } from '@/lib/site-content';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 600;
 
 const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
 

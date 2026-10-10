@@ -4,7 +4,7 @@ import { Btn, Card, SectionHead, Stats, RiskNote } from '../site/ui';
 import { CircleQuestionMark, Cpu, Gauge, Layers, ShieldCheck, Wallet, Zap } from 'lucide-react';
 import { getStoreProducts, productImage } from '@/lib/products';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 600;
 
 const usd = (n) => `$${Number(n || 0).toLocaleString('en-US')}`;
 
