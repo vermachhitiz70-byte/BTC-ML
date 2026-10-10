@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import {
   CircleAlert, Clock, PackageCheck, ShieldCheck, Zap, CircleCheck,
-  SlidersHorizontal, Scale, Layers, Lock, Ban,
+  SlidersHorizontal, Scale, Layers, Lock, Ban, Globe,
 } from 'lucide-react';
 import { PageShell, PageHero, JsonLd } from '../site/chrome';
 import { Btn, Card, Chip, Accordion, Specs, SectionHead, CheckList, RiskNote, Tile } from '../site/ui';
@@ -114,12 +114,12 @@ function ProductDetailInner({ product, content, others }) {
         <section className="bs-section">
           <div className="bs-container">
             <SectionHead eyebrow="Key features" title={`What ${content.name} does`} />
-            {content.features.length <= 6 ? (
+            {content.features.length <= 8 ? (
               <div className="bs-tl">
                 {content.features.map((f, i) => {
-                  const Icon = [SlidersHorizontal, Scale, Layers, Lock, Ban, Clock][i % 6];
+                  const Icon = [SlidersHorizontal, Scale, Layers, Lock, Ban, Clock, Globe, ShieldCheck][i % 8];
                   return (
-                    <div key={f.slice(0, 24)} className={`bs-tl-item bs-tl-item--${(i % 6) + 1} bs-reveal`}>
+                    <div key={f.slice(0, 24)} className={`bs-tl-item bs-tl-item--${(i % 8) + 1} bs-reveal`}>
                       <div className="bs-tl-slot bs-tl-slot--top">
                         {i % 2 === 0 ? <span className="bs-tl-box">{f}</span> : null}
                       </div>

@@ -1159,7 +1159,7 @@ a { color: inherit; }
 /* ============================================================
    FEATURE TIMELINE — alternating boxes on a dashed spine
    ============================================================ */
-.bs-tl { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; max-width: 1200px; margin: 0 auto; }
+.bs-tl { position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 12px; max-width: 1200px; margin: 0 auto; }
 .bs-tl::before { content: ""; position: absolute; top: 205px; left: 46px; right: 46px; border-top: 2px dashed #b9c4d0; }
 .bs-tl-item { position: relative; display: flex; flex-direction: column; align-items: center; }
 .bs-tl-item--1 { --tc: #0f3d5e; }
@@ -1168,6 +1168,8 @@ a { color: inherit; }
 .bs-tl-item--4 { --tc: #f5b800; }
 .bs-tl-item--5 { --tc: #e2574c; }
 .bs-tl-item--6 { --tc: #c2185b; }
+.bs-tl-item--7 { --tc: #7c3aed; }
+.bs-tl-item--8 { --tc: #0ea5e9; }
 .bs-tl-slot { min-height: 132px; display: flex; width: 100%; justify-content: center; }
 .bs-tl-slot--top { align-items: flex-end; padding-bottom: 2px; }
 .bs-tl-slot--bot { align-items: flex-start; padding-top: 2px; }
@@ -1189,7 +1191,7 @@ a { color: inherit; }
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9), 0 14px 28px rgba(15, 44, 77, 0.22), inset 0 -8px 16px rgba(0, 0, 0, 0.22);
 }
 @media (max-width: 1024px) {
-  .bs-tl { grid-template-columns: repeat(3, 1fr); gap: 30px 12px; }
+  .bs-tl { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px 12px; }
   .bs-tl::before { display: none; }
 }
 @media (max-width: 640px) {
