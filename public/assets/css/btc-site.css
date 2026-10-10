@@ -1174,6 +1174,7 @@ a { color: inherit; }
 .bs-tl-slot--top { align-items: flex-end; padding-bottom: 2px; }
 .bs-tl-slot--bot { align-items: flex-start; padding-top: 2px; }
 .bs-tl-box { display: block; background: #eef1f5; border-radius: 8px; padding: 12px 14px; font-size: 13px; line-height: 1.6; color: #42546b; text-align: center; max-width: 210px; }
+.bs-tl-box b { display: block; font-size: 13px; font-weight: 800; color: var(--bs-heading); margin-bottom: 5px; line-height: 1.4; }
 .bs-tl-link { position: relative; width: 2px; height: 18px; background: #c3ccd5; flex: none; }
 .bs-tl-link::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 11px; height: 11px; border-radius: 50%; background: var(--tc); border: 2px solid #fff; box-shadow: 0 2px 6px rgba(15, 44, 77, 0.25); }
 .bs-tl-ball {
@@ -1194,8 +1195,13 @@ a { color: inherit; }
   .bs-tl { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px 12px; }
   .bs-tl::before { display: none; }
 }
+@media (min-width: 641px) {
+  .bs-tl--pos .bs-tl-slot { min-height: 286px; }
+  .bs-tl--pos::before { top: 359px; }
+}
 @media (max-width: 640px) {
   .bs-tl { grid-template-columns: 1fr; max-width: 360px; gap: 26px; }
+  .bs-tl::before { display: none; }
 }
 
 /* ============================================================
@@ -1264,52 +1270,7 @@ a { color: inherit; }
   .bs-hero .bs-notice { margin-top: 8px; }
 }
 
-/* ============================================================
-   POSITIONING CHAIN — pills on a winding colour band
-   ============================================================ */
-.bs-chain { display: grid; grid-template-columns: 1fr 64px 1fr 64px 1fr 64px 1fr; align-items: stretch; max-width: 1120px; margin: 0 auto; }
-.bs-chain-col { position: relative; z-index: 1; display: flex; flex-direction: column; min-width: 0; }
-.bs-chain-col--1 { --pc: #0f3d5e; }
-.bs-chain-col--2 { --pc: #1b9bd7; }
-.bs-chain-col--3 { --pc: #22b8cf; }
-.bs-chain-col--4 { --pc: #f0ad00; }
-.bs-chain-slot { flex: none; height: 118px; display: flex; align-items: center; justify-content: center; }
-.bs-chain-node { display: flex; flex-direction: column; align-items: center; }
-.bs-chain-ball {
-  width: 104px;
-  height: 104px;
-  flex: none;
-  border-radius: 50%;
-  color: #fff;
-  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.35), transparent 55%), var(--pc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.9), 0 14px 28px rgba(15, 44, 77, 0.22), inset 0 -8px 16px rgba(0, 0, 0, 0.22);
-}
-.bs-chain-arrow { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; }
-.bs-chain-arrow--down { border-top: 10px solid var(--pc); margin-top: 7px; }
-.bs-chain-arrow--up { border-bottom: 10px solid var(--pc); margin-bottom: 7px; }
-.bs-chain-pill {
-  flex: 1;
-  background: #fff;
-  border: 7px solid var(--pc);
-  border-radius: 22px;
-  padding: 20px 22px;
-  box-shadow: 0 14px 30px rgba(15, 44, 77, 0.1);
-}
-.bs-chain-pill b { display: block; font-size: 15px; font-weight: 800; color: var(--bs-heading); margin-bottom: 8px; }
-.bs-chain-pill p { margin: 0; font-size: 13.5px; line-height: 1.65; color: var(--bs-muted); }
-.bs-chain-arc { position: relative; z-index: 0; display: flex; flex-direction: column; min-width: 0; }
-.bs-chain-sp { flex: none; height: 118px; }
-.bs-chain-arcbox { flex: 1; display: flex; align-items: center; min-height: 0; }
-.bs-chain-arcbox svg { width: calc(100% + 48px); height: 62%; min-height: 90px; margin: 0 -24px; overflow: visible; }
-@media (max-width: 900px) {
-  .bs-chain { grid-template-columns: 1fr; max-width: 420px; gap: 8px; }
-  .bs-chain-arc { display: none; }
-  .bs-chain-slot { height: auto; min-height: 0; }
-  .bs-chain-node { margin: 16px 0; }
-}
+/* (chain styles removed — positioning section now uses the feature timeline) */
 
 .bs-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
 .bs-checklist li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--bs-ink); }

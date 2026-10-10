@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Fragment } from 'react';
 import { PageShell, JsonLd } from './site/chrome';
 import {
   Btn, Card, Chip, SectionHead, Stats, StepRow, RiskNote, CtaBand, Tile,
@@ -206,41 +205,25 @@ export default async function HomePage() {
             title="Digital Software Provider — Not an Investment Service"
             sub="We provide digital software products, analysis tools, technical support, and general educational resources to customers in supported markets. We do not manage customer trading accounts or client funds. Trading decisions and account risk remain under the customer’s control."
           />
-          <div className="bs-chain">
+          <div className="bs-tl bs-tl--pos">
             {POSITIONING.map((p, i) => {
               const Icon = p.icon;
-              const top = i % 2 === 0;
-              const node = (
-                <div className="bs-chain-node">
-                  {top ? null : <span className="bs-chain-arrow bs-chain-arrow--up" aria-hidden="true" />}
-                  <span className="bs-chain-ball"><Icon size={42} strokeWidth={1.5} /></span>
-                  {top ? <span className="bs-chain-arrow bs-chain-arrow--down" aria-hidden="true" /> : null}
-                </div>
-              );
               return (
-                <Fragment key={p.title}>
-                  {i > 0 ? (
-                    <div className="bs-chain-arc" aria-hidden="true">
-                      <i className="bs-chain-sp" />
-                      <span className="bs-chain-arcbox">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-                          {i % 2 === 1
-                            ? <path d="M3,97 Q50,3 97,97" fill="none" stroke={['', '#1b9bd7', '', '#f0ad00'][i]} strokeWidth="9" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-                            : <path d="M3,3 Q50,97 97,3" fill="none" stroke="#22b8cf" strokeWidth="9" strokeLinecap="round" vectorEffect="non-scaling-stroke" />}
-                        </svg>
-                      </span>
-                      <i className="bs-chain-sp" />
-                    </div>
-                  ) : null}
-                  <div className={`bs-chain-col bs-chain-col--${i + 1} bs-reveal`}>
-                    <div className="bs-chain-slot">{top ? node : null}</div>
-                    <div className="bs-chain-pill">
-                      <b>{p.title}</b>
-                      <p>{p.text}</p>
-                    </div>
-                    <div className="bs-chain-slot">{top ? null : node}</div>
+                <div key={p.title} className={`bs-tl-item bs-tl-item--${(i % 8) + 1} bs-reveal`}>
+                  <div className="bs-tl-slot bs-tl-slot--top">
+                    {i % 2 === 0 ? (
+                      <span className="bs-tl-box"><b>{p.title}</b>{p.text}</span>
+                    ) : null}
                   </div>
-                </Fragment>
+                  <span className="bs-tl-link" aria-hidden="true" />
+                  <span className="bs-tl-ball"><Icon size={40} strokeWidth={1.5} /></span>
+                  <span className="bs-tl-link" aria-hidden="true" />
+                  <div className="bs-tl-slot bs-tl-slot--bot">
+                    {i % 2 === 1 ? (
+                      <span className="bs-tl-box"><b>{p.title}</b>{p.text}</span>
+                    ) : null}
+                  </div>
+                </div>
               );
             })}
           </div>
