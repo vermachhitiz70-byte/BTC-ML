@@ -1067,6 +1067,29 @@ a { color: inherit; }
   .bs-ben4 { grid-template-columns: 1fr; max-width: 380px; gap: 92px 20px; }
 }
 
+/* ============================================================
+   WHY-CHOOSE 5 COLUMNS (product-benefits style)
+   ============================================================ */
+.bs-why5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto; align-items: start; }
+.bs-why5-item--1 { --wc: #b1b900; }
+.bs-why5-item--2 { --wc: #45aaa6; }
+.bs-why5-item--3 { --wc: #c3164e; }
+.bs-why5-item--4 { --wc: #f6a800; }
+.bs-why5-item--5 { --wc: #15717b; }
+.bs-why5-col { border-radius: 8px; background: var(--wc); color: #fff; text-align: center; overflow: hidden; box-shadow: 0 14px 28px rgba(15, 44, 77, 0.16); transition: transform 0.24s ease, box-shadow 0.24s ease; }
+.bs-why5-col:hover { transform: translateY(-4px); box-shadow: 0 20px 38px rgba(15, 44, 77, 0.22); }
+.bs-why5-num { display: block; background: rgba(255, 255, 255, 0.2); font-size: 20px; font-weight: 800; letter-spacing: 0.5px; padding: 10px 8px; }
+.bs-why5-title { display: block; padding: 14px 12px 2px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; line-height: 1.45; }
+.bs-why5-icon { display: flex; justify-content: center; padding: 12px 0 18px; color: #fff; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28)); }
+.bs-why5-line { display: block; width: 2px; height: 34px; margin: 12px auto; background-image: linear-gradient(var(--wc) 55%, transparent 45%); background-size: 2px 10px; background-repeat: repeat-y; }
+.bs-why5-text { margin: 0; padding: 0 6px; font-size: 13.5px; line-height: 1.65; color: #4b5b70; text-align: center; }
+@media (max-width: 1080px) {
+  .bs-why5 { grid-template-columns: repeat(3, 1fr); gap: 26px 18px; }
+}
+@media (max-width: 700px) {
+  .bs-why5 { grid-template-columns: 1fr; max-width: 360px; }
+}
+
 .bs-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
 .bs-checklist li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.65; color: var(--bs-ink); }
 .bs-checklist svg { flex: 0 0 auto; margin-top: 2px; color: var(--bs-emerald-deep); }

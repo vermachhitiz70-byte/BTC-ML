@@ -2,8 +2,10 @@ import { PageShell, PageHero, SiteJsonLd } from '../site/chrome';
 import {
   Btn, Card, Chip, SectionHead, CheckList, RiskNote, Tile, Stats,
 } from '../site/ui';
-import { Wallet, ShieldCheck, CircleAlert, Target, PackageCheck, Headset } from 'lucide-react';
+import { Wallet, ShieldCheck, CircleAlert, Target, PackageCheck, Headset, ChartBar, BookOpen } from 'lucide-react';
 import { ABOUT } from '@/lib/site-content';
+
+const WHY_ICONS = [PackageCheck, ChartBar, BookOpen, Wallet, Headset];
 
 export const metadata = {
   title: 'About BTCMLTAI | Trading Software & Educational Tools',
@@ -104,14 +106,21 @@ export default function AboutPage() {
       <section className="bs-section bs-section--tint">
         <div className="bs-container">
           <SectionHead eyebrow="What you get" title={ABOUT.why.title} />
-          <div className="bs-features">
-            {ABOUT.why.items.map((w) => (
-              <Card key={w.t} hover className="bs-feature">
-                <Tile icon={PackageCheck} tone="blue" size="lg" />
-                <h3>{w.t}</h3>
-                <p>{w.d}</p>
-              </Card>
-            ))}
+          <div className="bs-why5">
+            {ABOUT.why.items.map((w, i) => {
+              const Icon = WHY_ICONS[i % WHY_ICONS.length];
+              return (
+                <div key={w.t} className={`bs-why5-item bs-why5-item--${i + 1} bs-reveal`}>
+                  <div className="bs-why5-col">
+                    <span className="bs-why5-num">{String(i + 1).padStart(2, '0')}</span>
+                    <b className="bs-why5-title">{w.t}</b>
+                    <span className="bs-why5-icon"><Icon size={34} strokeWidth={1.5} /></span>
+                  </div>
+                  <span className="bs-why5-line" aria-hidden="true" />
+                  <p className="bs-why5-text">{w.d}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
