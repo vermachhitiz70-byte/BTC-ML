@@ -89,7 +89,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- SOLUTIONS — BENEFITS WHEEL ---------------- */}
+      {/* ---------------- SOLUTIONS — 4 PRODUCT BENEFITS ---------------- */}
       <section className="bs-section bs-section--tint">
         <div className="bs-container">
           <SectionHead
@@ -97,30 +97,12 @@ export default async function HomePage() {
             title="Explore Trading Software and Analysis Tools"
             sub="Review product features, compatibility, licence terms, pricing, and risk information before purchase."
           />
-          <div className="bs-wheel">
-            <div className="bs-wheel-core" aria-hidden="true">
-              <span className="bs-wheel-disc" />
-              <span className="bs-wheel-node bs-wheel-node--blue" />
-              <span className="bs-wheel-node bs-wheel-node--emerald" />
-              <span className="bs-wheel-node bs-wheel-node--purple" />
-              <span className="bs-wheel-node bs-wheel-node--amber" />
-              <span className="bs-wheel-hub">
-                <img src="/assets/images/btcmlai-logo.png" alt="" width={38} height={38} />
-                <b>BTCMLTAI</b>
-                <span>Trading Software</span>
-              </span>
-            </div>
-            <i className="bs-wheel-arm bs-wheel-arm--1" aria-hidden="true" />
-            <i className="bs-wheel-arm bs-wheel-arm--2" aria-hidden="true" />
-            <i className="bs-wheel-arm bs-wheel-arm--3" aria-hidden="true" />
-            <i className="bs-wheel-arm bs-wheel-arm--4" aria-hidden="true" />
+          <div className="bs-ben4">
             {SOLUTIONS.map((s, i) => (
-              <article key={s.title} className={`bs-benefit bs-benefit--${i + 1} bs-reveal`}>
-                <div className="bs-benefit-top">
-                  <Tile icon={s.icon} tone={s.tone} size="lg" />
-                  <span className="bs-benefit-num">{String(i + 1).padStart(2, '0')}</span>
-                </div>
-                <h3>{s.title}</h3>
+              <article key={s.title} className={`bs-ben4-card bs-ben4-card--${i + 1} bs-reveal`}>
+                <span className="bs-ben4-badge" aria-hidden="true">
+                  <span className="bs-ben4-disc"><b>{s.title}</b></span>
+                </span>
                 <p>{s.text}</p>
               </article>
             ))}
