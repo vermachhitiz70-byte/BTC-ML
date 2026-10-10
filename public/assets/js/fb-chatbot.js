@@ -1,7 +1,8 @@
 /* BTCMLTAI Support Chatbot v2 — lead form + two-way live chat with presence. */
 (function () {
-  if (window.__fbChatbotInit) return;
-  window.__fbChatbotInit = true;
+  /* NOTE: with Next.js client-side navigation React may wipe the injected
+     button/panel while this script is NOT re-executed. boot() is idempotent
+     and a 1s watchdog re-creates the button whenever it goes missing. */
 
   var HEADSET =
     '<svg class="fb-ic-chat" viewBox="0 0 24 24" aria-hidden="true">' +
@@ -50,8 +51,9 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
 
-  ready(function () {
+  function boot() {
     if (document.getElementById('fb-chat-btn')) return;
+    if (window.__fbChatPoll) { clearInterval(window.__fbChatPoll); window.__fbChatPoll = null; }
 
     var btn = el('button', null, HEADSET + CLOSE + '<span class="fb-chat-dot"></span>');
     btn.id = 'fb-chat-btn';
@@ -94,7 +96,6 @@
     var statusEl = panel.querySelector('#fb-chat-status');
     var convoId = store('btcmlai_convo');
     var lastId = 0;
-    var pollTimer = null;
     var online = false;
 
     function scrollDown() { body.scrollTop = body.scrollHeight; }
@@ -132,9 +133,9 @@
       } catch (e) { /* offline — retry next tick */ }
     }
     function startPoll() {
-      if (pollTimer) return;
+      if (window.__fbChatPoll) return;
       refresh();
-      pollTimer = setInterval(refresh, 3000);
+      window.__fbChatPoll = setInterval(refresh, 3000);
     }
     async function sendText(text) {
       const name = panel.querySelector('#fb-chat-name').value.trim();
@@ -227,7 +228,8 @@
     /* auto-open after 2 seconds with welcome message */
     var autoOpenDone = store('btcmlai_chat_auto_opened');
     if (!autoOpenDone) {
-      var autoTimer = setTimeout(function () {
+      if (window.__fbChatAutoT) clearTimeout(window.__fbChatAutoT);
+      window.__fbChatAutoT = setTimeout(function () {
         if (panel.classList.contains('fb-chat-show')) return;
         panel.classList.add('fb-chat-show');
         btn.classList.add('fb-chat-open');
@@ -264,12 +266,20 @@
         say('Hi, how can I help you today?', 'bot');
       }
     }
-    window.fbChatOpen = function () { openChat(false); };
-    document.addEventListener('click', function (e) {
-      var t = e.target && e.target.closest ? e.target.closest('[data-fb-chat]') : null;
-      if (!t) return;
-      e.preventDefault();
-      openChat(true);
-    });
+    window.fbChatOpen = function (orderMode) { openChat(!!orderMode); };
+  } /* end boot */
+
+  window.__fbChatbotEnsure = boot;
+  if (window.__fbChatbotInit) { ready(boot); return; }
+  window.__fbChatbotInit = true;
+  /* bound once — survives client-side navigation like the interval below */
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('[data-fb-chat]') : null;
+    if (!t) return;
+    e.preventDefault();
+    if (window.fbChatOpen) window.fbChatOpen(true);
   });
+  ready(boot);
+  /* watchdog: re-inject the floating button if React removed it on navigation */
+  setInterval(function () { if (!document.getElementById('fb-chat-btn')) boot(); }, 1000);
 })();

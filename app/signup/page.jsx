@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <PageShell active="/login" cart chat={false}>
+    <PageShell active="/login" cart>
       <section className="bs-section">
         <SignupForm />
       </section>
