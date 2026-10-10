@@ -125,6 +125,42 @@ function ProductDetailInner({ product, content, others }) {
         </section>
       ) : null}
 
+      {content.settings ? (
+        <section className="bs-section bs-section--tint">
+          <div className="bs-container bs-container--mid">
+            <SectionHead
+              eyebrow="Optimize settings"
+              tone="emerald"
+              title={`${content.name} settings explained`}
+              sub="What each default parameter does, with conservative adjustments for controlled risk."
+            />
+            {content.settings.groups.map((g) => (
+              <div key={g.title} style={{ marginBottom: 26 }}>
+                <h3 style={{ margin: '0 0 12px', fontSize: 17, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                  {g.title}
+                </h3>
+                <Card>
+                  <Specs rows={g.rows} />
+                </Card>
+                {g.note ? <p className="bs-note" style={{ marginTop: 10 }}>{g.note}</p> : null}
+              </div>
+            ))}
+            {content.settings.advice ? (
+              <div className="bs-features bs-features--2" style={{ marginTop: 8 }}>
+                {content.settings.advice.map((a) => (
+                  <Card key={a.title} hover>
+                    <h3 style={{ margin: '0 0 10px', fontSize: 16, fontWeight: 800, color: 'var(--bs-heading)' }}>
+                      {a.title}
+                    </h3>
+                    <CheckList items={a.items} />
+                  </Card>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
+
       {content.usage ? (
         <section className="bs-section bs-section--tint">
           <div className="bs-container">
