@@ -122,7 +122,7 @@ export const PRODUCT_CONTENT = {
       { k: 'Delivery', v: 'Instant digital delivery + installation guidance' },
     ],
   },
-  'galaxy-prop-firm-ea-mt5': {
+  'currency': {
     name: 'Currency',
     comingSoon: false,
     desc: 'Currency is a multi-currency Expert Advisor for MetaTrader 5 (MT5) that trades 8 Forex pairs from a single setup. It is built around prop-firm style risk rules: automatic lot sizing, a spread filter, a configurable daily trading schedule, drawdown protection that can flatten all positions at your threshold, and trailing management for open gains. Optimised setfiles are included with delivery.',
@@ -267,5 +267,5 @@ export const PRODUCT_CONTENT = {
   },
 };
 
-export const PRODUCT_ORDER = ['btc-mlt-ai', 'galaxy-prop-firm-ea-mt5', 'ict-silver-bullet-ea-MT5'];
+export const PRODUCT_ORDER = ['btc-mlt-ai', 'currency', 'ict-silver-bullet-ea-MT5'];
 

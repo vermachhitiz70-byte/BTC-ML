@@ -11,7 +11,7 @@ const STATIC_ROUTES = [
   { path: '/faqs', priority: '0.7', freq: 'monthly' },
   { path: '/contact', priority: '0.7', freq: 'monthly' },
   { path: '/products/btc-mlt-ai', priority: '0.9', freq: 'weekly' },
-  { path: '/products/galaxy-prop-firm-ea-mt5', priority: '0.9', freq: 'weekly' },
+  { path: '/products/currency', priority: '0.9', freq: 'weekly' },
   { path: '/products/ict-silver-bullet-ea-MT5', priority: '0.7', freq: 'weekly' },
   { path: '/terms-condition', priority: '0.4', freq: 'yearly' },
   { path: '/privacy-policy', priority: '0.4', freq: 'yearly' },
