@@ -31,7 +31,7 @@ const STEPS = [
 ];
 
 const POSITIONING = [
-  { icon: BookOpen, tone: 'blue', title: 'Software & Information', text: 'We provide digital trading software, analysis tools, technical documentation, and general educational content with clearly stated product information. Educational materials are general information only and are not personalised investment recommendations or trade calls.' },
+  { icon: BookOpen, tone: 'blue', title: 'Software & Information', text: 'We provide trading software, analysis tools and educational content with clear product information. General information only — not personalised advice.' },
   { icon: Wallet, tone: 'gold', title: 'No Client Funds', text: 'We do not receive trading capital, deposits, or investment funds from customers.' },
   { icon: CircleAlert, tone: 'red', title: 'No Guaranteed Returns', text: 'We do not promise profit, fixed income, loss recovery, or any guaranteed trading outcome.' },
   { icon: Target, tone: 'purple', title: 'Customer Responsibility', text: 'Customers choose their broker, account, settings, leverage, lot size, and risk controls independently.' },
@@ -212,7 +212,7 @@ export default async function HomePage() {
                 <div key={p.title} className={`bs-tl-item bs-tl-item--${(i % 8) + 1} bs-reveal`}>
                   <div className="bs-tl-slot bs-tl-slot--top">
                     {i % 2 === 0 ? (
-                      <span className="bs-tl-box"><b>{p.title}</b>{p.text}</span>
+                      <span className="bs-tl-box"><b>{p.title}</b><span>{p.text}</span></span>
                     ) : null}
                   </div>
                   <span className="bs-tl-link" aria-hidden="true" />
@@ -220,7 +220,7 @@ export default async function HomePage() {
                   <span className="bs-tl-link" aria-hidden="true" />
                   <div className="bs-tl-slot bs-tl-slot--bot">
                     {i % 2 === 1 ? (
-                      <span className="bs-tl-box"><b>{p.title}</b>{p.text}</span>
+                      <span className="bs-tl-box"><b>{p.title}</b><span>{p.text}</span></span>
                     ) : null}
                   </div>
                 </div>
