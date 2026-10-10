@@ -90,7 +90,7 @@ export default async function HomePage() {
       </section>
 
       {/* ---------------- SOLUTIONS — BENEFITS WHEEL ---------------- */}
-      <section className="bs-section">
+      <section className="bs-section bs-section--tint">
         <div className="bs-container">
           <SectionHead
             eyebrow="Trading software solutions"

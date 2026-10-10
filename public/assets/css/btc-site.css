@@ -969,17 +969,17 @@ a { color: inherit; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 44%;
+  width: 46%;
   aspect-ratio: 1 / 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
     conic-gradient(
-      from 215deg,
-      rgba(59, 130, 246, 0.22) 0deg 90deg,
-      rgba(16, 185, 129, 0.22) 90deg 180deg,
-      rgba(139, 92, 246, 0.22) 180deg 270deg,
-      rgba(245, 158, 11, 0.22) 270deg 360deg
+      from 0deg,
+      rgba(167, 139, 250, 0.24) 0deg 90deg,
+      rgba(233, 196, 106, 0.32) 90deg 180deg,
+      rgba(147, 197, 253, 0.32) 180deg 270deg,
+      rgba(52, 211, 153, 0.28) 270deg 360deg
     );
   border: 1px solid rgba(245, 197, 66, 0.34);
   box-shadow:
@@ -990,38 +990,34 @@ a { color: inherit; }
 /* gold spokes from hub to each petal */
 .bs-wheel-arm {
   position: absolute;
-  background: linear-gradient(90deg, rgba(245, 197, 66, 0), rgba(245, 197, 66, 0.55), rgba(245, 197, 66, 0));
-  border-radius: 2px;
+  background: rgba(198, 158, 44, 0.55);
 }
-.bs-wheel-arm--1 { top: 14%; left: 50%; width: 2px; height: 21%; transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(245, 197, 66, 0), rgba(245, 197, 66, 0.6)); }
-.bs-wheel-arm--2 { top: 50%; left: 64%; width: 21%; height: 2px; transform: translateY(-50%); }
-.bs-wheel-arm--3 { bottom: 14%; left: 50%; width: 2px; height: 21%; transform: translateX(-50%);
-  background: linear-gradient(0deg, rgba(245, 197, 66, 0), rgba(245, 197, 66, 0.6)); }
-.bs-wheel-arm--4 { top: 50%; right: 64%; width: 21%; height: 2px; transform: translateY(-50%); }
+.bs-wheel-arm--1 { top: 14%; left: 50%; width: 1px; height: 21%; transform: translateX(-50%); }
+.bs-wheel-arm--2 { top: 50%; left: 64%; width: 21%; height: 1px; transform: translateY(-50%); }
+.bs-wheel-arm--3 { bottom: 14%; left: 50%; width: 1px; height: 21%; transform: translateX(-50%); }
+.bs-wheel-arm--4 { top: 50%; right: 64%; width: 21%; height: 1px; transform: translateY(-50%); }
 
 /* coloured nodes riding the disc rim (diagonal positions) */
 .bs-wheel-node {
   position: absolute;
-  top: 34.6%;
-  left: 34.6%;
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 3px solid #fff;
-  box-shadow: 0 6px 16px rgba(15, 44, 77, 0.22);
+  border: 2px solid #fff;
+  box-shadow: 0 3px 8px rgba(15, 44, 77, 0.28);
+  transform: translate(-50%, -50%);
 }
-.bs-wheel-node--blue { background: linear-gradient(135deg, var(--bs-blue), var(--bs-blue-deep)); transform: translate(120%, -120%); }
-.bs-wheel-node--emerald { background: linear-gradient(135deg, var(--bs-emerald), var(--bs-emerald-deep)); transform: translate(120%, 120%); }
-.bs-wheel-node--purple { background: linear-gradient(135deg, var(--bs-purple), var(--bs-purple-deep)); transform: translate(-220%, 120%); }
-.bs-wheel-node--amber { background: linear-gradient(135deg, var(--bs-amber), var(--bs-amber-deep)); transform: translate(-220%, -120%); }
+.bs-wheel-node--blue { left: 34.2%; top: 25.7%; background: #2f6df6; }
+.bs-wheel-node--emerald { left: 31.8%; top: 27.5%; background: #12b981; }
+.bs-wheel-node--purple { left: 28.1%; top: 31%; background: #8b5cf6; }
+.bs-wheel-node--amber { left: 30.6%; top: 28.5%; background: #f59e0b; }
 
 /* central hub */
 .bs-wheel-hub {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 27%;
+  width: 23%;
   aspect-ratio: 1 / 1;
   transform: translate(-50%, -50%);
   display: flex;
@@ -1034,23 +1030,23 @@ a { color: inherit; }
   background:
     radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.2), transparent 58%),
     linear-gradient(160deg, var(--bs-navy-600), var(--bs-navy-900));
-  border: 1px solid rgba(245, 197, 66, 0.55);
+  border: 1px solid rgba(245, 197, 66, 0.35);
   box-shadow:
-    0 0 0 9px rgba(245, 197, 66, 0.10),
-    0 18px 44px rgba(6, 15, 30, 0.36),
+    0 0 0 6px rgba(255, 255, 255, 0.9),
+    0 18px 44px rgba(6, 15, 30, 0.32),
     inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
-.bs-wheel-hub img { width: 38px; height: 38px; object-fit: contain; }
+.bs-wheel-hub img { width: 36px; height: 20px; object-fit: cover; object-position: top center; }
 .bs-wheel-hub b { color: #fff; font-size: 13.5px; font-weight: 900; letter-spacing: 0.4px; line-height: 1; }
 .bs-wheel-hub span { color: var(--bs-gold-lite); font-size: 8.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; line-height: 1; }
 
 /* petals */
 .bs-benefit {
   position: absolute;
-  width: 26%;
-  padding: 20px 22px 22px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #ffffff, #fbfdff);
+  width: 22.5%;
+  padding: 18px 20px 20px;
+  border-radius: 16px;
+  background: #ffffff;
   border: 1px solid var(--bs-line);
   box-shadow: 0 1px 3px rgba(15, 44, 77, 0.05), 0 16px 38px rgba(15, 44, 77, 0.09);
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
@@ -1059,10 +1055,10 @@ a { color: inherit; }
   content: "";
   position: absolute;
   top: 0;
-  left: 20px;
-  right: 20px;
-  height: 3px;
-  border-radius: 0 0 4px 4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 16px 16px 0 0;
 }
 .bs-benefit--1::before { background: linear-gradient(90deg, var(--bs-blue), var(--bs-blue-deep)); }
 .bs-benefit--2::before { background: linear-gradient(90deg, var(--bs-emerald), var(--bs-emerald-deep)); }
@@ -1096,7 +1092,7 @@ a { color: inherit; }
   .bs-wheel { aspect-ratio: auto; display: flex; flex-direction: column; gap: 16px; }
   .bs-wheel-core { position: relative; inset: auto; flex: none; height: 250px; }
   .bs-wheel-disc { width: 232px; }
-  .bs-wheel-hub { width: 148px; }
+  .bs-wheel-hub { width: 116px; }
   .bs-wheel-node { width: 18px; height: 18px; }
   .bs-wheel-arm { display: none; }
   .bs-benefit { position: static; width: auto; }
@@ -1105,8 +1101,8 @@ a { color: inherit; }
 @media (max-width: 760px) {
   .bs-wheel-core { height: 210px; }
   .bs-wheel-disc { width: 196px; }
-  .bs-wheel-hub { width: 126px; }
-  .bs-wheel-hub img { width: 30px; height: 30px; }
+  .bs-wheel-hub { width: 100px; }
+  .bs-wheel-hub img { width: 30px; height: 17px; object-fit: cover; object-position: top center; }
   .bs-wheel-hub b { font-size: 11.5px; }
   .bs-wheel-node { display: none; }
   .bs-benefit { padding: 18px 18px 20px; }
